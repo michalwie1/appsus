@@ -2,6 +2,8 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const NOTE_KEY = 'noteDB'
+localStorage.removeItem('NOTE_KEY')
+
 
 _createNotes()
 
@@ -17,12 +19,10 @@ export const NoteService = {
 function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
         .then(notes => {
-            // if (filterBy.txt) {
-            //     const regex = new RegExp(filterBy.txt, 'i')
-            //     notes = notes.filter(note =>
-            //         regex.test(note.info?.title || note.info?.txt || '')
-            //     )
-            // }
+            if (filterBy.type) {
+                const regex = new RegExp(filterBy.type, 'i')
+                notes = notes.filter(note => regex.test(note.type))
+            }
             console.log('Notes loaded:', notes)
             return notes
         })
@@ -74,7 +74,7 @@ function _createNotes() {
             type: 'NoteImg',
             isPinned: false,
             info: {
-                url: 'https://placekitten.com/200/200',
+                url: `https://robohash.org/1422`,
                 title: 'Bobi and Me'
             },
             style: { backgroundColor: '#00d' }
