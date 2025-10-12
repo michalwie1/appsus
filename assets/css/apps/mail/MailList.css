@@ -1,1 +1,25 @@
  /* mail list */
+.mail-list {
+    width: 80vw;
+    place-self: center;
+
+    table{
+        tr{
+            display: block;
+        }
+
+        td{
+            padding: 0;
+        }
+    
+        td:nth-child(2){
+            padding-right: 3em;
+        }
+        
+        td:last-child{
+            justify-items: end;
+
+        }
+    }
+
+}
