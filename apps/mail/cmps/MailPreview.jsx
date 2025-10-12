@@ -1,7 +1,7 @@
 import { LongTxt } from "./LongTxt.jsx"
 import { mailService } from "../services/mail.service.js"
 
-const { useState, useEffect } = React
+const { useState, useEffect, Fragment } = React
 
 export function MailPreview({ mail }) {
   
@@ -10,7 +10,6 @@ export function MailPreview({ mail }) {
 
     useEffect(() => {
         // loadMail()
-        // const date = formatDate()
     }, [])
     
     function formatDate(){
@@ -19,12 +18,21 @@ export function MailPreview({ mail }) {
 
     return (
 
-        <article className="mail-preview">
+        // <section className="mail-preview">
+        <Fragment>
+            <td>
                 <input type="checkbox"></input>
-                <i class="fa-solid fa-star"></i>
-                <p>{from}</p>
-                <p><LongTxt txt={subject}/></p>
-                <p>{date}</p>
-        </article>
+
+            </td>
+
+            <td>
+                <i className="fa-solid fa-star"></i>
+            </td>
+
+            <td>    <p>{from}</p></td>
+            <td>    <p><LongTxt txt={subject}/></p></td>
+            <td>    <p>{date}</p></td>
+        </Fragment>
+
     )
 }

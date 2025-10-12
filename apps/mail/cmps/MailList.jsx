@@ -6,9 +6,10 @@ export function MailList({ mails }) {
 // export function MailList({ mails, onRemoveMail }) {
 console.log('MailList')
     return (
-        <ul className="mail-list container">
+        <table className="mail-list container">
+            <tbody>
             {mails.map(mail =>
-                <li key={mail.id}>
+                <tr key={mail.id}>
                     <MailPreview mail={mail} />
                     <section>
                         {/* <button onClick={ev => onRemoveMail(mail.id)}>Delete</button> */}
@@ -19,9 +20,10 @@ console.log('MailList')
                         {/* <button><Link to={`/mail/edit/${mail.id}`}>Edit</Link></button> */}
 
                     </section>
-                </li>
+                </tr>
             )}
-        </ul>
+            </tbody>
+        </table>
     )
 
 
