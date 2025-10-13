@@ -34,4 +34,23 @@
         font-weight:100;
     }
 
+    .date-actions-wrapper{
+        width: 4em;
+    }
+
+    .actions{
+        display: none;
+        gap: .6em;
+    }
+
+    .date-actions-wrapper:hover .actions {
+        display: flex;
+    }
+
+    .date-actions-wrapper:hover .date {
+        display: none;
+    }
+
+    
+
 }

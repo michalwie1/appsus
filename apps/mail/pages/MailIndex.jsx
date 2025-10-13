@@ -15,6 +15,7 @@ export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
     const [openMailId, setOpenMailId] = useState(null)
+    const [isMailRead, setIsMailRead] = useState(false)
     
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
@@ -32,7 +33,6 @@ export function MailIndex() {
         
     function loadMails(){
         // mailService.query()
-        console.log('rendering!')
         mailService.query(filterBy)
             .then(setMails)
             .catch(err => console.log('err:', err))
@@ -42,17 +42,40 @@ export function MailIndex() {
         setOpenMailId(mailId)
     }
 
-    // function onRemoveMail(mailId){
-    //     mailService.remove(mailId)
-    //         .then(() => {
-    //             setMails(mails => mails.filter(mail => mail.id !== mailId))
-    //             showSuccessMsg('Mail removed successfully!')
-    //         })
-    //         .catch(err => {
-    //             console.log('err:', err)
-    //             showErrorMsg(`Cannot remove mail - ${mailId}`)
-    //         })
-    // }
+    function onRemoveMail(mailId){
+        mailService.remove(mailId)
+            .then(() => {
+                setMails(mails => mails.filter(mail => mail.id !== mailId))
+                showSuccessMsg('Mail deleted successfully!')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg(`Cannot remove mail - ${mailId}`)
+            })
+    }
+
+    function onToggleMailRead(mailId){
+        console.log('toggle!')
+        mailService.get(mailId)
+            .then((mail) => {
+                mail.isRead = !mail.isRead
+                setIsMailRead(mail.isRead)
+
+                // MAYBE ANOTHER WAY TO DO SO?
+                mailService.save(mail) 
+                    .then(() => {
+                        loadMails() 
+                    })
+                // setMails(mails => mails.filter(mail => mail.id !== mailId))
+
+                .catch(err => {
+                console.log('err:', err)
+            })
+            .finally(() => {return setIsMailRead})
+
+
+            })
+    }
 
     function onSetFilterBy(newFilterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
@@ -70,8 +93,10 @@ export function MailIndex() {
             {openMailId 
             ? <MailDetails mailId={openMailId} onBack={() => setOpenMailId(null)}/>
             :  <MailList
-                mails={mails}
+                mails = {mails}
                 onMailClicked = {onMailClicked}
+                onRemoveMail = {onRemoveMail}
+                onToggleMailRead = {onToggleMailRead}
                 />}
 
            
