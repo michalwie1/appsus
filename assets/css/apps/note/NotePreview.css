@@ -1,6 +1,10 @@
-.note-item{
+.note-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     min-width: 10vw;
     min-height: 10vh;
-
+    padding: 10px;
     border-radius: 5px;
+    word-wrap: break-word;
 }

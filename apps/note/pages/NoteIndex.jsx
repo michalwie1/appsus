@@ -13,7 +13,7 @@ export function NoteIndex() {
     useEffect(() => {
         loadNotes()
     }, [])
-    
+
     useEffect(() => {
         setIsOpen(true)
     }, [noteModal])
@@ -33,6 +33,10 @@ export function NoteIndex() {
             .finally(console.log(notes))
     }
 
+    function handleSaveNote(updatedNote) {
+        NoteService.save(updatedNote).then(() => loadNotes());
+    }
+
     function onClose() {
         setIsOpen(false)
         setNoteModal(false)
@@ -46,9 +50,12 @@ export function NoteIndex() {
             <NoteList notes={notes} setNoteModal={setNoteModal} />
             {/* <button onClick = {onToggleModal}>toggle modal</button> */}
             {noteModal &&
-                <EditModal isOpen={isOpen} onClose={onClose} note={noteModal} />
-
-
+                <EditModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    note={noteModal}
+                    onSave={handleSaveNote}
+                />
             }
         </section>
     )

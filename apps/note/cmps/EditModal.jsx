@@ -1,15 +1,33 @@
-const { Fragment } = React
+const {useState, Fragment } = React
 
 
-export function EditModal({ isOpen = false, onClose = () => { }, note }) {
-    console.log(note.info.txt)
-    if (!isOpen) return null
+export function EditModal({ isOpen = false, onClose = () => {}, note, onSave }) {
+    const [txt, setTxt] = useState(note.info.txt);
+
+    if (!isOpen) return null;
+
+
+const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
+
+    function handleSave() {
+        onSave({ ...note, info: { ...note.info, txt } }) // pass updated note
+        onClose()// close modal
+    }
+
     return (
         <Fragment>
-            <section onClick={() => onClose()} className='modal-backdrop'></section>
-            <section className='modal-content'>
-                {note.info.txt}
-                <button className='close-btn' onClick={onClose}>X</button>
+            <section onClick={onClose} className="modal-backdrop" ></section>
+            <section className="modal-content" onClick={e => e.stopPropagation()} style={{ backgroundColor: bgColor }}> 
+                <textarea
+                    value={txt}
+                    onChange={(e) => setTxt(e.target.value)}
+                    rows={5}
+                    style={{ backgroundColor: bgColor }}
+                />
+                <div>
+                    <button onClick={handleSave}>Save</button>
+                    <button className="close-btn" onClick={onClose}>X</button>
+                </div>
             </section>
         </Fragment>
     )
