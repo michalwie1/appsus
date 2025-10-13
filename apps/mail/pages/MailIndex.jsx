@@ -12,28 +12,28 @@ const { useState, useEffect } = React
 const { Link, useSearchParams } = ReactRouterDOM
 
 export function MailIndex() {
-    // const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
     const [openMailId, setOpenMailId] = useState(null)
     
-    // const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
+    const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
+    useEffect(() => {
+        // console.log(filterBy)
+        setSearchParams(filterBy)
+        loadMails()
+    }, [filterBy])
+    
     // useEffect(() => {
-    //     console.log('hi')
+    //     console.log(filterBy)
     //     setSearchParams(filterBy)
     //     loadMails()
-    // }, [filterBy])
-    
-    useEffect(() => {
-        loadMails()
-        console.log(openMailId)
-        // setOpenMailId(null)
-    }, [openMailId])
-    
+    // }, [filterBy,openMailId])  
         
-    function loadMails() {
-        mailService.query()
-        // mailService.query(filterBy)
+    function loadMails(){
+        // mailService.query()
+        console.log('rendering!')
+        mailService.query(filterBy)
             .then(setMails)
             .catch(err => console.log('err:', err))
     }
@@ -54,13 +54,19 @@ export function MailIndex() {
     //         })
     // }
 
-    // function onSetFilterBy(newFilterBy) {
-    //     setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
-    // }
+    function onSetFilterBy(newFilterBy) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
+    }
 
 
     return (
         <section className="mail-index main-layout">
+
+             <MailFilter onSetFilterBy={onSetFilterBy} defaultFilter={filterBy} />
+             {/* <section className="container">
+                <button className="edit-link"><Link to="/mail/edit">Add Mail</Link></button>
+            </section> */}
+            
             {openMailId 
             ? <MailDetails mailId={openMailId} onBack={() => setOpenMailId(null)}/>
             :  <MailList
@@ -68,10 +74,7 @@ export function MailIndex() {
                 onMailClicked = {onMailClicked}
                 />}
 
-            {/* <MailFilter onSetFilterBy={onSetFilterBy} defaultFilter={filterBy} />
-             <section className="container">
-                <button className="edit-link"><Link to="/mail/edit">Add Mail</Link></button>
-            </section> */}
+           
 
             {/* {!mails.length && <Loader />} */}
                    
