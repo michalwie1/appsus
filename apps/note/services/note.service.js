@@ -2,8 +2,7 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const NOTE_KEY = 'noteDB'
-localStorage.removeItem('NOTE_KEY')
-
+// localStorage.removeItem('noteDB')
 
 _createNotes()
 
@@ -12,20 +11,12 @@ export const NoteService = {
     get,
     remove,
     save,
-    getNextNoteId,
-    getDefaultFilter,
+    getEmptyNote,
+    createNewNote,
 }
 
-function query(filterBy = {}) {
+function query() {
     return storageService.query(NOTE_KEY)
-        .then(notes => {
-            if (filterBy.type) {
-                const regex = new RegExp(filterBy.type, 'i')
-                notes = notes.filter(note => regex.test(note.type))
-            }
-            console.log('Notes loaded:', notes)
-            return notes
-        })
 }
 
 function get(noteId) {
@@ -37,26 +28,36 @@ function remove(noteId) {
 }
 
 function save(note) {
-    if (note.id) return storageService.put(NOTE_KEY, note)
-    else return storageService.post(NOTE_KEY, note)
+    if (note.id) {
+        return storageService.put(NOTE_KEY, note)
+    } else {
+        return storageService.post(NOTE_KEY, note)
+    }
 }
 
-
-function getDefaultFilter() {
-    return { txt: '' }
+function getEmptyNote(txt = '') {
+    return {
+        id: '',
+        txt,
+        createdAt: Date.now(),
+    }
 }
 
-function getNextNoteId(noteId) {
-    return storageService.query(NOTE_KEY)
-        .then(notes => {
-            let nextIdx = notes.findIndex(note => note.id === noteId) + 1
-            if (nextIdx === notes.length) nextIdx = 0
-            return notes[nextIdx].id
-        })
+function createNewNote(txt) {
+    return {
+        id: '',    
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: { backgroundColor: utilService.getRandomColor() },
+        info: { txt },
+    }
 }
+
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY) || []
+    console.log('notes:', notes)
     if (notes.length) return
 
     notes = [
@@ -95,5 +96,5 @@ function _createNotes() {
     ]
 
     utilService.saveToStorage(NOTE_KEY, notes)
-    console.log('Notes seeded:', notes)
+    console.log('creating new notes:', notes)
 }
