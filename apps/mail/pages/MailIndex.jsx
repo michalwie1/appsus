@@ -1,9 +1,4 @@
 
-// Gets mails to show from service
-// • Renders the list and the filter components (both top filter with search,
-// and side filter for different folders)
-
-
 
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
@@ -19,7 +14,7 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function MailIndex() {
     // const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
-    // const [isRe, setMails] = useState([])
+    const [openMailId, setOpenMailId] = useState(null)
     
     // const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
@@ -31,18 +26,20 @@ export function MailIndex() {
     
     useEffect(() => {
         loadMails()
-    }, [])
+        console.log(openMailId)
+        // setOpenMailId(null)
+    }, [openMailId])
     
-    // function loadMails() {
-        //     mailService.query(filterBy)
-        //         .then(setMails)
-        //         .catch(err => console.log('err:', err))
-        // }
         
     function loadMails() {
         mailService.query()
+        // mailService.query(filterBy)
             .then(setMails)
             .catch(err => console.log('err:', err))
+    }
+
+    function onMailClicked(mailId){
+        setOpenMailId(mailId)
     }
 
     // function onRemoveMail(mailId){
@@ -64,6 +61,12 @@ export function MailIndex() {
 
     return (
         <section className="mail-index main-layout">
+            {openMailId 
+            ? <MailDetails mailId={openMailId} onBack={() => setOpenMailId(null)}/>
+            :  <MailList
+                mails={mails}
+                onMailClicked = {onMailClicked}
+                />}
 
             {/* <MailFilter onSetFilterBy={onSetFilterBy} defaultFilter={filterBy} />
              <section className="container">
@@ -72,10 +75,7 @@ export function MailIndex() {
 
             {/* {!mails.length && <Loader />} */}
                    
-                <MailList
-                mails={mails}
-                // onRemoveMail={onRemoveMail}
-                />
+               
 
         </section>
     )
