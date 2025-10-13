@@ -26,7 +26,7 @@ export function MailPreview({ mail }) {
             </td>
 
             <td>
-                <i class="fa-regular fa-star"></i>
+                <i className="fa-regular fa-star"></i>
             </td>
 
             <td>    
