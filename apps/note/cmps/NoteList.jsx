@@ -1,16 +1,15 @@
 import { NotePreview } from "./NotePreview.jsx"
 
-export function NoteList({ notes }) {
+export function NoteList({ notes,setNoteModal }) {
     if (!notes || !notes.length) return <p>No notes to show</p>
 
     return (
-        <section className="note-list">
+        <section className="note-list flex column">
             {notes.map(note => (
                 <article
                     key={note.id}
-                    className="note-item"
                 >
-                    <NotePreview note={note} />
+                    <NotePreview note={note} setNoteModal={setNoteModal} />
                 </article>
             ))}
         </section>

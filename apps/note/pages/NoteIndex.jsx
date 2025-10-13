@@ -1,15 +1,22 @@
 import { NoteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
+import { EditModal } from "../cmps/EditModal.jsx"
 
 const { useState, useEffect } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
+    const [isOpen, setIsOpen] = useState(true)
+    const [noteModal, setNoteModal] = useState(null)
 
     useEffect(() => {
         loadNotes()
     }, [])
+    
+    useEffect(() => {
+        setIsOpen(true)
+    }, [noteModal])
 
     function loadNotes() {
         NoteService.query()
@@ -18,12 +25,17 @@ export function NoteIndex() {
     }
 
     function onAddNote(txt) {
-      const newNote= NoteService.createNewNote(txt)
-console.log(newNote)
+        const newNote = NoteService.createNewNote(txt)
+        console.log(newNote)
         NoteService.save(newNote)
             .then(() => loadNotes())
             .catch(err => console.log('Error saving note:', err))
             .finally(console.log(notes))
+    }
+
+    function onClose() {
+        setIsOpen(false)
+        setNoteModal(false)
     }
 
     if (!notes) return <div>Loading...</div>
@@ -31,7 +43,13 @@ console.log(newNote)
     return (
         <section className="container">
             <NoteAdd onAddNote={onAddNote} />
-            <NoteList notes={notes} />
+            <NoteList notes={notes} setNoteModal={setNoteModal} />
+            {/* <button onClick = {onToggleModal}>toggle modal</button> */}
+            {noteModal &&
+                <EditModal isOpen={isOpen} onClose={onClose} note={noteModal} />
+
+
+            }
         </section>
     )
 }

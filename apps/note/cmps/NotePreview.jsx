@@ -1,10 +1,11 @@
-export function NotePreview({ note }) {
+export function NotePreview({ note,setNoteModal }) {
     if (!note) return null
 
     const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
 
-    return (
-        <article 
+    return  (
+        <article
+            onClick={() => setNoteModal(note)}  // <-- Pass the note here
             className="note-item"
             style={{ backgroundColor: bgColor }}
         >
