@@ -110,7 +110,7 @@ function _createMail(){
         createdAt : Date.now() - 10, 
         subject: utilService.makeLorem(2),
         body: utilService.makeLorem(5),
-        isRead: false,
+        isRead: true,
         sentAt : Date.now(),
         removedAt : null,
         from: 'momo@momo.com',

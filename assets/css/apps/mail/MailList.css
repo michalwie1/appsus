@@ -2,6 +2,7 @@
 .mail-list {
     width: 80vw;
     place-self: center;
+    font-weight: 600;
 
     table{
         tr{
@@ -20,6 +21,11 @@
             justify-items: end;
 
         }
+
+    }
+    
+    tr.read{
+        font-weight:100;
     }
 
 }

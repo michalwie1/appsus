@@ -4,12 +4,14 @@ import { MailPreview } from "./MailPreview.jsx"
 
 export function MailList({ mails }) {
 // export function MailList({ mails, onRemoveMail }) {
-console.log('MailList')
+
+// const readClass = (isRead) ? 'read' : ''
+
     return (
         <table className="mail-list container">
             <tbody>
             {mails.map(mail =>
-                <tr key={mail.id}>
+                <tr className={mail.isRead ? 'read' : ''} key={mail.id}>
                     <MailPreview mail={mail} />
                     <section>
                         {/* <button onClick={ev => onRemoveMail(mail.id)}>Delete</button> */}

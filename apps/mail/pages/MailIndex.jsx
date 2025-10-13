@@ -19,6 +19,8 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function MailIndex() {
     // const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
+    // const [isRe, setMails] = useState([])
+    
     // const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
     // useEffect(() => {
@@ -37,8 +39,7 @@ export function MailIndex() {
         //         .catch(err => console.log('err:', err))
         // }
         
-        function loadMails() {
-        console.log('hi')
+    function loadMails() {
         mailService.query()
             .then(setMails)
             .catch(err => console.log('err:', err))
@@ -59,6 +60,7 @@ export function MailIndex() {
     // function onSetFilterBy(newFilterBy) {
     //     setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
     // }
+
 
     return (
         <section className="mail-index main-layout">

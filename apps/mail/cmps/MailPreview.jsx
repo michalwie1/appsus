@@ -5,7 +5,7 @@ const { useState, useEffect, Fragment } = React
 
 export function MailPreview({ mail }) {
   
-    const { from, subject, sentAt } = mail
+    const { from, subject, sentAt, isRead } = mail
     const date = formatDate()
 
     useEffect(() => {
@@ -16,22 +16,30 @@ export function MailPreview({ mail }) {
         return mailService.formatDate(sentAt)
     }
 
+    
     return (
 
         // <section className="mail-preview">
         <Fragment>
             <td>
                 <input type="checkbox"></input>
-
             </td>
 
             <td>
-                <i className="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
             </td>
 
-            <td>    <p>{from}</p></td>
-            <td>    <p><LongTxt txt={subject}/></p></td>
-            <td>    <p>{date}</p></td>
+            <td>    
+                <p>{from}</p>
+            </td>
+           
+            <td>    
+                <p><LongTxt txt={subject}/></p>
+            </td>
+            
+            <td>    
+                <p>{date}</p>
+            </td>
         </Fragment>
 
     )
