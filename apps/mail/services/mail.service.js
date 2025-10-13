@@ -105,13 +105,14 @@ function _createMails(){
 }
 
 function _createMail(){
+    let randsomTS = utilService.getRandomTimestamp()
     return {
         id: 'e101',
-        createdAt : Date.now() - 10, 
+        createdAt : randsomTS - 20, 
         subject: utilService.makeLorem(2),
         body: utilService.makeLorem(5),
-        isRead: true,
-        sentAt : Date.now(),
+        isRead: Math.random() > 0.7,
+        sentAt : randsomTS,
         removedAt : null,
         from: 'momo@momo.com',
         to: 'user@appsus.com'

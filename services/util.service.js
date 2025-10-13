@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     loadFromStorage,
-    saveToStorage
+    saveToStorage,
+    getRandomTimestamp
 }
 
 function saveToStorage(key, val) {
@@ -70,4 +71,10 @@ function getMonthName(date) {
         "July", "August", "September", "October", "November", "December"
     ]
     return monthNames[date.getMonth()]
+}
+
+function getRandomTimestamp() {
+  const maxTimestamp = Date.now()
+  const randomTimestamp = Math.floor(Math.random() * maxTimestamp)
+  return randomTimestamp
 }
