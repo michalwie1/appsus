@@ -57,6 +57,7 @@ export function NoteIndex() {
                     onSave={handleSaveNote}
                 />
             }
+
         </section>
     )
 }

@@ -1,3 +1,7 @@
+import { ColorPicker } from "./ColorPicker.jsx";
+
+
+
 const {useState, Fragment } = React
 
 
@@ -24,9 +28,11 @@ const bgColor = note.style && note.style.backgroundColor ? note.style.background
                     rows={5}
                     style={{ backgroundColor: bgColor }}
                 />
-                <div>
+
+                <div className= 'action-bar'>
                     <button onClick={handleSave}>Save</button>
                     <button className="close-btn" onClick={onClose}>X</button>
+                    <ColorPicker note={note}/>
                 </div>
             </section>
         </Fragment>
