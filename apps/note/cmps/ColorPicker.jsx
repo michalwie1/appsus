@@ -1,6 +1,6 @@
 const { useState, useRef, useEffect } = React;
 
-export function ColorPicker({ note}) {
+export function ColorPicker({ note, onChangeColor}) {
     const [isOpen, setIsOpen] = useState(false);
     const pickerRef = useRef(null);
 
@@ -18,7 +18,7 @@ export function ColorPicker({ note}) {
 
     function handleSelect(color, ev) {
         ev.stopPropagation();
-        // onChange(color);
+        onChangeColor(color,note)
         setIsOpen(false);
     }
 

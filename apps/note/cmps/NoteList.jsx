@@ -1,6 +1,6 @@
 import { NotePreview } from "./NotePreview.jsx"
 
-export function NoteList({ notes,setNoteModal }) {
+export function NoteList({ notes,setNoteModal, onChangeColor={onChangeColor} }) {
     if (!notes || !notes.length) return <p>No notes to show</p>
 
     return (
@@ -9,7 +9,7 @@ export function NoteList({ notes,setNoteModal }) {
                 <article
                     key={note.id}
                 >
-                    <NotePreview note={note} setNoteModal={setNoteModal} />
+                    <NotePreview note={note} setNoteModal={setNoteModal} onChangeColor={onChangeColor}/>
                 </article>
             ))}
         </section>

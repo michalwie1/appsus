@@ -1,7 +1,7 @@
 import { ColorPicker } from "./ColorPicker.jsx";
 
 
-export function NotePreview({ note,setNoteModal }) {
+export function NotePreview({ note,setNoteModal,onChangeColor }) {
     if (!note) return null
 
     const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
@@ -38,7 +38,7 @@ export function NotePreview({ note,setNoteModal }) {
             )}
             <div className="action-bar">
 
-             <ColorPicker note={note}/>
+             <ColorPicker note={note} onChangeColor={onChangeColor}/>
             </div>
         </article>
     )
