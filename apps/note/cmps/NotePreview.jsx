@@ -1,13 +1,13 @@
 import { ColorPicker } from "./ColorPicker.jsx";
 
 
-export function NotePreview({ note,setNoteModal,onChangeColor }) {
+export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote }) {
     if (!note) return null
 
     const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
 
 
-    return  (
+    return (
         <article
             onClick={() => setNoteModal(note)}  // <-- Pass the note here
             className="note-item"
@@ -37,8 +37,11 @@ export function NotePreview({ note,setNoteModal,onChangeColor }) {
                 </div>
             )}
             <div className="action-bar">
-
-             <ColorPicker note={note} onChangeColor={onChangeColor}/>
+                <i
+                    className="fa-solid fa-trash"
+                    onClick={(ev) => onRemoveNote(ev, note)}
+                ></i>
+                <ColorPicker note={note} onChangeColor={onChangeColor} />
             </div>
         </article>
     )

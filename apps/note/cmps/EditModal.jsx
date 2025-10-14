@@ -2,16 +2,17 @@ import { ColorPicker } from "./ColorPicker.jsx";
 
 
 
-const {useState, Fragment } = React
+const { useState, Fragment } = React
 
 
-export function EditModal({ isOpen = false, onClose = () => {}, note, onSave , onChangeColor}) {
+export function EditModal({ isOpen = false, onClose = () => { }, note, onSave
+    , onChangeColor, onRemoveNote }) {
     const [txt, setTxt] = useState(note.info.txt);
 
     if (!isOpen) return null;
 
 
-const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
+    const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
 
     function handleSave() {
         onSave({ ...note, info: { ...note.info, txt } }) // pass updated note
@@ -21,7 +22,7 @@ const bgColor = note.style && note.style.backgroundColor ? note.style.background
     return (
         <Fragment>
             <section onClick={onClose} className="modal-backdrop" ></section>
-            <section className="modal-content" onClick={e => e.stopPropagation()} style={{ backgroundColor: bgColor }}> 
+            <section className="modal-content" onClick={e => e.stopPropagation()} style={{ backgroundColor: bgColor }}>
                 <textarea
                     value={txt}
                     onChange={(e) => setTxt(e.target.value)}
@@ -29,10 +30,16 @@ const bgColor = note.style && note.style.backgroundColor ? note.style.background
                     style={{ backgroundColor: bgColor }}
                 />
 
-                <div className= 'action-bar'>
+                <div className='action-bar'>
                     <button onClick={handleSave}>Save</button>
-                    <button className="close-btn" onClick={onClose}>X</button>
-                    <ColorPicker note={note} onChangeColor={onChangeColor}/>
+                    {/* <button className="close-btn" onClick={onClose}>X</button> */}
+                    <i
+                        className="fa-solid fa-trash"
+                        onClick={(ev) =>{
+                            onRemoveNote(ev, note), onClose()}
+                        } 
+                    ></i>
+                    <ColorPicker note={note} onChangeColor={onChangeColor} />
                 </div>
             </section>
         </Fragment>

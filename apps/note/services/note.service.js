@@ -49,7 +49,7 @@ function createNewNote(txt) {
         createdAt: Date.now(),
         type: 'NoteTxt',
         isPinned: false,
-        style: { backgroundColor: utilService.getRandomColor() },
+        style: { backgroundColor: '' },
         info: { txt },
     }
 }
@@ -66,7 +66,7 @@ function _createNotes() {
             createdAt: 1112222,
             type: 'NoteTxt',
             isPinned: true,
-            style: { backgroundColor: '#00d' },
+            style: { backgroundColor: ''},
             info: { txt: 'Fullstack Me Baby!' }
         },
         {
@@ -78,7 +78,7 @@ function _createNotes() {
                 url: `https://robohash.org/1422`,
                 title: 'Bobi and Me'
             },
-            style: { backgroundColor: '#00d' }
+            style: { backgroundColor: '' }
         },
         {
             id: 'n103',

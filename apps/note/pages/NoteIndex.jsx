@@ -37,6 +37,15 @@ export function NoteIndex() {
         NoteService.save(updatedNote).then(() => loadNotes());
     }
 
+    function onRemoveNote(ev, note) {
+        ev.stopPropagation()
+        NoteService.remove(note.id)
+            .then(() => loadNotes())
+            .catch(err => console.log('Error saving note:', err))
+            // .finally(console.log(notes))
+
+    }
+
     function onChangeColor(color, note) {
         const updatedNote = {
             ...note,
@@ -67,7 +76,11 @@ export function NoteIndex() {
     return (
         <section className="container">
             <NoteAdd onAddNote={onAddNote} />
-            <NoteList notes={notes} setNoteModal={setNoteModal} onChangeColor={onChangeColor} />
+            <NoteList
+                notes={notes}
+                setNoteModal={setNoteModal}
+                onChangeColor={onChangeColor}
+                onRemoveNote={onRemoveNote} />
             {/* <button onClick = {onToggleModal}>toggle modal</button> */}
             {noteModal &&
                 <EditModal
@@ -76,6 +89,7 @@ export function NoteIndex() {
                     note={noteModal}
                     onSave={handleSaveNote}
                     onChangeColor={onChangeColor}
+                    onRemoveNote={onRemoveNote}
                 />
             }
 
