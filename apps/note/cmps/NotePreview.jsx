@@ -1,7 +1,11 @@
-export function NotePreview({ note,setNoteModal }) {
+import { ColorPicker } from "./ColorPicker.jsx";
+
+
+export function NotePreview({ note,setNoteModal,onChangeColor }) {
     if (!note) return null
 
     const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
+
 
     return  (
         <article
@@ -32,6 +36,10 @@ export function NotePreview({ note,setNoteModal }) {
                     ))}
                 </div>
             )}
+            <div className="action-bar">
+
+             <ColorPicker note={note} onChangeColor={onChangeColor}/>
+            </div>
         </article>
     )
 }

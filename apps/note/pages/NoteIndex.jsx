@@ -37,7 +37,27 @@ export function NoteIndex() {
         NoteService.save(updatedNote).then(() => loadNotes());
     }
 
-    function onClose() {
+    function onChangeColor(color, note) {
+        const updatedNote = {
+            ...note,
+            style: {
+                ...note.style,
+                backgroundColor: color
+            }
+        }
+
+        NoteService.save(updatedNote)
+            .then(() => {
+                loadNotes()
+                if (noteModal && noteModal.id === updatedNote.id) {
+                    setNoteModal(updatedNote);
+                }
+            })
+            .catch(err => console.log("Error changing color:", err));
+    }
+
+
+    function onCloseModal() {
         setIsOpen(false)
         setNoteModal(false)
     }
@@ -47,16 +67,18 @@ export function NoteIndex() {
     return (
         <section className="container">
             <NoteAdd onAddNote={onAddNote} />
-            <NoteList notes={notes} setNoteModal={setNoteModal} />
+            <NoteList notes={notes} setNoteModal={setNoteModal} onChangeColor={onChangeColor} />
             {/* <button onClick = {onToggleModal}>toggle modal</button> */}
             {noteModal &&
                 <EditModal
                     isOpen={isOpen}
-                    onClose={onClose}
+                    onClose={onCloseModal}
                     note={noteModal}
                     onSave={handleSaveNote}
+                    onChangeColor={onChangeColor}
                 />
             }
+
         </section>
     )
 }

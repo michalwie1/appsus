@@ -1,7 +1,11 @@
+import { ColorPicker } from "./ColorPicker.jsx";
+
+
+
 const {useState, Fragment } = React
 
 
-export function EditModal({ isOpen = false, onClose = () => {}, note, onSave }) {
+export function EditModal({ isOpen = false, onClose = () => {}, note, onSave , onChangeColor}) {
     const [txt, setTxt] = useState(note.info.txt);
 
     if (!isOpen) return null;
@@ -24,9 +28,11 @@ const bgColor = note.style && note.style.backgroundColor ? note.style.background
                     rows={5}
                     style={{ backgroundColor: bgColor }}
                 />
-                <div>
+
+                <div className= 'action-bar'>
                     <button onClick={handleSave}>Save</button>
                     <button className="close-btn" onClick={onClose}>X</button>
+                    <ColorPicker note={note} onChangeColor={onChangeColor}/>
                 </div>
             </section>
         </Fragment>
