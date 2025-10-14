@@ -10,7 +10,6 @@ const [mail, setMail] = useState(null)
 
 useEffect(() => {
     loadMail()
-    console.log(mail)
     }, [mailId])
 
 function loadMail(){

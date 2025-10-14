@@ -28,16 +28,14 @@ export const mailService = {
 
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
-
         .then(mails => {
-            if (filterBy.title) {
-                console.log(filterBy.title)
-                const regex = new RegExp(filterBy.title, 'i')
-                mails = mails.filter(mail => regex.test(mail.title))
+            if (filterBy.subject) {
+                const regex = new RegExp(filterBy.subject, 'i')
+                mails = mails.filter(mail => regex.test(mail.subject))
             }
-            if (filterBy.listPrice) {
-                mails = mails.filter(mail => mail.listPrice >= filterBy.listPrice)
-            }
+            // if (filterBy.listPrice) {
+            //     mails = mails.filter(mail => mail.listPrice >= filterBy.listPrice)
+            // }
             return mails
         })
 }
@@ -60,15 +58,16 @@ function save(mail) {
 }
 
 function getDefaultFilter() {
-    return { title: '', listPrice: '' }
+    return { subject: '' }
+    // return { subject: '', isRead: '' }
 }
 
 function getFilterFromParams(searchParams) {
-    const title = searchParams.get('title') || ''
-    const price = searchParams.get('price') || ''
+    const subject = searchParams.get('subject') || ''
+    // const isRead = searchParams.get('isRead') || ''
     return {
-        title,
-        price
+        subject,
+        // isRead
     }
 }
 

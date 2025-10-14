@@ -3,13 +3,16 @@ import { mailService } from "../services/mail.service.js"
 
 const { useState, useEffect, Fragment } = React
 
-export function MailPreview({ mail }) {
-  
+export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
+    const [isMailRead, setIsMailRead] = useState(false)
     const { from, subject, sentAt, isRead } = mail
     const date = formatDate()
 
+
     useEffect(() => {
         // loadMail()
+        // setIsMailRead(mail.isRead)
+        // setIsMailRead(onToggleMailRead())
     }, [])
     
     function formatDate(){
@@ -36,10 +39,22 @@ export function MailPreview({ mail }) {
             <td>    
                 <p><LongTxt txt={subject}/></p>
             </td>
-            
-            <td>    
-                <p>{date}</p>
-            </td>
+
+            <td className="date-actions-wrapper">
+                <div className="date">
+                    <p>{date}</p>
+                </div>
+
+                <div className="actions" onClick={(ev) => ev.stopPropagation()}>
+                    <i className="fa-solid fa-trash" title="Delete" onClick={() => onRemoveMail(mail.id)}></i>
+
+                    {/* SHOULD ADD - IF */}
+                    {isMailRead 
+                    ? <i className="fa-solid fa-envelope" title="Make as unread" onClick={() => onToggleMailRead(mail.id)}></i>
+                    : <i className="fa-solid fa-envelope-open" title="Make as read" onClick={() => onToggleMailRead(mail.id)}></i>
+                     }
+                </div>
+            </td>   
         </Fragment>
 
     )

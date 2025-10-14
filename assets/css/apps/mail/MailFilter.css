@@ -1,0 +1,11 @@
+.mail-filter{
+    justify-items: center;
+
+    i{
+        padding: .7em;
+    }
+    input{
+        padding: .3em 15em;
+        border-radius: 10px;
+    }
+}

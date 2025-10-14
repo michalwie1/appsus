@@ -2,14 +2,18 @@ const { Link } = ReactRouterDOM
 
 import { MailPreview } from "./MailPreview.jsx"
 
-export function MailList({ mails, onMailClicked }) {
+export function MailList({ mails, onMailClicked, onRemoveMail, onToggleMailRead }) {
 
     return (
         <table className="mail-list container">
             <tbody>
             {mails.map(mail =>
                 <tr className={mail.isRead ? 'read' : ''} key={mail.id} onClick={()=> onMailClicked(mail.id)}>
-                    <MailPreview mail={mail} />
+                    <MailPreview 
+                        mail = {mail}
+                        onRemoveMail = {onRemoveMail}
+                        onToggleMailRead = {onToggleMailRead} 
+                    />
                     <section>
                         {/* <button onClick={ev => onRemoveMail(mail.id)}>Delete</button> */}
 
