@@ -7,4 +7,7 @@
     padding: 10px;
     border-radius: 5px;
     word-wrap: break-word;
+    &:hover{
+        cursor: pointer;
+    }
 }

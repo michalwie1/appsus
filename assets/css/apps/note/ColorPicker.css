@@ -5,8 +5,8 @@
 
 .color-picker {
     position: absolute;
-    bottom: 30px;
-    right: 0;
+    top: 30px;
+    left: 0;
     background: rgb(255, 255, 255);
     padding: 8px;
     border-radius: 10px;
@@ -15,6 +15,7 @@
     gap: 6px;
     width: 120px;
     z-index: 20;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .color-swatch {
@@ -30,7 +31,7 @@
     transform: scale(1.2);
 }
 
-.fa-palette {
+/* i{
     font-size: 1.2em;
     cursor: pointer;
     color: rgba(114, 114, 114, 0.8);
@@ -38,7 +39,7 @@
     padding: 0.2em;
 }
 
-.fa-palette:hover {
+i:hover {
     color: white;
     transform: scale(1.1);
-}
+} */

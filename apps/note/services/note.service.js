@@ -13,10 +13,35 @@ export const NoteService = {
     save,
     getEmptyNote,
     createNewNote,
+    getDefaultFilter,
 }
 
-function query() {
+function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
+        .then(notes => {
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
+                notes = notes.filter(note =>
+                    regex.test((note.info && note.info.txt) || '') ||
+                    regex.test((note.info && note.info.title) || '')
+                )
+            }
+
+            if (filterBy.type) {
+                notes = notes.filter(note =>
+                    note.type === filterBy.type
+                )
+            }
+
+            if (filterBy.title) {
+                const regex = new RegExp(filterBy.title, 'i')
+                notes = notes.filter(note =>
+                    regex.test((note.info && note.info.title) || '')
+                )
+            }
+
+            return notes
+        })
 }
 
 function get(noteId) {
@@ -33,6 +58,10 @@ function save(note) {
     } else {
         return storageService.post(NOTE_KEY, note)
     }
+}
+
+function getDefaultFilter() {
+    return { txt: '', type: '', title: '' }
 }
 
 function getEmptyNote(txt = '') {

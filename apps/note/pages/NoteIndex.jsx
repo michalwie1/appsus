@@ -2,11 +2,13 @@ import { NoteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
 import { EditModal } from "../cmps/EditModal.jsx"
+import { NoteFilter } from "../cmps/NoteFilter.jsx"
 
 const { useState, useEffect } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
+    const [filterBy, setFilterBy] = useState(NoteService.getDefaultFilter())
     const [isOpen, setIsOpen] = useState(true)
     const [noteModal, setNoteModal] = useState(null)
 
@@ -18,8 +20,12 @@ export function NoteIndex() {
         setIsOpen(true)
     }, [noteModal])
 
+       useEffect(() => {
+        loadNotes()
+    }, [filterBy])
+
     function loadNotes() {
-        NoteService.query()
+        NoteService.query(filterBy)
             .then(setNotes)
             .catch(err => console.log('Error loading notes:', err))
     }
@@ -42,8 +48,12 @@ export function NoteIndex() {
         NoteService.remove(note.id)
             .then(() => loadNotes())
             .catch(err => console.log('Error saving note:', err))
-            // .finally(console.log(notes))
+        // .finally(console.log(notes))
 
+    }
+
+      function onSetFilterBy(newFilter) {
+         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilter}))
     }
 
     function onChangeColor(color, note) {
@@ -74,7 +84,11 @@ export function NoteIndex() {
     if (!notes) return <div>Loading...</div>
 
     return (
-        <section className="container">
+        <section className="main-container">
+            <NoteFilter
+                defaultFilter={filterBy}
+                onSetFilterBy={onSetFilterBy} />
+            <section className="container">
             <NoteAdd onAddNote={onAddNote} />
             <NoteList
                 notes={notes}
@@ -84,15 +98,15 @@ export function NoteIndex() {
             {/* <button onClick = {onToggleModal}>toggle modal</button> */}
             {noteModal &&
                 <EditModal
-                    isOpen={isOpen}
-                    onClose={onCloseModal}
-                    note={noteModal}
-                    onSave={handleSaveNote}
-                    onChangeColor={onChangeColor}
-                    onRemoveNote={onRemoveNote}
+                isOpen={isOpen}
+                onClose={onCloseModal}
+                note={noteModal}
+                onSave={handleSaveNote}
+                onChangeColor={onChangeColor}
+                onRemoveNote={onRemoveNote}
                 />
             }
-
+            </section>
         </section>
     )
 }
