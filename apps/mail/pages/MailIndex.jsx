@@ -15,24 +15,16 @@ export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
     const [openMailId, setOpenMailId] = useState(null)
-    const [isMailRead, setIsMailRead] = useState(false)
     
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
     useEffect(() => {
-        // console.log(filterBy)
         setSearchParams(filterBy)
         loadMails()
     }, [filterBy])
-    
-    // useEffect(() => {
-    //     console.log(filterBy)
-    //     setSearchParams(filterBy)
-    //     loadMails()
-    // }, [filterBy,openMailId])  
+     
         
     function loadMails(){
-        // mailService.query()
         mailService.query(filterBy)
             .then(setMails)
             .catch(err => console.log('err:', err))
@@ -54,28 +46,20 @@ export function MailIndex() {
             })
     }
 
-    function onToggleMailRead(mailId){
-        console.log('toggle!')
+    function onToggleMailRead(mailId) {
+        setMails(prevMails =>
+            prevMails.map(mail =>
+                mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
+            )
+        )
+
         mailService.get(mailId)
-            .then((mail) => {
+            .then(mail => {
                 mail.isRead = !mail.isRead
-                setIsMailRead(mail.isRead)
-
-                // MAYBE ANOTHER WAY TO DO SO?
-                mailService.save(mail) 
-                    .then(() => {
-                        loadMails() 
-                    })
-                // setMails(mails => mails.filter(mail => mail.id !== mailId))
-
-                .catch(err => {
-                console.log('err:', err)
+                return mailService.save(mail)
             })
-            .finally(() => {return setIsMailRead})
-
-
-            })
-    }
+            .catch(err => console.log('err:', err))
+    }   
 
     function onSetFilterBy(newFilterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
@@ -89,6 +73,8 @@ export function MailIndex() {
              {/* <section className="container">
                 <button className="edit-link"><Link to="/mail/edit">Add Mail</Link></button>
             </section> */}
+
+            {!mails.length && <Loader />}
             
             {openMailId 
             ? <MailDetails mailId={openMailId} onBack={() => setOpenMailId(null)}/>
@@ -101,7 +87,7 @@ export function MailIndex() {
 
            
 
-            {/* {!mails.length && <Loader />} */}
+            
                    
                
 
