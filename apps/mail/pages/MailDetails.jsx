@@ -1,7 +1,7 @@
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-import { Loader } from "./Loader.jsx"
+import { Loader } from "../cmps/Loader.jsx"
 import { mailService } from "../services/mail.service.js"
 
 export function MailDetails({ mailId, onBack }) {

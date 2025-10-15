@@ -1,12 +1,7 @@
  /* mail list */
 .mail-list {
     width: 80vw;
-    place-self: center;
-    font-weight: 600;
-    border-radius: 20px;
-    /* background-color: #f2f2f2; */
-    background-color: rgb(255, 255, 255);
-    border-bottom: black;
+    border-spacing: 0;
     
     table{
         tr{
@@ -35,15 +30,17 @@
     
     tr.read{
         font-weight:100;
+        background-color: #0000000d;
     }
 
     .date-actions-wrapper{
         width: 4em;
+        /* justify-self: end; */
     }
 
     .actions{
         display: none;
-        gap: .6em;
+        gap: 1em;
         font-weight: 100;
     }
 
@@ -68,12 +65,9 @@
     i:hover, input:hover { 
         /* z-index: 0; */
         border-radius: 50%;
-        background-color: #f2f2f2;
-        outline: .7em solid #f2f2f2;
-
-        
+        background-color: #0000000d;
+        outline: .7em solid #0000000d;
     }
-
 
 }
 
@@ -84,5 +78,6 @@ table td {
 table td:nth-child(3){
     padding-right: 3em;
 }
+
 
 

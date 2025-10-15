@@ -3,7 +3,7 @@
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
-import { MailFilter } from "../cmps/MailFilter.jsx"
+import { MailHeader } from "../cmps/MailHeader.jsx"
 import { Loader } from "../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
@@ -69,7 +69,12 @@ export function MailIndex() {
     return (
         <section className="mail-index main-layout">
 
-             <MailFilter onSetFilterBy={onSetFilterBy} defaultFilter={filterBy} />
+            <MailHeader 
+                onSetFilterBy={onSetFilterBy} 
+                defaultFilter={filterBy}
+            />
+             {/* <MailFilter onSetFilterBy={onSetFilterBy} defaultFilter={filterBy} /> */}
+
              {/* <section className="container">
                 <button className="edit-link"><Link to="/mail/edit">Add Mail</Link></button>
             </section> */}

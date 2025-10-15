@@ -1,0 +1,10 @@
+.mail-header{
+    display: flex;
+    margin: 1em;
+    gap: 1em;
+    width: 80vw;
+
+    img {
+        width: 3em;
+    }
+}
