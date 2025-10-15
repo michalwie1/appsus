@@ -72,7 +72,7 @@ function getEmptyNote(txt = '') {
     }
 }
 
-function createNewNote(txt = '', title = '') {
+function createNewNote(title = '', txt = '') {
     return {
         id: '',    
         createdAt: Date.now(),

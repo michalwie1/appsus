@@ -36,12 +36,12 @@ export function ColorPicker({ note, onChangeColor}) {
     return (
         <div className="color-picker-wrapper" ref={pickerRef}>
             <i
-                className="fa-solid fa-palette"
+                className="material-symbols-outlined"
                 onClick={(ev) => {
                     ev.stopPropagation();
                     setIsOpen((prev) => !prev);
                 }}
-            ></i>
+            > palette</i>
 
             {isOpen && (
                 <div className="color-picker">

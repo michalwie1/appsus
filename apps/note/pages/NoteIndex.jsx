@@ -72,6 +72,19 @@ export function NoteIndex() {
             .catch(err => console.log("Error changing color:", err));
     }
 
+    function onPinNote(ev,note){
+        ev.stopPropagation()
+        console.log('pinned note' + note.id)
+           const updatedNote = {
+        ...note,
+        isPinned: !note.isPinned
+    }
+    
+        NoteService.save(updatedNote)
+           .then(() => loadNotes())
+            .catch(err => console.log('Error saving note:', err))
+}
+
 
     function onCloseModal() {
         setIsOpen(false)
@@ -91,7 +104,8 @@ export function NoteIndex() {
                     notes={notes}
                     setNoteModal={setNoteModal}
                     onChangeColor={onChangeColor}
-                    onRemoveNote={onRemoveNote} />
+                    onRemoveNote={onRemoveNote}
+                    onPinNote={onPinNote} />
                 {/* <button onClick = {onToggleModal}>toggle modal</button> */}
                 {noteModal &&
                     <EditModal

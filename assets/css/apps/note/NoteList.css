@@ -1,8 +1,13 @@
  /* note list */
 
- .note-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-    padding: 1.5rem;
+.note-list {
+  columns: 6 240px;   /* 6 columns, each about 240px wide */
+  column-gap: 2rem; /* small space between columns */
+  padding: 1rem;      /* optional, for breathing room */
+}
+
+.note-list > * {
+  break-inside: avoid; /* keep notes from breaking apart */
+  display: block;
+  margin-bottom: 0.5rem; /* small space between notes */
 }

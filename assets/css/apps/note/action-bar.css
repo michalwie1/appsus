@@ -5,7 +5,7 @@
 
 .action-bar {
     position: absolute;
-    bottom: 10px;
+    bottom: 6px;
     right: 10px;
     display: flex;
     flex-direction: row-reverse;

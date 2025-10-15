@@ -56,6 +56,8 @@
     outline: none;
     font-size: 1rem;
     resize: none;
+
+    display: none;
 }
  .note-add textarea{
     width: 90%;
@@ -66,9 +68,8 @@
     font-size: 1rem;
     resize: none;
 
-    display: none;
 }
 
-.note-add:focus-within textarea {
+.note-add:focus-within input{
     display: block;
 }

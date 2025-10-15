@@ -1,6 +1,6 @@
 import { ColorPicker } from "./ColorPicker.jsx";
 
-export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote }) {
+export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote ,onPinNote }) {
     if (!note) return null;
 
     // Avoid optional chaining for older Babel
@@ -13,10 +13,13 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote })
             style={{ backgroundColor: bgColor }}
         >
 
+                    <span className="material-symbols-outlined pin" onClick={(ev)=> onPinNote(ev,note)}>
+                        keep
+                    </span>  
             {/* Text Note */}
             {note.type === 'NoteTxt' && note.info && (
                 <div>
-                    {note.info.title && <h5>{note.info.title}</h5>}
+                     {note.info.title && <h5>{note.info.title}</h5>}
                     {note.info.txt && <p>{note.info.txt}</p>}
                 </div>
             )}
@@ -45,12 +48,11 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote })
                     ))}
                 </div>
             )}
-
             <div className="action-bar">
                 <i
-                    className="fa-solid fa-trash"
+                    className="material-symbols-outlined"
                     onClick={(ev) => onRemoveNote(ev, note)}
-                ></i>
+                >Delete</i>
                 <ColorPicker note={note} onChangeColor={onChangeColor} />
             </div>
         </article>

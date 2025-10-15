@@ -34,11 +34,11 @@ export function EditModal({ isOpen = false, onClose = () => { }, note, onSave
                     <button onClick={handleSave}>Save</button>
                     {/* <button className="close-btn" onClick={onClose}>X</button> */}
                     <i
-                        className="fa-solid fa-trash"
+                        className="material-symbols-outlined"
                         onClick={(ev) =>{
                             onRemoveNote(ev, note), onClose()}
                         } 
-                    ></i>
+                    >Delete</i>
                     <ColorPicker note={note} onChangeColor={onChangeColor} />
                 </div>
             </section>

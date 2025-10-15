@@ -1,13 +1,22 @@
 .note-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-width: 10vw;
-    min-height: 10vh;
+    position: relative; /* optional */
+    display: block;     /* column flex can interfere with float */
+    width: 100%;
+    min-height: 104px;
     padding: 10px;
     border-radius: 5px;
     word-wrap: break-word;
-    &:hover{
-        cursor: pointer;
-    }
+    cursor: pointer;
+}
+
+.pin {
+    float: left;          /* text wraps around it */
+    margin-right: 10px;   /* space between pin and text */
+    margin-top: 2px;      /* vertical alignment */
+    opacity: 0;           /* hidden by default */
+    transition: opacity 0.3s ease;
+}
+
+.note-item:hover .pin {
+    opacity: 1;           /* show on hover */
 }
