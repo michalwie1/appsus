@@ -1,5 +1,7 @@
 
-@import './basics/vars.css';
+@import './setup/vars.css';
+@import './setup/typography.css';
+
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './basics/layout.css';
