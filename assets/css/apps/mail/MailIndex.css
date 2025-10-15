@@ -1,1 +1,12 @@
- /* mail index  */
+ .mail-index {
+    width: 100vw;
+    /* font-family: "Open Sans", serif; */
+    justify-items: center;
+    place-self: center;
+    font-weight: 600;
+    border-radius: 20px;
+    /* background-color: #f2f2f2; */
+    background-color: rgb(255, 255, 255);
+ }
+
+ /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans'); */
