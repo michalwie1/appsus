@@ -2,8 +2,9 @@
 
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
-import { MailDetails } from "./MailDetails.jsx"
+// import { MailDetails } from "./MailDetails.jsx"
 import { MailHeader } from "../cmps/MailHeader.jsx"
+import { MailCompose } from "../cmps/MailCompose.jsx"
 import { Loader } from "../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
@@ -21,7 +22,7 @@ export function MailIndex() {
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
-    }, [filterBy, mails])
+    }, [filterBy])
      
         
     function loadMails(){
@@ -29,17 +30,6 @@ export function MailIndex() {
             .then(setMails)
             .catch(err => console.log('err:', err))
     }
-
-    // function onMailClicked(mailId){
-    //     setOpenMailId(mailId)
-    //     mailService.get(mailId)
-    //         .then(mail => {
-    //             mail.isRead = true
-    //             console.log(mail)
-    //             return mailService.save(mail)
-    //         })
-    //         .catch(err => console.log('err:', err))
-    // }
 
     function onRemoveMail(mailId) {
         mailService.remove(mailId)
@@ -73,6 +63,9 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
     }
 
+    function onComposeClick() {
+        setSearchParams({ compose: 'new' })
+    }
 
     return (
         <section className="mail-index main-layout">
@@ -81,30 +74,35 @@ export function MailIndex() {
                 onSetFilterBy={onSetFilterBy} 
                 defaultFilter={filterBy}
             />
-             {/* <MailFilter onSetFilterBy={onSetFilterBy} defaultFilter={filterBy} /> */}
 
-             {/* <section className="container">
-                <button className="edit-link"><Link to="/mail/edit">Add Mail</Link></button>
-            </section> */}
+
+            <button onClick={onComposeClick}>
+                    <img src="../../../assets/img/edit.svg" />
+                    Compose
+            </button>
+
+            {searchParams.get('compose') === 'new' && (
+                <MailCompose setSearchParams={setSearchParams} />
+            )}
+
+            {/* <button onClick={<MailCompose 
+                            setSearchParams={setSearchParams}
+                            />}>
+                <img src="../../../assets/img/edit.svg"/>
+                    Compose
+            </button> */}
+            {/* <button><Link to="/book/edit">Add Book</Link></button> */}
+
+            
 
             {!mails.length && <Loader />}
             
-            {/* {openMailId 
-            ? <MailDetails mailId={openMailId} onBack={() => setOpenMailId(null)}/>
-            <Link to="/book/details">Add Book</Link></button>
-            :  */}
+            
              <MailList
                 mails = {mails}
-                // onMailClicked = {onMailClicked}
                 onRemoveMail = {onRemoveMail}
                 onToggleMailRead = {onToggleMailRead}
                 />
-
-           
-
-            
-                   
-               
 
         </section>
     )
