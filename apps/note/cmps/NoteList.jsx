@@ -1,6 +1,6 @@
 import { NotePreview } from "./NotePreview.jsx"
 
-export function NoteList({ notes,setNoteModal, onChangeColor={onChangeColor},onRemoveNote }) {
+export function NoteList({ notes,setNoteModal, onChangeColor,onRemoveNote }) {
     if (!notes || !notes.length) return <p>No notes to show</p>
 
     return (

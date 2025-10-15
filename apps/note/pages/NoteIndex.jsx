@@ -20,7 +20,7 @@ export function NoteIndex() {
         setIsOpen(true)
     }, [noteModal])
 
-       useEffect(() => {
+    useEffect(() => {
         loadNotes()
     }, [filterBy])
 
@@ -30,15 +30,12 @@ export function NoteIndex() {
             .catch(err => console.log('Error loading notes:', err))
     }
 
-    function onAddNote(txt) {
-        const newNote = NoteService.createNewNote(txt)
-        console.log(newNote)
+    function onAddNote(noteData) {
+        const newNote = NoteService.createNewNote(noteData.title, noteData.txt);
         NoteService.save(newNote)
             .then(() => loadNotes())
-            .catch(err => console.log('Error saving note:', err))
-            .finally(console.log(notes))
+            .catch(err => console.log('Error saving note:', err));
     }
-
     function handleSaveNote(updatedNote) {
         NoteService.save(updatedNote).then(() => loadNotes());
     }
@@ -52,8 +49,8 @@ export function NoteIndex() {
 
     }
 
-      function onSetFilterBy(newFilter) {
-         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilter}))
+    function onSetFilterBy(newFilter) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...newFilter }))
     }
 
     function onChangeColor(color, note) {
@@ -89,23 +86,23 @@ export function NoteIndex() {
                 defaultFilter={filterBy}
                 onSetFilterBy={onSetFilterBy} />
             <section className="container">
-            <NoteAdd onAddNote={onAddNote} />
-            <NoteList
-                notes={notes}
-                setNoteModal={setNoteModal}
-                onChangeColor={onChangeColor}
-                onRemoveNote={onRemoveNote} />
-            {/* <button onClick = {onToggleModal}>toggle modal</button> */}
-            {noteModal &&
-                <EditModal
-                isOpen={isOpen}
-                onClose={onCloseModal}
-                note={noteModal}
-                onSave={handleSaveNote}
-                onChangeColor={onChangeColor}
-                onRemoveNote={onRemoveNote}
-                />
-            }
+                <NoteAdd onAddNote={onAddNote} />
+                <NoteList
+                    notes={notes}
+                    setNoteModal={setNoteModal}
+                    onChangeColor={onChangeColor}
+                    onRemoveNote={onRemoveNote} />
+                {/* <button onClick = {onToggleModal}>toggle modal</button> */}
+                {noteModal &&
+                    <EditModal
+                        isOpen={isOpen}
+                        onClose={onCloseModal}
+                        note={noteModal}
+                        onSave={handleSaveNote}
+                        onChangeColor={onChangeColor}
+                        onRemoveNote={onRemoveNote}
+                    />
+                }
             </section>
         </section>
     )

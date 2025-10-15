@@ -1,41 +1,51 @@
 import { ColorPicker } from "./ColorPicker.jsx";
 
-
 export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote }) {
-    if (!note) return null
+    if (!note) return null;
 
-    const bgColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f7f7f7'
-
+    // Avoid optional chaining for older Babel
+    const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
 
     return (
         <article
-            onClick={() => setNoteModal(note)}  // <-- Pass the note here
+            onClick={() => setNoteModal(note)}
             className="note-item"
             style={{ backgroundColor: bgColor }}
         >
-            {/* <h4>{note.type}</h4> */}
 
-            {note.type === 'NoteTxt' && <p>{note.info.txt}</p>}
-
-            {note.type === 'NoteImg' && (
+            {/* Text Note */}
+            {note.type === 'NoteTxt' && note.info && (
                 <div>
-                    <h5>{note.info.title}</h5>
-                    <img
-                        src={note.info.url}
-                        alt={note.info.title}
-                        style={{ maxWidth: '150px', borderRadius: '8px' }}
-                    />
+                    {note.info.title && <h5>{note.info.title}</h5>}
+                    {note.info.txt && <p>{note.info.txt}</p>}
                 </div>
             )}
-            {note.type === 'NoteTodos' && note.info.todos && (
+
+            {/* Image Note */}
+            {note.type === 'NoteImg' && note.info && (
+                <div>
+                    {note.info.title && <h5>{note.info.title}</h5>}
+                    {note.info.url && (
+                        <img
+                            src={note.info.url}
+                            alt={note.info.title || 'Image Note'}
+                            style={{ maxWidth: '150px', borderRadius: '8px' }}
+                        />
+                    )}
+                </div>
+            )}
+
+            {/* Todos Note */}
+            {note.type === 'NoteTodos' && note.info && note.info.todos && (
                 <div>
                     {note.info.todos.map((todo, idx) => (
                         <div key={idx}>
-                            {todo.txt} {todo.doneAt ? '✅' : '❌'}
+                            {todo.txt} {todo.doneAt ? '✔' : '❌'}
                         </div>
                     ))}
                 </div>
             )}
+
             <div className="action-bar">
                 <i
                     className="fa-solid fa-trash"
@@ -44,5 +54,5 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote })
                 <ColorPicker note={note} onChangeColor={onChangeColor} />
             </div>
         </article>
-    )
+    );
 }
