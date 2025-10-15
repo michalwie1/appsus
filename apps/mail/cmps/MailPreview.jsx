@@ -1,14 +1,27 @@
 import { mailService } from "../services/mail.service.js"
 
-export function MailPreview({ mail, onMailClicked, onRemoveMail, onToggleMailRead }) {
+const { useNavigate } = ReactRouterDOM
+
+export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
     const { from, subject, sentAt, isRead } = mail
     const date = mailService.formatDate(sentAt)
     const readState = isRead ? 'read' : 'unread'
+    const navigate = useNavigate()
+
+
+    function onMailClick() {
+      const updatedMail = { ...mail, isRead: true }
+      mailService.save(updatedMail)
+        .then(() => {
+          navigate(`/mail/${mail.id}`)
+        })
+        .catch(err => console.log('err:', err))
+  }
 
     return (
         <section
             className={`mail-preview ${readState}`}
-            onClick={() => onMailClicked(mail.id)}>
+            onClick={onMailClick}>
         
             <img
                 src="../../../assets/img/checkbox_blank.svg"

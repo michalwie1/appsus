@@ -1,27 +1,33 @@
-const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
+const { useParams, useNavigate, Link } = ReactRouterDOM
+
 
 import { Loader } from "../cmps/Loader.jsx"
 import { mailService } from "../services/mail.service.js"
 
-export function MailDetails({ mailId, onBack }) {
+export function MailDetails() {
 const [mail, setMail] = useState(null)
-
+const params = useParams()
+const navigate = useNavigate()
 
 useEffect(() => {
     loadMail()
-    }, [mailId])
+    }, [params.mailId])
 
 function loadMail(){
-    mailService.get(mailId)
+    mailService.get(params.mailId)
         .then(mail => {
             setMail(mail)
         })
         .catch(err => {
             console.log('err:', err)
-            // navigate('/mail')
+            navigate('/mail')
         })
-}
+    }
+
+function onBack() {
+        navigate('/mail')
+    }
 
 if (!mail) return <Loader />
 
@@ -31,6 +37,7 @@ if (!mail) return <Loader />
             <h2>{mail.subject}</h2>
             <div>
                 <p>{mail.from}</p>
+                <p>{mail.fromEmail}</p>
                 <p>{mail.body}</p>
             </div>
         </section>

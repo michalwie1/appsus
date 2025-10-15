@@ -9,7 +9,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 2,
     removedAt: null,
-    from: 'Amazon <no-reply@amazon.com>',
+    from: 'Amazon',
+    fromEmail: 'noreply@amazon.co.il',
     to: 'user@appsus.com'
   },
   {
@@ -20,7 +21,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 4,
     removedAt: null,
-    from: 'Roy Arbel <roy.arbel@gmail.com>',
+    from: 'Roy Arbel',
+    fromEmail: 'roy.arbel@gmail.com',
     to: 'user@appsus.com'
   },
   {
@@ -31,7 +33,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 8,
     removedAt: null,
-    from: 'El Al <noreply@elal.co.il>',
+    from: 'El Al',
+    fromEmail: 'noreply@elal.co.il',
     to: 'user@appsus.com'
   },
   {
@@ -42,7 +45,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 10,
     removedAt: null,
-    from: 'Medium <info@medium.com>',
+    from: 'Medium',
+    fromEmail: 'info@medium.com',
     to: 'user@appsus.com'
   },
   {
@@ -53,7 +57,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 12,
     removedAt: null,
-    from: 'HR Team <hr@mixtiles.com>',
+    from: 'HR Team',
+    fromEmail: 'hr@mixtiles.com',
     to: 'user@appsus.com'
   },
   {
@@ -64,7 +69,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 18,
     removedAt: null,
-    from: 'Instagram <no-reply@mail.instagram.com>',
+    from: 'Instagram',
+    fromEmail: 'no-reply@mail.instagram.com',
     to: 'user@appsus.com'
   },
   {
@@ -75,7 +81,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 24,
     removedAt: null,
-    from: 'Notion <billing@notion.so>',
+    from: 'Notion',
+    fromEmail: 'billing@notion.so',
     to: 'user@appsus.com'
   },
   {
@@ -86,7 +93,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 26,
     removedAt: null,
-    from: 'Reichman University <moodle@idc.ac.il>',
+    from: 'Reichman University',
+    fromEmail: 'moodle@idc.ac.il',
     to: 'user@appsus.com'
   },
   {
@@ -97,7 +105,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 30,
     removedAt: null,
-    from: 'Surfline <forecast@surfline.com>',
+    from: 'Surfline',
+    fromEmail: 'forecast@surfline.com',
     to: 'user@appsus.com'
   },
   {
@@ -108,7 +117,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 35,
     removedAt: null,
-    from: 'Morning Brew <news@morningbrew.com>',
+    from: 'Morning Brew',
+    fromEmail: 'news@morningbrew.com',
     to: 'user@appsus.com'
   },
   {
@@ -119,7 +129,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 40,
     removedAt: null,
-    from: 'Google <no-reply@google.com>',
+    from: 'Google',
+    fromEmail: 'no-reply@google.com',
     to: 'user@appsus.com'
   },
   {
@@ -130,7 +141,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 42,
     removedAt: null,
-    from: 'SurfSupply Co <orders@surfsupply.com>',
+    from: 'SurfSupply Co',
+    fromEmail: 'orders@surfsupply.com',
     to: 'user@appsus.com'
   },
   {
@@ -141,7 +153,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 45,
     removedAt: null,
-    from: 'Airbnb <reservations@airbnb.com>',
+    from: 'Airbnb',
+    fromEmail: 'reservations@airbnb.com',
     to: 'user@appsus.com'
   },
   {
@@ -152,7 +165,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 48,
     removedAt: null,
-    from: 'Eyal Shalem <eyal.shalem@gmail.com>',
+    from: 'Eyal Shalem',
+    fromEmail: 'eyal.shalem@gmail.com',
     to: 'user@appsus.com'
   },
   {
@@ -163,7 +177,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 52,
     removedAt: null,
-    from: 'Substack <newsletter@substack.com>',
+    from: 'Substack',
+    fromEmail: 'newsletter@substack.com',
     to: 'user@appsus.com'
   },
   {
@@ -174,7 +189,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 60,
     removedAt: null,
-    from: 'Patagonia <offers@patagonia.com>',
+    from: 'Patagonia',
+    fromEmail: 'offers@patagonia.com',
     to: 'user@appsus.com'
   },
   {
@@ -185,7 +201,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 70,
     removedAt: null,
-    from: 'Facebook <no-reply@facebook.com>',
+    from: 'Facebook',
+    fromEmail: 'no-reply@facebook.com',
     to: 'user@appsus.com'
   },
   {
@@ -196,7 +213,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 80,
     removedAt: null,
-    from: 'Uber <receipts@uber.com>',
+    from: 'Uber',
+    fromEmail: 'receipts@uber.com',
     to: 'user@appsus.com'
   },
   {
@@ -207,7 +225,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 90,
     removedAt: null,
-    from: 'Headspace <support@headspace.com>',
+    from: 'Headspace',
+    fromEmail: 'support@headspace.com',
     to: 'user@appsus.com'
   },
   {
@@ -218,7 +237,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 100,
     removedAt: null,
-    from: 'Fiverr <billing@fiverr.com>',
+    from: 'Fiverr',
+    fromEmail: 'billing@fiverr.com',
     to: 'user@appsus.com'
   },
   {
@@ -229,7 +249,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 110,
     removedAt: null,
-    from: 'Surf Friends <events@surfmail.com>',
+    from: 'Surf Friends',
+    fromEmail: 'events@surfmail.com',
     to: 'user@appsus.com'
   },
   {
@@ -240,7 +261,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 120,
     removedAt: null,
-    from: 'Airbnb <offers@airbnb.com>',
+    from: 'Airbnb',
+    fromEmail: 'offers@airbnb.com',
     to: 'user@appsus.com'
   },
   {
@@ -251,7 +273,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 140,
     removedAt: null,
-    from: 'Spotify <support@spotify.com>',
+    from: 'Spotify',
+    fromEmail: 'support@spotify.com',
     to: 'user@appsus.com'
   },
   {
@@ -262,7 +285,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 150,
     removedAt: null,
-    from: 'Canva Careers <jobs@canva.com>',
+    from: 'Canva Careers',
+    fromEmail: 'jobs@canva.com',
     to: 'user@appsus.com'
   },
   {
@@ -273,7 +297,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 155,
     removedAt: null,
-    from: 'Google Photos <no-reply@google.com>',
+    from: 'Google Photos',
+    fromEmail: 'no-reply@google.com',
     to: 'user@appsus.com'
   },
   {
@@ -284,7 +309,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 170,
     removedAt: null,
-    from: 'Dr. Koren <clinic@mindcare.co.il>',
+    from: 'Dr. Koren',
+    fromEmail: 'clinic@mindcare.co.il',
     to: 'user@appsus.com'
   },
   {
@@ -295,7 +321,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 180,
     removedAt: null,
-    from: 'AeroMexico <updates@aeromexico.com>',
+    from: 'AeroMexico',
+    fromEmail: 'updates@aeromexico.com',
     to: 'user@appsus.com'
   },
   {
@@ -306,7 +333,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 200,
     removedAt: null,
-    from: 'SurfFix <repairs@surf-fix.com>',
+    from: 'SurfFix',
+    fromEmail: 'repairs@surf-fix.com',
     to: 'user@appsus.com'
   },
   {
@@ -317,7 +345,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 220,
     removedAt: null,
-    from: 'WaveLock Storage <billing@wavelock.com>',
+    from: 'WaveLock Storage',
+    fromEmail: 'billing@wavelock.com',
     to: 'user@appsus.com'
   },
   {
@@ -328,7 +357,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 240,
     removedAt: null,
-    from: 'Spotify <no-reply@spotify.com>',
+    from: 'Spotify',
+    fromEmail: 'no-reply@spotify.com',
     to: 'user@appsus.com'
   },
   {
@@ -339,7 +369,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 260,
     removedAt: null,
-    from: 'SurfSupply Co <offers@surfsupply.com>',
+    from: 'SurfSupply Co',
+    fromEmail: 'offers@surfsupply.com',
     to: 'user@appsus.com'
   },
   {
@@ -350,7 +381,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 280,
     removedAt: null,
-    from: 'DHL <tracking@dhl.com>',
+    from: 'DHL',
+    fromEmail: 'tracking@dhl.com',
     to: 'user@appsus.com'
   },
   {
@@ -361,7 +393,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 300,
     removedAt: null,
-    from: 'LinkedIn <updates@linkedin.com>',
+    from: 'LinkedIn',
+    fromEmail: 'updates@linkedin.com',
     to: 'user@appsus.com'
   },
   {
@@ -372,7 +405,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 320,
     removedAt: null,
-    from: 'YouTube <billing@youtube.com>',
+    from: 'YouTube',
+    fromEmail: 'billing@youtube.com',
     to: 'user@appsus.com'
   },
   {
@@ -383,7 +417,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 340,
     removedAt: null,
-    from: 'Surfline <hello@surfline.com>',
+    from: 'Surfline',
+    fromEmail: 'hello@surfline.com',
     to: 'user@appsus.com'
   },
   {
@@ -394,7 +429,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 360,
     removedAt: null,
-    from: 'Outbrain HR <careers@outbrain.com>',
+    from: 'Outbrain HR',
+    fromEmail: 'careers@outbrain.com',
     to: 'user@appsus.com'
   },
   {
@@ -405,7 +441,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 380,
     removedAt: null,
-    from: 'Easyplant <billing@easyplant.com>',
+    from: 'Easyplant',
+    fromEmail: 'billing@easyplant.com',
     to: 'user@appsus.com'
   },
   {
@@ -416,7 +453,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 400,
     removedAt: null,
-    from: 'Maya Bar <maya.bar@reichman.ac.il>',
+    from: 'Maya Bar',
+    fromEmail: 'maya.bar@reichman.ac.il',
     to: 'user@appsus.com'
   },
   {
@@ -427,7 +465,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 420,
     removedAt: null,
-    from: 'Airbnb <reviews@airbnb.com>',
+    from: 'Airbnb',
+    fromEmail: 'reviews@airbnb.com',
     to: 'user@appsus.com'
   },
   {
@@ -438,7 +477,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 440,
     removedAt: null,
-    from: 'Netflix <billing@netflix.com>',
+    from: 'Netflix',
+    fromEmail: 'billing@netflix.com',
     to: 'user@appsus.com'
   },
   {
@@ -449,7 +489,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 460,
     removedAt: null,
-    from: 'Google Photos <no-reply@google.com>',
+    from: 'Google Photos',
+    fromEmail: 'no-reply@google.com',
     to: 'user@appsus.com'
   },
   {
@@ -460,7 +501,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 480,
     removedAt: null,
-    from: 'Sipurla <support@sipurla.com>',
+    from: 'Sipurla',
+    fromEmail: 'support@sipurla.com',
     to: 'user@appsus.com'
   },
   {
@@ -471,7 +513,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 500,
     removedAt: null,
-    from: 'Surfline <forecast@surfline.com>',
+    from: 'Surfline ',
+    fromEmail: 'forecast@surfline.com',
     to: 'user@appsus.com'
   },
   {
@@ -482,7 +525,8 @@ export const mailsHC = [
     isRead: false,
     sentAt: now - 1000 * 60 * 60 * 520,
     removedAt: null,
-    from: 'Reichman University <registrar@idc.ac.il>',
+    from: 'Reichman University',
+    fromEmail: 'registrar@idc.ac.il',
     to: 'user@appsus.com'
   },
   {
@@ -493,7 +537,8 @@ export const mailsHC = [
     isRead: true,
     sentAt: now - 1000 * 60 * 60 * 540,
     removedAt: null,
-    from: 'DHL <noreply@dhl.com>',
+    from: 'DHL',
+    fromEmail: 'noreply@dhl.com',
     to: 'user@appsus.com'
   }
 ]

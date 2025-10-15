@@ -14,14 +14,14 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
-    const [openMailId, setOpenMailId] = useState(null)
+    // const [openMailId, setOpenMailId] = useState(null)
     
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
-    }, [filterBy])
+    }, [filterBy, mails])
      
         
     function loadMails(){
@@ -30,14 +30,22 @@ export function MailIndex() {
             .catch(err => console.log('err:', err))
     }
 
-    function onMailClicked(mailId){
-        setOpenMailId(mailId)
-    }
+    // function onMailClicked(mailId){
+    //     setOpenMailId(mailId)
+    //     mailService.get(mailId)
+    //         .then(mail => {
+    //             mail.isRead = true
+    //             console.log(mail)
+    //             return mailService.save(mail)
+    //         })
+    //         .catch(err => console.log('err:', err))
+    // }
 
-    function onRemoveMail(mailId){
+    function onRemoveMail(mailId) {
         mailService.remove(mailId)
-            .then(() => {
-                setMails(mails => mails.filter(mail => mail.id !== mailId))
+            .then((removedMail) => {
+                // removedMail.removedAt(Date.now())
+                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
                 showSuccessMsg('Mail deleted successfully!')
             })
             .catch(err => {
@@ -52,7 +60,7 @@ export function MailIndex() {
                 mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
             )
         )
-
+       
         mailService.get(mailId)
             .then(mail => {
                 mail.isRead = !mail.isRead
@@ -81,14 +89,16 @@ export function MailIndex() {
 
             {!mails.length && <Loader />}
             
-            {openMailId 
+            {/* {openMailId 
             ? <MailDetails mailId={openMailId} onBack={() => setOpenMailId(null)}/>
-            :  <MailList
+            <Link to="/book/details">Add Book</Link></button>
+            :  */}
+             <MailList
                 mails = {mails}
-                onMailClicked = {onMailClicked}
+                // onMailClicked = {onMailClicked}
                 onRemoveMail = {onRemoveMail}
                 onToggleMailRead = {onToggleMailRead}
-                />}
+                />
 
            
 
