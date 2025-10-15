@@ -2,6 +2,7 @@
 
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
+import { mailsHC } from './mailData.js'
 
 const MAIL_KEY = 'mails'
 // const gCache = utilService.loadFromStorage(CACHE_STORAGE_KEY) || {}
@@ -87,49 +88,33 @@ function formatDate(timestamp){
 }
 
 function _createMails(){
-    let mails = utilService.loadFromStorage(MAIL_KEY) || []
-    // let mails = []
-    // console.log(mails)
-    let count = 101
-    if (mails && mails.length) return mails
+    let mails = utilService.loadFromStorage(MAIL_KEY)
 
-    for (var i = 0; i < 26; i++) {
-        const mail = _createMail()
-        mail.id = `e${count+i}`
-        mails.push(mail)
+    // 2. If no data in storage, use hardcoded data
+    if (!mails || !mails.length) {
+        mails = [...mailsHC] // clone to avoid mutating the original array
+        utilService.saveToStorage(MAIL_KEY, mails)
+        console.log('mails:', mails)
     }
 
-    utilService.saveToStorage(MAIL_KEY, mails)
-    console.log('mails', mails)
+    return mails
 }
 
-function _createMail(){
-    let randsomTS = utilService.getRandomTimestamp()
-    return {
-        id: 'e101',
-        createdAt : randsomTS - 20, 
-        subject: utilService.makeLorem(5),
-        body: utilService.makeLorem(5),
-        isRead: Math.random() > 0.7,
-        sentAt : randsomTS,
-        removedAt : null,
-        from: 'momo@momo.com',
-        to: 'user@appsus.com'
-    }
-}
-
-
-// const mail = {
-// id: 'e101',
-// createdAt : 1551133930500,
-// subject: 'Miss you!',
-// body: 'Would love to catch up sometimes',
-// isRead: false,
-// sentAt : 1551133930594,
-// removedAt : null,
-// from: 'momo@momo.com',
-// to: 'user@appsus.com'
+// function _createMail(){
+//     let randsomTS = utilService.getRandomTimestamp()
+//     return {
+//         id: 'e101',
+//         createdAt : randsomTS - 20, 
+//         subject: utilService.makeLorem(5),
+//         body: utilService.makeLorem(5),
+//         isRead: Math.random() > 0.7,
+//         sentAt : randsomTS,
+//         removedAt : null,
+//         from: 'momo@momo.com',
+//         to: 'user@appsus.com'
+//     }
 // }
+
 
 const loggedinUser = {
  email: 'user@appsus.com',
