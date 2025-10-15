@@ -41,7 +41,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
                 </div>
 
                 <div className="actions" onClick={(ev) => ev.stopPropagation()}>
-                    <i className="fa-solid fa-trash" title="Delete" onClick={() => onRemoveMail(mail.id)}></i>
+                    <i src="../" title="Delete" onClick={() => onRemoveMail(mail.id)}></i>
                     <i className={`fa-solid fa-envelope${unreadActionClass}`} title={`Mark as ${unreadActionTitle}`} onClick={() => onToggleMailRead(mail.id)}></i>
                 </div>
             </td>   
