@@ -20,7 +20,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
         // <section className="mail-preview">
         <Fragment>
             <td>
-                <input type="checkbox"></input>
+                <input type="checkbox" onClick={(ev) => ev.stopPropagation()}></input>
             </td>
 
             <td>
@@ -32,17 +32,17 @@ export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
             </td>
            
             <td>    
-                <p><LongTxt txt={subject}/></p>
+                <LongTxt txt={subject}/>
             </td>
 
             <td className="date-actions-wrapper">
                 <div className="date">
-                    <p>{date}</p>
+                    {date}
                 </div>
 
                 <div className="actions" onClick={(ev) => ev.stopPropagation()}>
                     <i className="fa-solid fa-trash" title="Delete" onClick={() => onRemoveMail(mail.id)}></i>
-                     <i className={`fa-solid fa-envelope${unreadActionClass}`} title={`Make as ${unreadActionTitle}`} onClick={() => onToggleMailRead(mail.id)}></i>
+                    <i className={`fa-solid fa-envelope${unreadActionClass}`} title={`Make as ${unreadActionTitle}`} onClick={() => onToggleMailRead(mail.id)}></i>
                 </div>
             </td>   
         </Fragment>

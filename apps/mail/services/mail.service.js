@@ -108,7 +108,7 @@ function _createMail(){
     return {
         id: 'e101',
         createdAt : randsomTS - 20, 
-        subject: utilService.makeLorem(2),
+        subject: utilService.makeLorem(5),
         body: utilService.makeLorem(5),
         isRead: Math.random() > 0.7,
         sentAt : randsomTS,

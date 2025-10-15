@@ -13,10 +13,11 @@ export function LongTxt({ txt, length = 100 }){
     return (
         <div className="long-txt">
             
-             <p>
-                <span>{txt.substring(0,length)}...</span>
+                <span>
+                    {txt.substring(0,length)}...
+                </span>
                 {/* <a onClick={onReadToggle}>... read more</a> */}
-             </p>
+
             
             
         </div>

@@ -4,26 +4,29 @@
     place-self: center;
     font-weight: 600;
     border-radius: 20px;
-    background-color: #f6ebea;
-
+    /* background-color: #f2f2f2; */
+    background-color: rgb(255, 255, 255);
+    border-bottom: black;
+    
     table{
         tr{
             display: block;
         }
 
         td{
-            padding: 0;
+            line-height: 20px;
+            /* border-bottom: 1px solid #e0e0e0; */
         }
     
-        td:nth-child(2){
-            padding-right: 3em;
-        }
+        /* td:nth-child(2){
+            padding-right: 5em;
+        } */
         
         td:last-child{
             justify-items: end;
 
         }
-    
+
     }
 
     tr:hover{
@@ -52,6 +55,34 @@
         display: none;
     }
 
-    
+
+
+/* SHOULD CHECK WHY ICONS ARE ROUNDED TOO!!! */
+/* INPUT HOVER IS NOT ROUNDED??? */
+
+    /* i,input{
+            z-index: 1;
+            border-radius: 100%;
+    } */
+
+    i:hover, input:hover { 
+        /* z-index: 0; */
+        border-radius: 50%;
+        background-color: #f2f2f2;
+        outline: .7em solid #f2f2f2;
+
+        
+    }
+
 
 }
+
+table td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+table td:nth-child(3){
+    padding-right: 3em;
+}
+
+

@@ -14,7 +14,7 @@ export function MailList({ mails, onMailClicked, onRemoveMail, onToggleMailRead 
                         onRemoveMail = {onRemoveMail}
                         onToggleMailRead = {onToggleMailRead} 
                     />
-                    <section>
+                    {/* <section> */}
                         {/* <button onClick={ev => onRemoveMail(mail.id)}>Delete</button> */}
 
                         {/* <button onClick={() => onSelectmailId(mail.id)} >Details</button> */}
@@ -22,7 +22,7 @@ export function MailList({ mails, onMailClicked, onRemoveMail, onToggleMailRead 
                         {/* <button><Link to={`/mail/${mail.id}`}>Details</Link></button> */}
                         {/* <button><Link to={`/mail/edit/${mail.id}`}>Edit</Link></button> */}
 
-                    </section>
+                    {/* </section> */}
                 </tr>
             )}
             </tbody>
