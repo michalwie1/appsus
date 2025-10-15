@@ -72,14 +72,14 @@ function getEmptyNote(txt = '') {
     }
 }
 
-function createNewNote(txt) {
+function createNewNote(txt = '', title = '') {
     return {
         id: '',    
         createdAt: Date.now(),
         type: 'NoteTxt',
         isPinned: false,
         style: { backgroundColor: '' },
-        info: { txt },
+        info: { title ,txt },
     }
 }
 
@@ -96,7 +96,7 @@ function _createNotes() {
             type: 'NoteTxt',
             isPinned: true,
             style: { backgroundColor: ''},
-            info: { txt: 'Fullstack Me Baby!' }
+            info: { title: '' , txt: 'Fullstack Me Baby!' }
         },
         {
             id: 'n102',
