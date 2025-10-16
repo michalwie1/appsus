@@ -18,7 +18,7 @@ export const mailService = {
     // getNextCarId,
     // getFilterBy,
     // setFilterBy,
-    getDefaultFilter,
+    // getDefaultFilter,
     // addReview,
     // removeReview,
     // addGoogleMail,
@@ -59,16 +59,32 @@ function save(mail) {
 }
 
 function getDefaultFilter() {
-    return { subject: '' }
+    // return { subject: '' }
+
+    return {
+        status:'inbox',  //'inbox/sent/trash/draft/starred/important'
+        txt: 'puki', // no need to support complex text search
+        isRead: true, // (optional property, if missing: show all)
+        isStared: true, // (optional property, if missing: show all)
+        categories: ['Primary', 'Promotions', 'Social', 'Updates'] // has any of the labels
+    }
+
     // return { subject: '', isRead: '' }
 }
 
 function getFilterFromParams(searchParams) {
-    const subject = searchParams.get('subject') || ''
-    // const isRead = searchParams.get('isRead') || ''
+    const status = searchParams.get('status') || 'inbox'
+    const txt = searchParams.get('txt') || ''
+    const isRead = searchParams.get('isRead') || false
+    const isStared = searchParams.get('isStared') || false
+    const categories = searchParams.get('categories') || []
+
     return {
-        subject,
-        // isRead
+        status,
+        txt,
+        isRead,
+        isStared,
+        categories
     }
 }
 

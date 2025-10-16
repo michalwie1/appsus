@@ -22,18 +22,40 @@ export function MailCompose({ setSearchParams}) {
                     <tr className="header">
                         <td className="title">New Message</td>
                         <td className="actions">
-                            <img
+                            {/* <img
                             src="../../../assets/img/minimize.svg"
                             title="Minimize"
-                            onClick={() => console.log('minimize')}/>
-                            <img
+                            onClick={() => console.log('minimize')}/> */}
+
+                            <span 
+                                className="material-symbols-outlined" 
+                                title="Minimize"
+                                onClick={() => console.log('minimize')}
+                                >minimize
+                            </span>
+                            {/* <img
                             src="../../../assets/img/full_screen.svg"
                             title="Full screen"
-                            onClick={() => console.log('full screen')}/>
-                            <img
+                            onClick={() => console.log('full screen')}/> */}
+
+                             <span 
+                                className="material-symbols-outlined" 
+                                title="Full screen"
+                                onClick={() => console.log('full screen')}
+                                >open_in_full
+                            </span>
+
+                            {/* <img
                             src="../../../assets/img/close.svg"
                             title="Save & close"
-                            onClick={onCloseCompose}/>
+                            onClick={onCloseCompose}/> */}
+
+                             <span 
+                                className="material-symbols-outlined" 
+                                title="Full screen"
+                                onClick={onCloseCompose}
+                                >close
+                            </span>
                         </td>
                     </tr>
                 
