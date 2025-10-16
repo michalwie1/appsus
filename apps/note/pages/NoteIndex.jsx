@@ -85,6 +85,14 @@ export function NoteIndex() {
             .catch(err => console.log('Error saving note:', err))
 }
 
+function onDuplicateNote(ev,note){
+ev.stopPropagation()
+        console.log('duplicated note' + note.id)
+        const newNote = NoteService.duplicateNote(note);
+        NoteService.save(newNote)
+            .then(() => loadNotes())
+            .catch(err => console.log('Error duplicating note:', err));
+}
 
     function onCloseModal() {
         setIsOpen(false)
@@ -105,7 +113,8 @@ export function NoteIndex() {
                     setNoteModal={setNoteModal}
                     onChangeColor={onChangeColor}
                     onRemoveNote={onRemoveNote}
-                    onPinNote={onPinNote} />
+                    onPinNote={onPinNote}
+                    onDuplicateNote = {onDuplicateNote} />
                 {/* <button onClick = {onToggleModal}>toggle modal</button> */}
                 {noteModal &&
                     <EditModal
@@ -115,6 +124,7 @@ export function NoteIndex() {
                         onSave={handleSaveNote}
                         onChangeColor={onChangeColor}
                         onRemoveNote={onRemoveNote}
+                         onDuplicateNote = {onDuplicateNote}
                     />
                 }
             </section>

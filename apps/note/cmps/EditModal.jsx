@@ -6,7 +6,7 @@ const { useState, Fragment } = React
 
 
 export function EditModal({ isOpen = false, onClose = () => { }, note, onSave
-    , onChangeColor, onRemoveNote }) {
+    , onChangeColor, onRemoveNote, onDuplicateNote }) {
     const [txt, setTxt] = useState(note.info.txt);
 
     if (!isOpen) return null;
@@ -35,10 +35,15 @@ export function EditModal({ isOpen = false, onClose = () => { }, note, onSave
                     {/* <button className="close-btn" onClick={onClose}>X</button> */}
                     <i
                         className="material-symbols-outlined"
-                        onClick={(ev) =>{
-                            onRemoveNote(ev, note), onClose()}
-                        } 
+                        onClick={(ev) => {
+                            onRemoveNote(ev, note), onClose()
+                        }
+                        }
                     >Delete</i>
+                    <i className="material-symbols-outlined"
+                        onClick={(ev) => onDuplicateNote(ev, note)}>
+                        content_copy
+                    </i>
                     <ColorPicker note={note} onChangeColor={onChangeColor} />
                 </div>
             </section>

@@ -14,6 +14,7 @@ export const NoteService = {
     getEmptyNote,
     createNewNote,
     getDefaultFilter,
+    duplicateNote,
 }
 
 function query(filterBy = {}) {
@@ -83,6 +84,16 @@ function createNewNote(title = '', txt = '') {
     }
 }
 
+function duplicateNote(note) {
+    return {
+        ...note,
+        id: '',      
+        createdAt: Date.now(),       
+        isPinned: false,              
+        info: { ...note.info },        
+        style: { ...note.style }      
+    }
+}
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY) || []

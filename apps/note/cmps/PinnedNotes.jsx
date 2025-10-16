@@ -1,6 +1,6 @@
 import { ColorPicker } from "./ColorPicker.jsx";
 
-export function PinnedNotes({ note, setNoteModal, onChangeColor, onRemoveNote ,onPinNote }) {
+export function PinnedNotes({ note, setNoteModal, onChangeColor, onRemoveNote ,onPinNote,onDuplicateNote }) {
     if (!note) return null;
 
     // Avoid optional chaining for older Babel
@@ -53,6 +53,10 @@ export function PinnedNotes({ note, setNoteModal, onChangeColor, onRemoveNote ,o
                     className="material-symbols-outlined"
                     onClick={(ev) => onRemoveNote(ev, note)}
                 >Delete</i>
+                <i className="material-symbols-outlined"
+                 onClick={(ev) => onDuplicateNote(ev, note)}>
+                    content_copy
+                </i>
                 <ColorPicker note={note} onChangeColor={onChangeColor} />
             </div>
         </article>

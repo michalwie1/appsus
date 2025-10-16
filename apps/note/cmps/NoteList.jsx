@@ -8,7 +8,8 @@ export function NoteList({
   setNoteModal,
   onChangeColor,
   onRemoveNote,
-  onPinNote
+  onPinNote,
+  onDuplicateNote
 }) {
   if (!notes || !notes.length) return <p>No notes to show</p>;
 
@@ -30,6 +31,7 @@ export function NoteList({
                 onChangeColor={onChangeColor}
                 onRemoveNote={onRemoveNote}
                 onPinNote={onPinNote}
+                onDuplicateNote = {onDuplicateNote}
                 />
             ))}
           </section>
@@ -52,6 +54,7 @@ export function NoteList({
                 onChangeColor={onChangeColor}
                 onRemoveNote={onRemoveNote}
                 onPinNote={onPinNote}
+                onDuplicateNote = {onDuplicateNote}
                 />
             ))}
           </section>
