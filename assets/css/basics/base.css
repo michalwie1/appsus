@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: "Roboto", sans-serif;
     color: rgb(32, 33, 36);
+    overflow: hidden; /* TO DISABLE SCROLLING */
 }
 
 h1,
