@@ -97,12 +97,14 @@ export function MailIndex() {
 
             {!mails.length && <Loader />}
             
-            
+            <div>header-actions</div>
+            <div>folders</div>
              <MailList
                 mails = {mails}
                 onRemoveMail = {onRemoveMail}
                 onToggleMailRead = {onToggleMailRead}
                 />
+            <div>bottom</div>
 
         </section>
     )
