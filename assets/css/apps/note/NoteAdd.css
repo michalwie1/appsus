@@ -43,33 +43,50 @@
     max-width: 600px;
     margin: 32px auto;
     background-color: #fff;
-    padding: 7px;
+    padding-left: 7px;
     border-radius: 7px;
     box-shadow: 0 1px 7px black;
 }
 
-.note-add input{
-    width: 90%;
-    border: none;
-    padding: 4px 10px;
-    margin-bottom: 20px;
-    outline: none;
-    font-size: 1rem;
-    resize: none;
 
-    display: none;
-}
- .note-add textarea{
-    width: 90%;
-    border: none;
-    padding: 10px 10px;
-    margin-bottom: 20px;
-    outline: none;
-    font-size: 1rem;
-    resize: none;
-
+.note-add .note-title {
+  width: 90%;
+  border: none;
+  padding: 8px 13px;
+  outline: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  resize: none;
+  font-family: "Roboto", sans-serif;
+  height: 25px;
+  overflow: hidden;
+  display: none;
+  transition: height 0.2s ease;
 }
 
-.note-add:focus-within input{
+.note-add .note-txt {
+  width: 90%;
+  border: none;
+  padding: 13px 13px;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  resize: none;         
+  line-height: 1.4;
+  overflow: hidden;      
+  height: 24px;
+  transition: height 0.2s ease;
+}
+
+.note-add:focus-within .note-title{
     display: block;
+}
+
+.input-types{
+
+    position: absolute;
+    top: 30%;
+    right: 5%;
+
+    cursor: pointer;
 }

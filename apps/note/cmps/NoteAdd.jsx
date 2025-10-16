@@ -1,11 +1,15 @@
 const { useState } = React;
 
-export function NoteAdd({ onAddNote }) {
+export function NoteAdd({ onAddNote, onChangetoCheckList, isCheckList,onChangetoText }) {
     const [note, setNote] = useState({ title: '', txt: '' });
 
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
+
+        target.style.height = 'auto';
+        target.style.height = target.scrollHeight + 'px';
+
 
         switch (target.type) {
             case 'number':
@@ -29,26 +33,63 @@ export function NoteAdd({ onAddNote }) {
     }
 
     return (
-        <form onSubmit={onSubmit} className="note-add">
-            <input
-                id="noteTitle"
-                type="text"
-                name="title"
-                placeholder="Note title"
-                value={note.title}
-                onChange={handleChange}
-            /> 
-            <p>
+        !isCheckList ? (
+            <form onSubmit={onSubmit} className="note-add">
+                <textarea
+                    id="noteTitle"
+                    name="title"
+                    placeholder="Title"
+                    className="note-title"
+                    value={note.title}
+                    onChange={handleChange}
+                />
+
                 <textarea
                     id="noteTxt"
                     name="txt"
                     placeholder="Type your note..."
+                    className="note-txt"
                     value={note.txt}
                     onChange={handleChange}
                 />
-            </p>
 
-            <button>Add</button>
+                <section className="input-types">
+                    <i
+                        className="material-symbols-outlined list-icon"
+                        onClick={(ev) => onChangetoCheckList(ev)}
+                    >
+                        select_check_box
+                    </i>
+                </section>
+            </form>
+        ) : <form onSubmit={onSubmit} className="note-add">
+            <textarea
+                id="noteTitle"
+                name="title"
+                placeholder="Title"
+                className="note-title"
+                value={note.title}
+                onChange={handleChange}
+            />
+               <textarea
+                    id="noteTxt"
+                    name="txt"
+                    placeholder="checklistttt"
+                    className="note-txt"
+                    value={note.txt}
+                    onChange={handleChange}
+                />
+            <section className="input-types">
+                <i
+                    className="material-symbols-outlined list-icon"
+                    onClick={(ev) => onChangetoText(ev)}
+                >
+                    text_ad
+                </i>
+            </section>
         </form>
-    );
+
+    )
+
+
 }
