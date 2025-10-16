@@ -76,14 +76,14 @@ export function MailIndex() {
             />
 
 
-            <button onClick={onComposeClick}>
+             <button onClick={onComposeClick}>
                     <img src="../../../assets/img/edit.svg" />
                     Compose
             </button>
 
             {searchParams.get('compose') === 'new' && (
                 <MailCompose setSearchParams={setSearchParams} />
-            )}
+            )} 
 
             {/* <button onClick={<MailCompose 
                             setSearchParams={setSearchParams}

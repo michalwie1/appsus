@@ -11,26 +11,53 @@ export function MailCompose({ setSearchParams}) {
 
     function onCloseCompose() {
         setSearchParams({})
+        // this should also save to draft!
     }
 
     return (
         <dialog open className="mail-compose">
-            <header className="compose-header">
-                {/* <img src="../../../assets/img/gmail.svg" alt="Gmail logo" /> */}
-                <h2>New Mail</h2>
-                <button onClick={onCloseCompose}>X</button>
-            </header>
+            <form>
+            <table>
+                <tbody>
+                    <tr className="header">
+                        <td className="title">New Message</td>
+                        <td className="actions">
+                            <img
+                            src="../../../assets/img/minimize.svg"
+                            title="Minimize"
+                            onClick={() => console.log('minimize')}/>
+                            <img
+                            src="../../../assets/img/full_screen.svg"
+                            title="Full screen"
+                            onClick={() => console.log('full screen')}/>
+                            <img
+                            src="../../../assets/img/close.svg"
+                            title="Save & close"
+                            onClick={onCloseCompose}/>
+                        </td>
+                    </tr>
+                
+                    <tr className="to">
+                        <td><input type="text" placeholder="Recipients"/></td>
+                    </tr>
+                    <tr className="subject">
+                        <td><input type="text" placeholder="Subject"/></td>
+                    </tr>
 
-            <form className="compose-form">
-                <input type="text" placeholder="To" />
-                <input type="text" placeholder="Subject" />
-                <textarea placeholder="Write your message..."></textarea>
+                    <tr className="body">
+                        <td><textarea></textarea></td>
+                        {/* <td><input></input></td> */}
+                    </tr>
 
-                <div className="actions">
-                    <button type="submit">Send</button>
-                    <button type="button" onClick={onCloseCompose}>Discard</button>
-                </div>
-            </form>
+                     <tr className="send">
+                        <td><button type="submit">Send</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+                    </form>
+
+
         </dialog>
     )
 }
