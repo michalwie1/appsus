@@ -1,51 +1,64 @@
-import { LongTxt } from "./LongTxt.jsx"
 import { mailService } from "../services/mail.service.js"
 
-const { useState, useEffect, Fragment } = React
+const { useNavigate } = ReactRouterDOM
 
 export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
     const { from, subject, sentAt, isRead } = mail
-    const date = formatDate()
-    
-    function formatDate(){
-        return mailService.formatDate(sentAt)
-    }
+    const date = mailService.formatDate(sentAt)
+    const readState = isRead ? 'read' : 'unread'
+    const navigate = useNavigate()
 
-    const unreadActionClass = isRead ? '-open' : ''
-    const unreadActionTitle = isRead ? 'unread' : 'read'
 
-    
+    function onMailClick() {
+      const updatedMail = { ...mail, isRead: true }
+      mailService.save(updatedMail)
+        .then(() => {
+          navigate(`/mail/${mail.id}`)
+        })
+        .catch(err => console.log('err:', err))
+  }
+
     return (
+        <section
+            className={`mail-preview ${readState}`}
+            onClick={onMailClick}>
+        
+            <img
+                src="../../../assets/img/checkbox_blank.svg"
+                title="Select"
+                onClick={ev => ev.stopPropagation()}/>
+            
 
-        // <section className="mail-preview">
-        <Fragment>
-            <td>
-                <input type="checkbox" onClick={(ev) => ev.stopPropagation()}></input>
-            </td>
+            <img
+                src="../../../assets/img/star.svg"
+                title="Star"
+                onClick={ev => ev.stopPropagation()}/>
+            
 
-            <td>
-                <i className="fa-regular fa-star"></i>
-            </td>
+            <img
+                src="../../../assets/img/important.svg"
+                title="Mark important"
+                onClick={ev => ev.stopPropagation()}/>
+            
 
-            <td>    
-                <p>{from}</p>
-            </td>
-           
-            <td>    
-                <LongTxt txt={subject}/>
-            </td>
+            <p className="from">{from}</p>
+            <p className="subject">{subject}</p>
 
-            <td className="date-actions-wrapper">
-                <div className="date">
-                    {date}
+            <div className="date-actions-wrapper" onClick={ev => ev.stopPropagation()}>
+                <div className="date">{date}</div>
+                <div className="actions">
+                    <img
+                        src="../../../assets/img/delete.svg"
+                        title="Delete"
+                        onClick={() => onRemoveMail(mail.id)}/>
+                    
+                    <img
+                        src={`../../../assets/img/${readState}.svg`}
+                        title={`Mark as ${readState}`}
+                        onClick={() => onToggleMailRead(mail.id)}/>
+                    
                 </div>
-
-                <div className="actions" onClick={(ev) => ev.stopPropagation()}>
-                    <i src="../" title="Delete" onClick={() => onRemoveMail(mail.id)}></i>
-                    <i className={`fa-solid fa-envelope${unreadActionClass}`} title={`Mark as ${unreadActionTitle}`} onClick={() => onToggleMailRead(mail.id)}></i>
-                </div>
-            </td>   
-        </Fragment>
-
+            </div>
+        </section>
     )
 }
