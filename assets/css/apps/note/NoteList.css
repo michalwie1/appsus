@@ -1,13 +1,25 @@
- /* note list */
-
 .note-list {
-  columns: 6 240px;   /* 6 columns, each about 240px wide */
-  column-gap: 2rem; /* small space between columns */
-  padding: 1rem;      /* optional, for breathing room */
+  columns: 6 240px;
+  column-gap: 2rem;
+  padding: 1rem;
 }
 
 .note-list > * {
-  break-inside: avoid; /* keep notes from breaking apart */
+  break-inside: avoid;
   display: block;
-  margin-bottom: 0.5rem; /* small space between notes */
+  margin-bottom: 0.5rem;
+}
+
+
+.note-section-title {
+  margin: 1rem;
+  font-weight: 600;
+  color: #444;
+  font-size: 1.2rem;
+}
+
+.note-list.pinned {
+  margin-bottom: 2rem;
+  /* border-bottom: 1px solid #ccc; */
+  padding-bottom: 1.5rem;
 }

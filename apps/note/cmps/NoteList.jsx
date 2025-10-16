@@ -1,26 +1,63 @@
 import { NotePreview } from "./NotePreview.jsx"
+import { PinnedNotes } from "./PinnedNotes.jsx"
 
-export function NoteList({ notes,
-    setNoteModal,
-    onChangeColor,
-    onRemoveNote,
-    onPinNote }) {
+const  {Fragment} = React
 
-    if (!notes || !notes.length) return <p>No notes to show</p>
+export function NoteList({
+  notes,
+  setNoteModal,
+  onChangeColor,
+  onRemoveNote,
+  onPinNote
+}) {
+  if (!notes || !notes.length) return <p>No notes to show</p>;
 
-    return (
-        <section className="note-list">
-            {notes.map(note => (
-                <article
-                    key={note.id}
-                >
-                    <NotePreview note={note}
-                        setNoteModal={setNoteModal}
-                        onChangeColor={onChangeColor}
-                        onRemoveNote={onRemoveNote}
-                        onPinNote={onPinNote} />
-                </article>
+  const pinnedNotes = notes.filter(note => note.isPinned);
+  const otherNotes = notes.filter(note => !note.isPinned);
+
+  return (
+    <section>
+      {pinnedNotes.length > 0 && (
+        <Fragment>
+
+          <h3 className="note-section-title">📌 Pinned</h3>
+          <section className="note-list pinned">
+            {pinnedNotes.map(note => (
+                <PinnedNotes
+                key={note.id}
+                note={note}
+                setNoteModal={setNoteModal}
+                onChangeColor={onChangeColor}
+                onRemoveNote={onRemoveNote}
+                onPinNote={onPinNote}
+                />
             ))}
-        </section>
-    )
+          </section>
+            </Fragment>
+        
+      )}
+
+      {otherNotes.length > 0 && (
+        <Fragment>
+
+          {pinnedNotes.length > 0 && (
+              <h3 className="note-section-title">All Notes</h3>
+            )}
+          <section className="note-list">
+            {otherNotes.map(note => (
+                <NotePreview
+                key={note.id}
+                note={note}
+                setNoteModal={setNoteModal}
+                onChangeColor={onChangeColor}
+                onRemoveNote={onRemoveNote}
+                onPinNote={onPinNote}
+                />
+            ))}
+          </section>
+            </Fragment>
+       
+      )}
+    </section>
+  );
 }
