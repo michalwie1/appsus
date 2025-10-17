@@ -1,79 +1,86 @@
-const { useEffect, useRef } = React
+const { useState, Fragment } = React
 
 
 export function MailCompose({ setSearchParams}) {
+    const [isMinimize,setIsMinimize] = useState(false)
+    const [isFullScreen,setIsFullScreen] = useState(false)
 
-    // useEffect(() => {
-    //     setSearchParams(filterBy)
-    //     loadMails()
-    // }, [])
+    const minimizeTitle = isMinimize ? 'Maximize' : 'Minimize'
+    const fullScreen = isFullScreen ? 'close_fullscreen' : 'open_in_full'
+    const dialogStyle = {
+        ...(isFullScreen && { 
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '65vw'
+        }),
+        ...(isMinimize && { 
+        height: 'max-content'
+        })
+    }
 
 
-    function onCloseCompose() {
+    function onMinimizeToggleModal(){
+        setIsMinimize(!isMinimize)
+    }
+
+    function onFullScreenToggleModal(){
+        setIsFullScreen(!isFullScreen)
+    }
+
+    function onCloseModal() {
         setSearchParams({})
-        // this should also save to draft!
+        // this should also save to drafts!
     }
 
     return (
-        <dialog open className="mail-compose">
+        <dialog open className="mail-compose" style={dialogStyle}>
             <form>
             <table>
                 <tbody>
                     <tr className="header">
                         <td className="title">New Message</td>
                         <td className="actions">
-                            {/* <img
-                            src="../../../assets/img/minimize.svg"
-                            title="Minimize"
-                            onClick={() => console.log('minimize')}/> */}
 
                             <span 
                                 className="material-symbols-outlined" 
-                                title="Minimize"
-                                onClick={() => console.log('minimize')}
+                                title={minimizeTitle}
+                                onClick={onMinimizeToggleModal}
                                 >minimize
                             </span>
-                            {/* <img
-                            src="../../../assets/img/full_screen.svg"
-                            title="Full screen"
-                            onClick={() => console.log('full screen')}/> */}
 
                              <span 
                                 className="material-symbols-outlined" 
-                                title="Full screen"
-                                onClick={() => console.log('full screen')}
-                                >open_in_full
+                                title={isFullScreen ? "Exit full screen" : "Full screen"}
+                                onClick={onFullScreenToggleModal}
+                                >{fullScreen}
                             </span>
 
-                            {/* <img
-                            src="../../../assets/img/close.svg"
-                            title="Save & close"
-                            onClick={onCloseCompose}/> */}
-
                              <span 
                                 className="material-symbols-outlined" 
                                 title="Full screen"
-                                onClick={onCloseCompose}
+                                onClick={onCloseModal}
                                 >close
                             </span>
                         </td>
                     </tr>
-                
+
+                {!isMinimize && 
+                <Fragment>
                     <tr className="to">
-                        <td><input type="text" placeholder="Recipients"/></td>
+                        <td><input type="text" placeholder="Recipients" /></td>
                     </tr>
                     <tr className="subject">
-                        <td><input type="text" placeholder="Subject"/></td>
+                        <td><input type="text" placeholder="Subject" /></td>
                     </tr>
-
                     <tr className="body">
                         <td><textarea></textarea></td>
-                        {/* <td><input></input></td> */}
                     </tr>
-
-                     <tr className="send">
+                    <tr className="send">
                         <td><button type="submit">Send</button></td>
                     </tr>
+                 </Fragment>
+                }
 
                 </tbody>
             </table>

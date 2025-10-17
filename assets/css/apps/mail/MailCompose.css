@@ -28,6 +28,16 @@
     .header{
         display: flex;
 
+        .material-symbols-outlined{
+            font-size: 1em;
+            gap: .5em;
+        }
+
+        p{
+            font-weight: lighter;
+            font-size: .8em;
+        }
+
         td {
             vertical-align: middle;
             background-color: rgb(248, 244, 244);
