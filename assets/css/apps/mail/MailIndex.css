@@ -1,12 +1,25 @@
  .mail-index {
-    width: 100vw;
-    /* font-family: "Open Sans", serif; */
-    justify-items: center;
-    place-self: center;
-    font-weight: 600;
-    border-radius: 20px;
-    /* background-color: #f2f2f2; */
-    background-color: rgb(255, 255, 255);
- }
+  width: 100%;
+  height: 100vh;
+  display: flex;         
+  flex-direction: column; 
+  overflow: hidden;
+  justify-items: center;
+  place-self: center;
+  font-weight: 600;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
 
- /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans'); */
+  button{
+    max-width: 10em;
+    border-radius: 20px;
+    border: 0;
+    padding: 1em;
+}
+
+   button:hover{
+    box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  }
+
+
+}

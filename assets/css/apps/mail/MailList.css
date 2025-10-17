@@ -1,4 +1,8 @@
 .mail-list {
-    width: 80vw;
+  width: 80%;
+  flex: 1;         
+  overflow-y: auto; 
+  min-height: 0;  
+  align-self: center;
+  border-radius: 20px;
 }
-

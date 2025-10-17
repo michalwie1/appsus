@@ -1,36 +1,92 @@
-const { useEffect, useRef } = React
+const { useState, Fragment } = React
 
 
 export function MailCompose({ setSearchParams}) {
+    const [isMinimize,setIsMinimize] = useState(false)
+    const [isFullScreen,setIsFullScreen] = useState(false)
 
-    // useEffect(() => {
-    //     setSearchParams(filterBy)
-    //     loadMails()
-    // }, [])
+    const minimizeTitle = isMinimize ? 'Maximize' : 'Minimize'
+    const fullScreen = isFullScreen ? 'close_fullscreen' : 'open_in_full'
+    const dialogStyle = {
+        ...(isFullScreen && { 
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '65vw'
+        }),
+        ...(isMinimize && { 
+        height: 'max-content'
+        })
+    }
 
 
-    function onCloseCompose() {
+    function onMinimizeToggleModal(){
+        setIsMinimize(!isMinimize)
+    }
+
+    function onFullScreenToggleModal(){
+        setIsFullScreen(!isFullScreen)
+    }
+
+    function onCloseModal() {
         setSearchParams({})
+        // this should also save to drafts!
     }
 
     return (
-        <dialog open className="mail-compose">
-            <header className="compose-header">
-                {/* <img src="../../../assets/img/gmail.svg" alt="Gmail logo" /> */}
-                <h2>New Mail</h2>
-                <button onClick={onCloseCompose}>X</button>
-            </header>
+        <dialog open className="mail-compose" style={dialogStyle}>
+            <form>
+            <table>
+                <tbody>
+                    <tr className="header">
+                        <td className="title">New Message</td>
+                        <td className="actions">
 
-            <form className="compose-form">
-                <input type="text" placeholder="To" />
-                <input type="text" placeholder="Subject" />
-                <textarea placeholder="Write your message..."></textarea>
+                            <span 
+                                className="material-symbols-outlined" 
+                                title={minimizeTitle}
+                                onClick={onMinimizeToggleModal}
+                                >minimize
+                            </span>
 
-                <div className="actions">
-                    <button type="submit">Send</button>
-                    <button type="button" onClick={onCloseCompose}>Discard</button>
-                </div>
-            </form>
+                             <span 
+                                className="material-symbols-outlined" 
+                                title={isFullScreen ? "Exit full screen" : "Full screen"}
+                                onClick={onFullScreenToggleModal}
+                                >{fullScreen}
+                            </span>
+
+                             <span 
+                                className="material-symbols-outlined" 
+                                title="Full screen"
+                                onClick={onCloseModal}
+                                >close
+                            </span>
+                        </td>
+                    </tr>
+
+                {!isMinimize && 
+                <Fragment>
+                    <tr className="to">
+                        <td><input type="text" placeholder="Recipients" /></td>
+                    </tr>
+                    <tr className="subject">
+                        <td><input type="text" placeholder="Subject" /></td>
+                    </tr>
+                    <tr className="body">
+                        <td><textarea></textarea></td>
+                    </tr>
+                    <tr className="send">
+                        <td><button type="submit">Send</button></td>
+                    </tr>
+                 </Fragment>
+                }
+
+                </tbody>
+            </table>
+                    </form>
+
+
         </dialog>
     )
 }

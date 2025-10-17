@@ -2,10 +2,13 @@ import { mailService } from "../services/mail.service.js"
 
 const { useNavigate } = ReactRouterDOM
 
-export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
-    const { from, subject, sentAt, isRead } = mail
+export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
+    const { from, subject, sentAt, isRead, isStar, isCheck, isImportant } = mail
     const date = mailService.formatDate(sentAt)
     const readState = isRead ? 'read' : 'unread'
+    const starState = isStar ? 'star' : 'unstar'
+    const checkState = isCheck ? 'check' : 'uncheck'
+    const importantState = isImportant ? 'important' : 'unimportant'
     const navigate = useNavigate()
 
 
@@ -22,24 +25,30 @@ export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
         <section
             className={`mail-preview ${readState}`}
             onClick={onMailClick}>
-        
-            <img
-                src="../../../assets/img/checkbox_blank.svg"
-                title="Select"
-                onClick={ev => ev.stopPropagation()}/>
-            
 
-            <img
-                src="../../../assets/img/star.svg"
-                title="Star"
-                onClick={ev => ev.stopPropagation()}/>
-            
+           
+                <span 
+                    className="material-symbols-outlined" 
+                    title={checkState}
+                    onClick={(event) => onMailActionToggle(event,mail.id, 'isCheck')}
+                      >{isCheck ? 'check_box' : 'check_box_outline_blank'}
+                </span>
 
-            <img
-                src="../../../assets/img/important.svg"
-                title="Mark important"
-                onClick={ev => ev.stopPropagation()}/>
-            
+                
+             <span 
+                    className={`material-symbols-outlined ${starState}`} 
+                    title={starState}
+                    // style={{ color: isStar ? 'yellow' : 'gray' }}
+                    onClick={(event) => onMailActionToggle(event,mail.id, 'isStar')}
+                      >star
+                </span>
+
+            <span 
+                    className={`material-symbols-outlined ${importantState}`} 
+                    title={importantState}
+                    onClick={(event) => onMailActionToggle(event,mail.id, 'isImportant')}
+                      >label_important
+            </span>
 
             <p className="from">{from}</p>
             <p className="subject">{subject}</p>
@@ -47,16 +56,27 @@ export function MailPreview({ mail, onRemoveMail, onToggleMailRead }) {
             <div className="date-actions-wrapper" onClick={ev => ev.stopPropagation()}>
                 <div className="date">{date}</div>
                 <div className="actions">
-                    <img
-                        src="../../../assets/img/delete.svg"
-                        title="Delete"
-                        onClick={() => onRemoveMail(mail.id)}/>
+              
+                     <span 
+                        className= "material-symbols-outlined"
+                        title= "Delete"
+                        onClick={() => onRemoveMail(mail.id)}
+                        >delete
+                    </span>
                     
-                    <img
+                    {/* <img
                         src={`../../../assets/img/${readState}.svg`}
                         title={`Mark as ${readState}`}
-                        onClick={() => onToggleMailRead(mail.id)}/>
-                    
+                        onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}/>
+                     */}
+
+                      <span 
+                        className="material-symbols-outlined" 
+                        title={readState}
+                        onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}
+                        >{isRead ? 'drafts' : 'mark_email_unread'}
+                    </span>
+
                 </div>
             </div>
         </section>

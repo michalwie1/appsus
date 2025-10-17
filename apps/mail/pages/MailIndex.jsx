@@ -44,20 +44,37 @@ export function MailIndex() {
             })
     }
 
-    function onToggleMailRead(mailId) {
+    // function onToggleMailRead(mailId) {
+    //     setMails(prevMails =>
+    //         prevMails.map(mail =>
+    //             mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
+    //         )
+    //     )
+       
+    //     mailService.get(mailId)
+    //         .then(mail => {
+    //             mail.isRead = !mail.isRead
+    //             return mailService.save(mail)
+    //         })
+    //         .catch(err => console.log('err:', err))
+    // } 
+    
+    function onMailActionToggle(ev, mailId, action){
+        ev.stopPropagation()
+        
         setMails(prevMails =>
             prevMails.map(mail =>
-                mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
+                mail.id === mailId ? { ...mail, [action]: !mail[action] } : mail
             )
         )
        
         mailService.get(mailId)
             .then(mail => {
-                mail.isRead = !mail.isRead
+                mail.action = !mail.action
                 return mailService.save(mail)
             })
             .catch(err => console.log('err:', err))
-    }   
+    }
 
     function onSetFilterBy(newFilterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
@@ -75,15 +92,17 @@ export function MailIndex() {
                 defaultFilter={filterBy}
             />
 
-
-            <button onClick={onComposeClick}>
-                    <img src="../../../assets/img/edit.svg" />
-                    Compose
+             <button onClick={onComposeClick}>
+                    <span 
+                    className="material-symbols-outlined" 
+                      >edit
+                </span>
+                Compose
             </button>
 
             {searchParams.get('compose') === 'new' && (
                 <MailCompose setSearchParams={setSearchParams} />
-            )}
+            )} 
 
             {/* <button onClick={<MailCompose 
                             setSearchParams={setSearchParams}
@@ -97,12 +116,15 @@ export function MailIndex() {
 
             {!mails.length && <Loader />}
             
-            
+            <div>header-actions</div>
+            <div>folders</div>
              <MailList
                 mails = {mails}
                 onRemoveMail = {onRemoveMail}
-                onToggleMailRead = {onToggleMailRead}
+                // onToggleMailRead = {onToggleMailRead}
+                onMailActionToggle= {onMailActionToggle}
                 />
+            <div>bottom</div>
 
         </section>
     )
