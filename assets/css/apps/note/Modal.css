@@ -43,7 +43,7 @@
 
 .modal-content textarea {
     width: 90%; 
-    min-height: 4em;
+    /* min-height: 1em; */
     border: none;
     outline: none;
     resize: none;

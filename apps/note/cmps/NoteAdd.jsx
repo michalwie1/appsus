@@ -91,10 +91,12 @@ export function NoteAdd({ onAddNote, onChangetoCheckList, isCheckList, onChanget
                         <input
                             type="checkbox"
                             className="note-checkbox"
-                        />
+                            name = "NotoTodo"
+                            />
                         <input
                             type="text"
                             placeholder="Checklist item..."
+                            name = "NotoTodo"
                             className="note-txt"
                             value={todo}
                             onChange={(ev) => handleChange(ev, idx)}

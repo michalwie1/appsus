@@ -1,6 +1,6 @@
 import { ColorPicker } from "./ColorPicker.jsx";
 
-export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, onPinNote , onDuplicateNote}) {
+export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, onPinNote, onDuplicateNote }) {
     if (!note) return null;
 
     // Avoid optional chaining for older Babel
@@ -44,7 +44,10 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
                     <h5>{note.info.title}</h5>
                     <br />
                     {note.info.todos.map((todo, idx) => (
-                        <div key={idx}>
+                        <div
+                            key={idx}
+                            style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}
+                        >
                             {todo.txt} {todo.doneAt ? '✔' : '❌'}
                         </div>
                     ))}
@@ -56,7 +59,7 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
                     onClick={(ev) => onRemoveNote(ev, note)}
                 >Delete</i>
                 <i className="material-symbols-outlined"
-                 onClick={(ev) => onDuplicateNote(ev, note)}>
+                    onClick={(ev) => onDuplicateNote(ev, note)}>
                     content_copy
                 </i>
                 <ColorPicker note={note} onChangeColor={onChangeColor} />

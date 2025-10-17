@@ -1,0 +1,9 @@
+.todo-container{
+    position: relative;
+}
+
+.todo-container .note-checkbox{
+    position: absolute;
+    top: 1.1em;
+    left: -10%;
+}

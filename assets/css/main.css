@@ -19,6 +19,7 @@
 @import './apps/note/action-bar.css';
 @import './apps/note/NoteAdd.css';
 @import './apps/note/NoteFilter.css';
+@import './apps/note/NoteTodo.css';
 
 @import './apps/mail/MailIndex.css';
 @import './apps/mail/MailList.css';
