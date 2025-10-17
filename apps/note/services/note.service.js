@@ -15,6 +15,7 @@ export const NoteService = {
     createNewNote,
     getDefaultFilter,
     duplicateNote,
+    createNewTodoNote,
 }
 
 function query(filterBy = {}) {
@@ -84,6 +85,23 @@ function createNewNote(title = '', txt = '') {
     }
 }
 
+function createNewTodoNote(title = '', todos = []) {
+  return {
+    id: '',
+    createdAt: Date.now(),
+    type: 'NoteTodos',
+    isPinned: false,
+    style: { backgroundColor: '' },
+    info: {
+      title: title,
+      todos: todos.map(txt => ({
+        txt,
+        doneAt: false, 
+      })),
+    },
+  };
+}
+
 function duplicateNote(note) {
     return {
         ...note,
@@ -128,8 +146,8 @@ function _createNotes() {
             info: {
                 title: 'Get my stuff together',
                 todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
+                    { txt: 'Driving license', doneAt: false },
+                    { txt: 'Coding power', doneAt: true }
                 ]
             }
         }

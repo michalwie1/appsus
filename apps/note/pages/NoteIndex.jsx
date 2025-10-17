@@ -32,10 +32,18 @@ export function NoteIndex() {
     }
 
     function onAddNote(noteData) {
-        const newNote = NoteService.createNewNote(noteData.title, noteData.txt);
-        NoteService.save(newNote)
+        if (noteData.txt){
+            const newNote = NoteService.createNewNote(noteData.title, noteData.txt);
+            NoteService.save(newNote)
             .then(() => loadNotes())
             .catch(err => console.log('Error saving note:', err));
+        }else{
+            console.log("noteData.title" + noteData.title)
+             const newNote = NoteService.createNewTodoNote(noteData.title, noteData.todos);
+            NoteService.save(newNote)
+            .then(() => loadNotes())
+            .catch(err => console.log('Error saving note:', err));
+        }
     }
     function handleSaveNote(updatedNote) {
         NoteService.save(updatedNote).then(() => loadNotes());

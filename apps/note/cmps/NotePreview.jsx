@@ -41,6 +41,8 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
             {/* Todos Note */}
             {note.type === 'NoteTodos' && note.info && note.info.todos && (
                 <div>
+                    <h5>{note.info.title}</h5>
+                    <br />
                     {note.info.todos.map((todo, idx) => (
                         <div key={idx}>
                             {todo.txt} {todo.doneAt ? '✔' : '❌'}
