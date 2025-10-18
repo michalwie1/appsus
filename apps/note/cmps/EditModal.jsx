@@ -17,14 +17,24 @@ export function EditModal({
     const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
 
 
-    function handleSave() {
+    function onCloseAndSave(){
+        
         if (note.type === 'NoteTodos') {
             onSave({ ...note, info: { ...note.info, todos } });
         } else {
             onSave({ ...note, info: { ...note.info, txt } });
         }
-        onClose();
+        onClose()
     }
+    // function handleSave() {
+    //     if (note.type === 'NoteTodos') {
+    //         onSave({ ...note, info: { ...note.info, todos } });
+    //     } else {
+    //         onSave({ ...note, info: { ...note.info, txt } });
+    //     }
+    //     onClose()
+    // }
+
 
     function handleTodoChange({ target }, idx, field, value) {
         if (field === 'txt') {
@@ -39,7 +49,7 @@ export function EditModal({
 
     return (
         <Fragment>
-            <section onClick={onClose} className="modal-backdrop"></section>
+            <section onClick={onCloseAndSave} className="modal-backdrop"></section>
             <section className="modal-content" onClick={ev => ev.stopPropagation()} style={{ backgroundColor: bgColor }}>
 
                 {note.type === 'NoteTodos' ? (
@@ -69,7 +79,7 @@ export function EditModal({
                 )}
 
                 <div className='action-bar'>
-                    <button onClick={handleSave}>Save</button>
+                    {/* <button onClick={handleSave}>Save</button> */}
                     <i
                         className="material-symbols-outlined"
                         onClick={(ev) => { onRemoveNote(ev, note); onClose(); }}

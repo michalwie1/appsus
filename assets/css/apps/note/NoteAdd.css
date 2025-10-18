@@ -89,4 +89,8 @@
     right: 5%;
 
     cursor: pointer;
+} 
+
+.note-add:focus-within .input-types{
+    display: none;
 }
