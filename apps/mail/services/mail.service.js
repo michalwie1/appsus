@@ -24,7 +24,8 @@ export const mailService = {
     // addGoogleMail,
     // getGoogleMails,
     getFilterFromParams,
-    formatDate
+    formatDate,
+    capitalizeFirstLetter
 }
 
 function query(filterBy = {}) {
@@ -101,6 +102,10 @@ function formatDate(timestamp){
         : `${formattedDay}/${formattedMonth}/${formattedYear}`
     
     return formattedDate
+}
+
+function capitalizeFirstLetter(txt){
+   return utilService.getCapitalizeFirstLetter(txt)
 }
 
 function _createMails(){

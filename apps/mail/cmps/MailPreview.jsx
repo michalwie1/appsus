@@ -29,7 +29,7 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
            
                 <span 
                     className="material-symbols-outlined" 
-                    title={checkState}
+                    title={mailService.capitalizeFirstLetter(checkState)}
                     onClick={(event) => onMailActionToggle(event,mail.id, 'isCheck')}
                       >{isCheck ? 'check_box' : 'check_box_outline_blank'}
                 </span>
@@ -37,7 +37,7 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
                 
              <span 
                     className={`material-symbols-outlined ${starState}`} 
-                    title={starState}
+                    title={mailService.capitalizeFirstLetter(starState)}
                     // style={{ color: isStar ? 'yellow' : 'gray' }}
                     onClick={(event) => onMailActionToggle(event,mail.id, 'isStar')}
                       >star
@@ -45,7 +45,7 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
 
             <span 
                     className={`material-symbols-outlined ${importantState}`} 
-                    title={importantState}
+                    title={mailService.capitalizeFirstLetter(importantState)}
                     onClick={(event) => onMailActionToggle(event,mail.id, 'isImportant')}
                       >label_important
             </span>
@@ -72,7 +72,7 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
 
                       <span 
                         className="material-symbols-outlined" 
-                        title={readState}
+                        title={mailService.capitalizeFirstLetter(readState)}
                         onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}
                         >{isRead ? 'drafts' : 'mark_email_unread'}
                     </span>
