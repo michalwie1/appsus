@@ -1,4 +1,7 @@
 import { ColorPicker } from "./ColorPicker.jsx";
+import { NoteTxt } from "./NoteTxt.jsx";
+import { NoteTodo } from "./NoteTodo.jsx";
+import { NoteImg } from "./NoteImg.jsx";
 
 export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, onPinNote, onDuplicateNote }) {
     if (!note) return null;
@@ -16,42 +19,15 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
             <span className="material-symbols-outlined pin" onClick={(ev) => onPinNote(ev, note)}>
                 keep
             </span>
-            {/* Text Note */}
             {note.type === 'NoteTxt' && note.info && (
-                <div>
-                    {note.info.title && <h5>{note.info.title}</h5>}
-                    {note.info.txt && <p>{note.info.txt}</p>}
-                </div>
+                <NoteTxt note={note} />
             )}
 
-            {/* Image Note */}
             {note.type === 'NoteImg' && note.info && (
-                <div>
-                    {note.info.title && <h5>{note.info.title}</h5>}
-                    {note.info.url && (
-                        <img
-                            src={note.info.url}
-                            alt={note.info.title || 'Image Note'}
-                            style={{ maxWidth: '150px', borderRadius: '8px' }}
-                        />
-                    )}
-                </div>
+                <NoteImg  note={note} />
             )}
-
-            {/* Todos Note */}
             {note.type === 'NoteTodos' && note.info && note.info.todos && (
-                <div>
-                    <h5>{note.info.title}</h5>
-                    <br />
-                    {note.info.todos.map((todo, idx) => (
-                        <div
-                            key={idx}
-                            style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}
-                        >
-                            {todo.txt} {todo.doneAt ? '✔' : '❌'}
-                        </div>
-                    ))}
-                </div>
+                <NoteTodo note={note} />
             )}
             <div className="action-bar">
                 <i

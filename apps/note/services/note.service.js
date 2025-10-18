@@ -16,6 +16,7 @@ export const NoteService = {
     getDefaultFilter,
     duplicateNote,
     createNewTodoNote,
+    createNewImgNote,
 }
 
 function query(filterBy = {}) {
@@ -98,6 +99,19 @@ function createNewTodoNote(title = '', todos = []) {
         txt,
         doneAt: false, 
       })),
+    },
+  };
+}
+function createNewImgNote(title = '', imgUrl) {
+  return {
+    id: '',
+    createdAt: Date.now(),
+    type: 'NoteTodos',
+    isPinned: false,
+    style: { backgroundColor: '' },
+    info: {
+        url: imgUrl,
+      title: title,
     },
   };
 }

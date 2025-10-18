@@ -3,6 +3,7 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
 import { EditModal } from "../cmps/EditModal.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
+import { NoteLoader } from "../cmps/NoteLoader.jsx"
 
 const { useState, useEffect } = React
 
@@ -12,6 +13,7 @@ export function NoteIndex() {
     const [isOpen, setIsOpen] = useState(true)
     const [noteModal, setNoteModal] = useState(null)
     const [isCheckList, setisCheckList] = useState(false)
+    const [isImg, setisImg] = useState(false)
 
     useEffect(() => {
         loadNotes()
@@ -35,13 +37,18 @@ export function NoteIndex() {
         if (noteData.txt){
             const newNote = NoteService.createNewNote(noteData.title, noteData.txt);
             NoteService.save(newNote)
-            .then(() => loadNotes())
+            .then(loadNotes)
+            .catch(err => console.log('Error saving note:', err));
+        }else if (noteData.imgUrl){
+            const newNote = NoteService.createNewImgNote(noteData.title, noteData.imgUrl);
+            NoteService.save(newNote)
+            .then(loadNotes)
             .catch(err => console.log('Error saving note:', err));
         }else{
             console.log("noteData.title" + noteData.title)
              const newNote = NoteService.createNewTodoNote(noteData.title, noteData.todos);
             NoteService.save(newNote)
-            .then(() => loadNotes())
+            .then(loadNotes)
             .catch(err => console.log('Error saving note:', err));
         }
     }
@@ -110,14 +117,21 @@ export function NoteIndex() {
 
     function onChangetoCheckList(ev) {
         setisCheckList(true)
+        setisImg(false)
         loadNotes()
     }
     function onChangetoText(ev) {
         setisCheckList(false)
+        setisImg(false)
+        loadNotes()
+    }
+    function onChangeToImg(ev) {
+        setisCheckList(false)
+        setisImg(true)
         loadNotes()
     }
 
-    if (!notes) return <div>Loading...</div>
+    if (!notes) return <NoteLoader/>
 
     return (
         <section className="main-container">
@@ -129,7 +143,10 @@ export function NoteIndex() {
                     onAddNote={onAddNote}
                     onChangetoCheckList={onChangetoCheckList}
                     onChangetoText = {onChangetoText}
-                    isCheckList={isCheckList} />
+                    onChangeToImg = {onChangeToImg}
+                    isImg={isImg} 
+                    isCheckList={isCheckList} 
+                    />
                 <NoteList
                     notes={notes}
                     setNoteModal={setNoteModal}
