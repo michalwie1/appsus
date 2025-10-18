@@ -25,7 +25,10 @@ export const mailService = {
     // getGoogleMails,
     getFilterFromParams,
     formatDate,
-    capitalizeFirstLetter
+    capitalizeFirstLetter,
+    unreadMailCounter,
+    getMailsCategoryCount,
+    getCategory
 }
 
 function query(filterBy = {}) {
@@ -106,6 +109,46 @@ function formatDate(timestamp){
 
 function capitalizeFirstLetter(txt){
    return utilService.getCapitalizeFirstLetter(txt)
+}
+
+function unreadMailCounter(){
+    let mails = utilService.loadFromStorage(MAIL_KEY)
+    let unreadCount = 0
+
+    mails.map((mail) => {
+        if (mail.isRead) unreadCount ++
+    })
+
+    return unreadCount
+}
+
+function getMailsCategoryCount(){ 
+    let mails = utilService.loadFromStorage(MAIL_KEY)
+    // const categoriesCount = {primary:0,promotions:0, social:0,updates:0}
+    const categories = {primary: [], promotions: [], social: [], updates: []}
+
+    mails.map((mail) => {
+        mail.categories.map((category) => {
+            const formatCategory = category.toLowerCase()
+            categories[formatCategory].push(mail.id)
+            // categoriesCount[formatCategory] ++
+        })
+    })
+    return categories
+}
+
+function getCategory(categoryName){
+    let mails = utilService.loadFromStorage(MAIL_KEY)
+    const categories = getMailsCategoryCount()
+    const categoryMails = []
+
+    categories[categoryName].map((mailId) => {
+
+        let mailIdx = mails.findIndex(mail => mail.id === mailId)
+        let mail = mails[mailIdx]
+        categoryMails.push(mail)
+    })
+    return categoryMails
 }
 
 function _createMails(){

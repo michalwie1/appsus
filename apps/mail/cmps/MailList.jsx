@@ -1,11 +1,11 @@
 const { Link } = ReactRouterDOM
 import { MailPreview } from "./MailPreview.jsx"
 
-export function MailList({ mails, onRemoveMail, onMailActionToggle }) {
+export function MailList({ categoryMails, onRemoveMail, onMailActionToggle }) {
 
     return (
         <section className="mail-list">
-            {mails.map(mail => (
+            {categoryMails.map(mail => (
                 <MailPreview
                     key = {mail.id}
                     mail = {mail}

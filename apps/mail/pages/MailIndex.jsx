@@ -7,6 +7,7 @@ import { MailHeader } from "../cmps/MailHeader.jsx"
 import { MailCompose } from "../cmps/MailCompose.jsx"
 import { Loader } from "../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+import { MailCategories } from "../cmps/MailCategories.jsx"
 
 
 const { useState, useEffect } = React
@@ -15,14 +16,24 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
+    const [unreadCounter, setUnreadCounter] = useState(mailService.unreadMailCounter())
+    const [category, setCategory] = useState('primary')
     // const [openMailId, setOpenMailId] = useState(null)
     
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
+    const categories = {primary: mailService.getCategory('primary'), 
+                        social: mailService.getCategory('social'), 
+                        updates: mailService.getCategory('updates'),
+                        promotions: mailService.getCategory('promotions')
+                        }
+
+    // console.log(mailService.getMailsCategoryCount())
+
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
-    }, [filterBy])
+    }, [filterBy,unreadCounter,category])
      
         
     function loadMails(){
@@ -43,21 +54,6 @@ export function MailIndex() {
                 showErrorMsg(`Cannot remove mail - ${mailId}`)
             })
     }
-
-    // function onToggleMailRead(mailId) {
-    //     setMails(prevMails =>
-    //         prevMails.map(mail =>
-    //             mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
-    //         )
-    //     )
-       
-    //     mailService.get(mailId)
-    //         .then(mail => {
-    //             mail.isRead = !mail.isRead
-    //             return mailService.save(mail)
-    //         })
-    //         .catch(err => console.log('err:', err))
-    // } 
     
     function onMailActionToggle(ev, mailId, action){
         ev.stopPropagation()
@@ -74,6 +70,8 @@ export function MailIndex() {
                 return mailService.save(mail)
             })
             .catch(err => console.log('err:', err))
+
+        // if (action === 'isRead') setUnreadCounter(mailService.unreadMailCounter())
     }
 
     function onSetFilterBy(newFilterBy) {
@@ -82,6 +80,13 @@ export function MailIndex() {
 
     function onComposeClick() {
         setSearchParams({ compose: 'new' })
+    }
+
+    function onCategoryChange(categoryName){
+        setCategory(categoryName)
+        // console.log(category,categoryName)
+        // categoryChosenClass = category === categoryName ? 'clicked' : ''
+        // console.log(categoryChosenClass)
     }
 
     return (
@@ -104,26 +109,25 @@ export function MailIndex() {
                 <MailCompose setSearchParams={setSearchParams} />
             )} 
 
-            {/* <button onClick={<MailCompose 
-                            setSearchParams={setSearchParams}
-                            />}>
-                <img src="../../../assets/img/edit.svg"/>
-                    Compose
-            </button> */}
-            {/* <button><Link to="/book/edit">Add Book</Link></button> */}
-
-            
 
             {!mails.length && <Loader />}
             
             <div>header-actions</div>
-            <div>folders</div>
-             <MailList
-                mails = {mails}
-                onRemoveMail = {onRemoveMail}
-                // onToggleMailRead = {onToggleMailRead}
-                onMailActionToggle= {onMailActionToggle}
-                />
+            <MailCategories
+                onCategoryChange = {onCategoryChange}
+            />
+
+            <div>folders
+                <p>Inbox {mailService.unreadMailCounter()}</p>
+                {/* <MailCategories mails={mails}/> */}
+            </div>
+
+              <MailList
+                   categoryMails = {mailService.getCategory(category)}
+                   onRemoveMail = {onRemoveMail}
+                   onMailActionToggle= {onMailActionToggle}
+                   />
+
             <div>bottom</div>
 
         </section>
