@@ -1,4 +1,4 @@
-import { ImgService } from "../services/img.service.js"
+// import { ImgService } from "../services/img.service.js"
 const { useState, useEffect, useRef } = React;
 
 export function NoteAdd({
@@ -11,6 +11,7 @@ export function NoteAdd({
 }) {
   const [note, setNote] = useState({ title: '', txt: '', todos: [''], imgUrl: '' })
   const formRef = useRef(null)
+  const imgFileRef = useRef(null)
 
   useEffect(() => {
     function handleClickOutside(ev) {
@@ -23,10 +24,15 @@ export function NoteAdd({
   }, [note]) 
 
   function onUploadImg(ev) {
-    // ImgService.uploadImg(ev)
-    //   .then(url => setNote(prev => ({ ...prev, imgUrl: url })))
-    //   .catch(err => console.error('Upload failed:', err));
+  const file = ev.target.files[0]
+  if (!file) return
+
+  const reader = new FileReader()
+  reader.onload = ev => {
+    setNote(prev => ({ ...prev, imgUrl: ev.target.result }))
   }
+  reader.readAsDataURL(file)
+}
 
   function handleChange({ target }, idx = null) {
     const field = target.name
@@ -73,7 +79,7 @@ export function NoteAdd({
           value={note.title}
           onChange={handleChange}
         />
-        <input type="file" accept="image/*" onChange={onUploadImg} />
+        <input ref={imgFileRef} type="file" accept="image/*" onChange={onUploadImg} />
         {note.imgUrl && <img src={note.imgUrl} alt="Uploaded" className="uploaded-img" />}
 
         <section className="input-types">

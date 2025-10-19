@@ -106,7 +106,7 @@ function createNewImgNote(title = '', imgUrl) {
   return {
     id: '',
     createdAt: Date.now(),
-    type: 'NoteTodos',
+    type: 'NoteImg',
     isPinned: false,
     style: { backgroundColor: '' },
     info: {

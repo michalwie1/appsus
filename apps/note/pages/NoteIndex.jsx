@@ -34,12 +34,14 @@ export function NoteIndex() {
     }
 
     function onAddNote(noteData) {
+// console.log("noteData" + JSON.stringify(noteData) )
+
         if (noteData.txt){
             const newNote = NoteService.createNewNote(noteData.title, noteData.txt);
             NoteService.save(newNote)
             .then(loadNotes)
             .catch(err => console.log('Error saving note:', err));
-        }else if (noteData.imgUrl){
+        }else if (noteData.imgUrl , "NoteImg"){
             const newNote = NoteService.createNewImgNote(noteData.title, noteData.imgUrl);
             NoteService.save(newNote)
             .then(loadNotes)

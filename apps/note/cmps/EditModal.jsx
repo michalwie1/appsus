@@ -52,7 +52,7 @@ export function EditModal({
             <section onClick={onCloseAndSave} className="modal-backdrop"></section>
             <section className="modal-content" onClick={ev => ev.stopPropagation()} style={{ backgroundColor: bgColor }}>
 
-                {note.type === 'NoteTodos' ? (
+                {note.type === 'NoteTodos' && (
                     todos.map((todo, idx) => (
                         <div key={idx} className="todo-container">
                             <input
@@ -69,7 +69,13 @@ export function EditModal({
                             />
                         </div>
                     ))
-                ) : (
+                ) }
+
+
+                 {note.type === 'NoteImg' &&(
+                    <img src={note.info.url} alt="" />
+                )}
+                 {note.type === 'NoteTxt' &&(
                     <textarea
                         value={txt}
                         onChange={(ev) => setTxt(ev.target.value)}
