@@ -3,17 +3,28 @@ import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteTodo } from "./NoteTodo.jsx";
 import { NoteImg } from "./NoteImg.jsx";
 
+const { useState } = React
+
 export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, onPinNote, onDuplicateNote }) {
+
+    const [isRemoved, setIsRemoved] = useState(false)
+
     if (!note) return null;
 
     // Avoid optional chaining for older Babel
     const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
 
+    function removeNote(ev, note) {
+
+        onRemoveNote(ev, note)
+        setIsRemoved(true)
+    }
+
     return (
         <article
             onClick={() => setNoteModal(note)}
             className="note-item"
-            style={{ backgroundColor: bgColor }}
+            style={{ backgroundColor: bgColor, display: isRemoved ? "none" : "" }}
         >
 
             <span className="material-symbols-outlined pin" onClick={(ev) => onPinNote(ev, note)}>
@@ -24,7 +35,7 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
             )}
 
             {note.type === 'NoteImg' && note.info && (
-                <NoteImg  note={note} />
+                <NoteImg note={note} />
             )}
             {note.type === 'NoteTodos' && note.info && note.info.todos && (
                 <NoteTodo note={note} />
@@ -32,7 +43,7 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
             <div className="action-bar">
                 <i
                     className="material-symbols-outlined"
-                    onClick={(ev) => onRemoveNote(ev, note)}
+                    onClick={(ev) => removeNote(ev, note)}
                 >Delete</i>
                 <i className="material-symbols-outlined"
                     onClick={(ev) => onDuplicateNote(ev, note)}>

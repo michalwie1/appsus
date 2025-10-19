@@ -1,64 +1,56 @@
 import { ColorPicker } from "./ColorPicker.jsx";
+import { NoteTxt } from "./NoteTxt.jsx";
+import { NoteTodo } from "./NoteTodo.jsx";
+import { NoteImg } from "./NoteImg.jsx";
+
+const { useState } = React
+
 
 export function PinnedNotes({ note, setNoteModal, onChangeColor, onRemoveNote ,onPinNote,onDuplicateNote }) {
-    if (!note) return null;
-
-    // Avoid optional chaining for older Babel
-    const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
-
-    return (
-        <article
-            onClick={() => setNoteModal(note)}
-            className="note-item"
-            style={{ backgroundColor: bgColor }}
-        >
-
-                    <span className="material-symbols-outlined pin pinned" onClick={(ev)=> onPinNote(ev,note)}>
+      const [isRemoved, setIsRemoved] = useState(false)
+  
+      if (!note) return null;
+  
+      // Avoid optional chaining for older Babel
+      const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
+  
+      function removeNote(ev, note) {
+  
+          onRemoveNote(ev, note)
+          setIsRemoved(true)
+      }
+  
+      return (
+          <article
+              onClick={() => setNoteModal(note)}
+              className="note-item"
+              style={{ backgroundColor: bgColor, display: isRemoved ? "none" : "" }}
+          >
+  
+              <span className="material-symbols-outlined pin pinned" onClick={(ev)=> onPinNote(ev,note)}>
                         keep
                     </span>  
-            {/* Text Note */}
-            {note.type === 'NoteTxt' && note.info && (
-                <div>
-                     {note.info.title && <h5>{note.info.title}</h5>}
-                    {note.info.txt && <p>{note.info.txt}</p>}
-                </div>
-            )}
-
-            {/* Image Note */}
-            {note.type === 'NoteImg' && note.info && (
-                <div>
-                    {note.info.title && <h5>{note.info.title}</h5>}
-                    {note.info.url && (
-                        <img
-                            src={note.info.url}
-                            alt={note.info.title || 'Image Note'}
-                            style={{ maxWidth: '150px', borderRadius: '8px' }}
-                        />
-                    )}
-                </div>
-            )}
-
-            {/* Todos Note */}
-            {note.type === 'NoteTodos' && note.info && note.info.todos && (
-                <div>
-                    {note.info.todos.map((todo, idx) => (
-                        <div key={idx}>
-                            {todo.txt} {todo.doneAt ? '✔' : '❌'}
-                        </div>
-                    ))}
-                </div>
-            )}
-            <div className="action-bar">
-                <i
-                    className="material-symbols-outlined"
-                    onClick={(ev) => onRemoveNote(ev, note)}
-                >Delete</i>
-                <i className="material-symbols-outlined"
-                 onClick={(ev) => onDuplicateNote(ev, note)}>
-                    content_copy
-                </i>
-                <ColorPicker note={note} onChangeColor={onChangeColor} />
-            </div>
-        </article>
-    );
-}
+              {note.type === 'NoteTxt' && note.info && (
+                  <NoteTxt note={note} />
+              )}
+  
+              {note.type === 'NoteImg' && note.info && (
+                  <NoteImg note={note} />
+              )}
+              {note.type === 'NoteTodos' && note.info && note.info.todos && (
+                  <NoteTodo note={note} />
+              )}
+              <div className="action-bar">
+                  <i
+                      className="material-symbols-outlined"
+                      onClick={(ev) => removeNote(ev, note)}
+                  >Delete</i>
+                  <i className="material-symbols-outlined"
+                      onClick={(ev) => onDuplicateNote(ev, note)}>
+                      content_copy
+                  </i>
+                  <ColorPicker note={note} onChangeColor={onChangeColor} />
+              </div>
+          </article>
+      );
+  }
