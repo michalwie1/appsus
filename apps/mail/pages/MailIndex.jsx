@@ -43,11 +43,22 @@ export function MailIndex() {
     }
 
     function onRemoveMail(mailId) {
-        mailService.remove(mailId)
+        // mailService.remove(mailId)
+        mailService.get(mailId)
             .then((removedMail) => {
-                // removedMail.removedAt(Date.now())
-                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
-                showSuccessMsg('Mail deleted successfully!')
+                console.log(removedMail)
+                removedMail.removedAt = Date.now()
+                if (removedMail.status === 'inbox') {
+                    removedMail.status = 'trash'
+                }
+                else if (removedMail.status === 'trash') { //SHOULD CHECK
+                    mailService.remove(removedMail.id)
+                    .then(() => {
+                        setMails(prevMails => prevMails.filter(mail => mail.id !== mailId)) 
+                        showSuccessMsg('Mail deleted successfully!')
+                     })
+                }
+                
             })
             .catch(err => {
                 console.log('err:', err)
