@@ -6,24 +6,28 @@ export function MailCategories({ onCategoryChange }) {
 
     return (
         <section className="mail-categories">
-            <div className = "category clicked">
-            <p onClick={() => onCategoryChange('primary')}>Primary</p>
+
+            <div className = "category"
+                onClick={(ev) => onCategoryChange(ev, 'primary')}>
+            <p>Primary</p>
              {/* <span className= "material-symbols-outlined"
-                    title= "Marketing, interests, social and political causes, and other promotional emails will be shown here."
+                    title= "Marketing..."
                         >delete
                     </span> */}
             </div>
 
-            <div className= "category">
-            <p onClick={() => onCategoryChange('promotions')}>Promotions</p>
+            <div className= "category"
+                onClick={(ev) => onCategoryChange(ev, 'promotions')}>
+            <p>Promotions</p>
                  {/* <span className= "material-symbols-outlined"
                     title= "Marketing, interests, social and political causes, and other promotional emails will be shown here."
                         >delete
                     </span> */}
             </div>
 
-            <div className="category">
-            <p onClick={() => onCategoryChange('social')}>Social</p>
+            <div className="category"
+                onClick={(ev) => onCategoryChange(ev, 'social')}>
+            <p>Social</p>
                  {/* <span className= "material-symbols-outlined"
                     title= "Messages from social networks, media-sharing sites, online dating services, and other social websites."
                         >delete
@@ -31,8 +35,9 @@ export function MailCategories({ onCategoryChange }) {
 
             </div>
 
-            <div className="category">
-            <p onClick={() => onCategoryChange('updates')}>Updates</p>
+            <div className="category"
+                onClick={(ev) => onCategoryChange(ev, 'updates')}>
+            <p>Updates</p>
                  {/* <span className= "material-symbols-outlined"
                     title= "Personal, auto-generated updates including confirmations, receipts, bills, and statements."
                         >delete

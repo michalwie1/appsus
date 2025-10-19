@@ -15,6 +15,11 @@
         text-align: center;
         height: max-content;
 
+        & p{
+            font-weight: 400;
+            font-size: .9em;
+        }
+
         &:hover{
         background-color: #0000000d;
         cursor: pointer;
@@ -27,4 +32,10 @@
             color: #0b57d0;
         }
     }
+
+    /* .clicked{
+            border-width: 80%;
+            border-bottom: 3px solid #0b57d0;
+            color: #0b57d0;
+        } */
 }

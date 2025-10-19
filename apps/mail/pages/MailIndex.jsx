@@ -22,11 +22,11 @@ export function MailIndex() {
     
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
-    const categories = {primary: mailService.getCategory('primary'), 
-                        social: mailService.getCategory('social'), 
-                        updates: mailService.getCategory('updates'),
-                        promotions: mailService.getCategory('promotions')
-                        }
+    // const categories = {primary: mailService.getCategory('primary'), 
+    //                     social: mailService.getCategory('social'), 
+    //                     updates: mailService.getCategory('updates'),
+    //                     promotions: mailService.getCategory('promotions')
+    //                     }
 
     // console.log(mailService.getMailsCategoryCount())
 
@@ -82,11 +82,12 @@ export function MailIndex() {
         setSearchParams({ compose: 'new' })
     }
 
-    function onCategoryChange(categoryName){
+    function onCategoryChange({ target }, categoryName){
+        // classList.remove SHOULD REMOVE ALL CLICKED CLASS FROM THE OTHERS
+        target.classList.toggle('clicked') //CHECK IF TOGGLE ONLY CLICKED
+        
+        console.log(target.classList)
         setCategory(categoryName)
-        // console.log(category,categoryName)
-        // categoryChosenClass = category === categoryName ? 'clicked' : ''
-        // console.log(categoryChosenClass)
     }
 
     return (
