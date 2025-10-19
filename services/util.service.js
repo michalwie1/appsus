@@ -8,7 +8,8 @@ export const utilService = {
     getMonthName,
     loadFromStorage,
     saveToStorage,
-    getRandomTimestamp
+    getRandomTimestamp,
+    getCapitalizeFirstLetter
 }
 
 function saveToStorage(key, val) {
@@ -77,4 +78,9 @@ function getRandomTimestamp() {
   const maxTimestamp = Date.now()
   const randomTimestamp = Math.floor(Math.random() * maxTimestamp)
   return randomTimestamp
+}
+
+function getCapitalizeFirstLetter(str){
+    if (typeof str !== 'string' || str.length === 0) return str
+    return  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
