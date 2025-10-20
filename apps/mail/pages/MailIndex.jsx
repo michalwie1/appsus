@@ -169,7 +169,7 @@ export function MailIndex() {
             {!mails.length && <Loader />}
 
               <MailList
-                    categoryMails = {categoryMails}
+                    mails = {mails}
 
                    onRemoveMail = {onRemoveMail}
                    onMailActionToggle= {onMailActionToggle}
