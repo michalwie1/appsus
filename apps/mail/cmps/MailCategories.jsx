@@ -9,39 +9,39 @@ export function MailCategories({ onCategoryChange }) {
 
             <div className = "category"
                 onClick={(ev) => onCategoryChange(ev, 'primary')}>
+             <span className= "material-symbols-outlined"
+                    title= "Person-to-person conversations and messages that don't appear in other tabs."
+                        >image
+                    </span>
             <p>Primary</p>
-             {/* <span className= "material-symbols-outlined"
-                    title= "Marketing..."
-                        >delete
-                    </span> */}
             </div>
 
             <div className= "category"
                 onClick={(ev) => onCategoryChange(ev, 'promotions')}>
-            <p>Promotions</p>
-                 {/* <span className= "material-symbols-outlined"
+                 <span className= "material-symbols-outlined"
                     title= "Marketing, interests, social and political causes, and other promotional emails will be shown here."
-                        >delete
-                    </span> */}
+                        >sell
+                    </span>
+            <p>Promotions</p>
             </div>
 
             <div className="category"
                 onClick={(ev) => onCategoryChange(ev, 'social')}>
-            <p>Social</p>
-                 {/* <span className= "material-symbols-outlined"
+                 <span className= "material-symbols-outlined"
                     title= "Messages from social networks, media-sharing sites, online dating services, and other social websites."
-                        >delete
-                    </span> */}
+                        >person
+                    </span>
+            <p>Social</p>
 
             </div>
 
             <div className="category"
                 onClick={(ev) => onCategoryChange(ev, 'updates')}>
-            <p>Updates</p>
-                 {/* <span className= "material-symbols-outlined"
+                 <span className= "material-symbols-outlined"
                     title= "Personal, auto-generated updates including confirmations, receipts, bills, and statements."
-                        >delete
-                    </span> */}
+                        >info
+                    </span>
+            <p>Updates</p>
 
             </div>
         </section>

@@ -1,19 +1,19 @@
 .mail-categories{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    /* gap: 1em; */
-    /* padding: 1em; */
 
     width: 80%;
     overflow-y: auto; 
     min-height: 0;  
     align-self: center;
-    /* border-radius: 20px; */
 
     
     .category{
         text-align: center;
         height: max-content;
+        display: flex;
+        gap: 1em;
+        align-items: center;
 
         & p{
             font-weight: 400;
@@ -30,12 +30,8 @@
             border-width: 80%;
             border-bottom: 3px solid #0b57d0;
             color: #0b57d0;
+          
         }
+        
     }
-
-    /* .clicked{
-            border-width: 80%;
-            border-bottom: 3px solid #0b57d0;
-            color: #0b57d0;
-        } */
 }

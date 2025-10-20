@@ -22,14 +22,6 @@ export function MailIndex() {
     
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
-    // const categories = {primary: mailService.getCategory('primary'), 
-    //                     social: mailService.getCategory('social'), 
-    //                     updates: mailService.getCategory('updates'),
-    //                     promotions: mailService.getCategory('promotions')
-    //                     }
-
-    // console.log(mailService.getMailsCategoryCount())
-
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
@@ -93,11 +85,12 @@ export function MailIndex() {
         setSearchParams({ compose: 'new' })
     }
 
-    function onCategoryChange({ target }, categoryName){
-        // classList.remove SHOULD REMOVE ALL CLICKED CLASS FROM THE OTHERS
-        target.classList.toggle('clicked') //CHECK IF TOGGLE ONLY CLICKED
+    function onCategoryChange({ currentTarget }, categoryName){
+        const elClicked = document.querySelectorAll('.clicked')
+        elClicked.forEach(el => el.classList.remove('clicked'))
+
+        currentTarget.classList.toggle('clicked')
         
-        console.log(target.classList)
         setCategory(categoryName)
     }
 
