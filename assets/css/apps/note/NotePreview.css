@@ -26,17 +26,19 @@
     margin-top: 2px;      
     opacity: 0;         
     transition: opacity 0.3s ease;
+
+    z-index: 10;
 }
 
 .preview-title{
     margin-inline-start: 2em;
 }
 
-.note-item:hover .pin {
+.note-item:hover .pin, .img-item:hover .pin {
     opacity: 1;          
 }
 
-.note-item .pin.pinned {
+.note-item .pin.pinned, .img-item:hover .pin.pinned {
           font-variation-settings:
     'FILL' 1,               
     'wght' 600,

@@ -17,8 +17,8 @@ export function EditModal({
     const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
 
 
-    function onCloseAndSave(){
-        
+    function onCloseAndSave() {
+
         if (note.type === 'NoteTodos') {
             onSave({ ...note, info: { ...note.info, todos } });
         } else {
@@ -37,6 +37,10 @@ export function EditModal({
 
 
     function handleTodoChange({ target }, idx, field, value) {
+
+        console.log("save on NoteTodo" + idx, value)
+
+
         if (field === 'txt') {
             target.style.height = 'auto';
             target.style.height = target.scrollHeight + 'px';
@@ -55,12 +59,11 @@ export function EditModal({
                 {note.type === 'NoteTodos' && (
                     todos.map((todo, idx) => (
                         <div key={idx} className="todo-container">
-                            <input
-                                type="checkbox"
-                                checked={todo.doneAt}
-                                onChange={(ev) => handleTodoChange(ev,idx, 'doneAt', ev.target.checked)}
-                                className="note-checkbox"
-                            />
+                            <i className="material-symbols-outlined"
+                                onClick={(ev) => handleTodoChange(ev, idx, "doneAt", !todo.doneAt)}
+                            >
+                                {todo.doneAt ? "check_box" : "check_box_outline_blank"}
+                            </i>
                             <textarea
                                 type="text"
                                 value={todo.txt}
@@ -69,13 +72,13 @@ export function EditModal({
                             />
                         </div>
                     ))
-                ) }
-
-
-                 {note.type === 'NoteImg' &&(
-                    <img src={note.info.url} alt=""/>
                 )}
-                 {note.type === 'NoteTxt' &&(
+
+
+                {note.type === 'NoteImg' && (
+                    <img src={note.info.url} alt="" />
+                )}
+                {note.type === 'NoteTxt' && (
                     <textarea
                         value={txt}
                         onChange={(ev) => setTxt(ev.target.value)}

@@ -9,7 +9,8 @@ export function NoteList({
   onChangeColor,
   onRemoveNote,
   onPinNote,
-  onDuplicateNote
+  onDuplicateNote,
+   onSave
 }) {
   if (!notes || !notes.length) return <p>No notes to show</p>;
 
@@ -32,6 +33,7 @@ export function NoteList({
                 onRemoveNote={onRemoveNote}
                 onPinNote={onPinNote}
                 onDuplicateNote = {onDuplicateNote}
+                  onSave={onSave}
                 />
             ))}
           </section>
@@ -55,6 +57,7 @@ export function NoteList({
                 onRemoveNote={onRemoveNote}
                 onPinNote={onPinNote}
                 onDuplicateNote = {onDuplicateNote}
+                 onSave={onSave}
                 />
             ))}
           </section>

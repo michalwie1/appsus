@@ -37,3 +37,50 @@
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
+
+
+.note-todo-preview textarea {
+    /* min-height: 1em; */
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    background-color: transparent;
+    color: inherit;
+    font-size: 1.1em;
+    line-height: 1.4em;
+    font-family: inherit;
+    box-sizing: border-box;
+    /* padding: 10px; */
+    border-radius: 0;
+    text-align: left;
+    color: black;
+}
+
+.note-todo-preview .todo-container textarea {
+    /* min-height: 1em; */
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    background-color: transparent;
+    color: inherit;
+    font-size: 1.1em;
+    line-height: 1.4em;
+    font-family: inherit;
+    box-sizing: border-box;
+    height: 2em;
+    line-height: 24px;
+    padding: 5px;
+    border-radius: 0;
+    text-align: left;
+    color: black;
+}
+
+.note-todo-preview .todo-container textarea:focus{
+    border-top: 2px solid rgba(78, 78, 78, 0.4);
+    border-bottom: 2px solid rgba(78, 78, 78, 0.4);
+    outline: none;
+}

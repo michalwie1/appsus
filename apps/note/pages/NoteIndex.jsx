@@ -28,6 +28,7 @@ export function NoteIndex() {
     }, [filterBy])
 
     function loadNotes() {
+        console.log('1s')
         NoteService.query(filterBy)
             .then(setNotes)
             .catch(err => console.log('Error loading notes:', err))
@@ -55,7 +56,9 @@ export function NoteIndex() {
         }
     }
     function handleSaveNote(updatedNote) {
-        NoteService.save(updatedNote).then(() => loadNotes());
+        NoteService.save(updatedNote).then(() => {
+                loadNotes()
+            })
     }
 
     function onRemoveNote(ev, note) {
@@ -115,6 +118,7 @@ export function NoteIndex() {
     function onCloseModal() {
         setIsOpen(false)
         setNoteModal(false)
+        loadNotes()
     }
 
     function onChangetoCheckList(ev) {
@@ -130,7 +134,6 @@ export function NoteIndex() {
     function onChangeToImg(ev) {
         setisCheckList(false)
         setisImg(true)
-        loadNotes()
     }
 
     if (!notes) return <NoteLoader/>
@@ -155,7 +158,8 @@ export function NoteIndex() {
                     onChangeColor={onChangeColor}
                     onRemoveNote={onRemoveNote}
                     onPinNote={onPinNote}
-                    onDuplicateNote={onDuplicateNote} />
+                    onDuplicateNote={onDuplicateNote}
+                     onSave={handleSaveNote}/>
                 {/* <button onClick = {onToggleModal}>toggle modal</button> */}
                 {noteModal &&
                     <EditModal

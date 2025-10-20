@@ -5,7 +5,7 @@ import { NoteImg } from "./NoteImg.jsx";
 
 const { useState } = React
 
-export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, onPinNote, onDuplicateNote }) {
+export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, onPinNote, onDuplicateNote ,onSave}) {
 
     const [isRemoved, setIsRemoved] = useState(false)
 
@@ -41,7 +41,7 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
                 <NoteImg note={note} />
             )}
             {note.type === 'NoteTodos' && note.info && note.info.todos && (
-                <NoteTodo note={note} />
+                <NoteTodo note={note}  onSave={onSave} />
             )}
             <div className="action-bar">
                 <i
