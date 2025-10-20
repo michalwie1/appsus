@@ -10,7 +10,6 @@ export function MailList({ categoryMails, onRemoveMail, onMailActionToggle }) {
                     key = {mail.id}
                     mail = {mail}
                     onRemoveMail = {onRemoveMail}
-                    // onToggleMailRead = {onToggleMailRead}
                     onMailActionToggle = {onMailActionToggle}
                 />
             ))}

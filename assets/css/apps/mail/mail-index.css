@@ -33,7 +33,7 @@
 
   .mail-compose{
     /* display: block; */
-    width: 15%;
+    /* width: 25%; */
     overflow-y: auto; 
     min-height: 0;  
     align-self: left;
@@ -42,11 +42,20 @@
     margin-left: 1em;
     align-self: center;
     
+    
+    
     button{
-      min-width: 50%;
+      min-width: 70%;
       border-radius: 20px;
       border: 0;
       padding: 1em;
+      display: flex;
+      gap: 1em;
+      /* background-color: rgb(245, 236, 236); */
+
+      /* p{
+        justify-content: center;
+      } */
 
       &:hover{
        box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
