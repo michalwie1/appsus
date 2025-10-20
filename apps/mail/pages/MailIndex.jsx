@@ -21,7 +21,6 @@ export function MailIndex() {
     const [category, setCategory] = useState('primary')
     const [status, setStatus] = useState('inbox')
     // const [openMailId, setOpenMailId] = useState(null)
-    
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
 
     useEffect(() => {
@@ -35,30 +34,6 @@ export function MailIndex() {
             .then(setMails)
             .catch(err => console.log('err:', err))
     }
-
-    // function onRemoveMail(mailId) {
-    //     // mailService.remove(mailId)
-    //     mailService.get(mailId)
-    //         .then((removedMail) => {
-    //             console.log(removedMail)
-    //             removedMail.removedAt = Date.now()
-    //             if (removedMail.status === 'inbox') {
-    //                 removedMail.status = 'trash'
-    //             }
-    //             else if (removedMail.status === 'trash') { //SHOULD CHECK
-    //                 mailService.remove(removedMail.id)
-    //                 .then(() => {
-    //                     setMails(prevMails => prevMails.filter(mail => mail.id !== mailId)) 
-    //                     showSuccessMsg('Mail deleted successfully!')
-    //                  })
-    //             }
-                
-    //         })
-    //         .catch(err => {
-    //             console.log('err:', err)
-    //             showErrorMsg(`Cannot remove mail - ${mailId}`)
-    //         })
-    // }
 
     function onRemoveMail(mailId) {
         mailService.get(mailId)
@@ -92,10 +67,9 @@ export function MailIndex() {
             })
     }
 
-    
     function onMailActionToggle(ev, mailId, action){
         ev.stopPropagation()
-        
+        console.log(mailId)
         setMails(prevMails =>
             prevMails.map(mail =>
                 mail.id === mailId ? { ...mail, [action]: !mail[action] } : mail
@@ -104,7 +78,7 @@ export function MailIndex() {
        
         mailService.get(mailId)
             .then(mail => {
-                mail.action = !mail.action
+                mail[action] = !mail[action]
                 return mailService.save(mail)
             })
             .catch(err => console.log('err:', err))
@@ -125,8 +99,8 @@ export function MailIndex() {
         elClicked.forEach(el => el.classList.remove('clicked'))
 
         currentTarget.classList.toggle('clicked')
-        
         setCategory(categoryName)
+        
     }
 
     function onStatusChange({ currentTarget }, statusName){
@@ -137,6 +111,10 @@ export function MailIndex() {
         
         setStatus(statusName)
     }
+
+    const categoryMails = mails.filter(mail =>
+        mail.categories.map(category => category.toLowerCase()).includes(category))
+        
 
     return (
         <section className="mail-index">
@@ -166,9 +144,7 @@ export function MailIndex() {
                 <MailCompose setSearchParams={setSearchParams} />
             )} 
 
-
-
-     <div className="mail-main">
+        <div className="mail-main">
                 <MailStatus
                 onStatusChange = {onStatusChange} />
                 {/* <p>Inbox {mailService.unreadMailCounter()}</p> */}
@@ -177,7 +153,8 @@ export function MailIndex() {
             {!mails.length && <Loader />}
 
               <MailList
-                   categoryMails = {mailService.getCategory(category)}
+                    categoryMails = {categoryMails}
+
                    onRemoveMail = {onRemoveMail}
                    onMailActionToggle= {onMailActionToggle}
                    />

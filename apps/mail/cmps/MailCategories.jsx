@@ -7,7 +7,7 @@ export function MailCategories({ onCategoryChange }) {
     return (
         <section className="mail-categories">
 
-            <div className = "category"
+            <div className = "category clicked"
                 onClick={(ev) => onCategoryChange(ev, 'primary')}>
              <span className= "material-symbols-outlined"
                     title= "Person-to-person conversations and messages that don't appear in other tabs."

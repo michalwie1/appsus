@@ -91,7 +91,7 @@ font-weight: 250;
     }
 
     &.star {
-    font-size: 28px;
+    font-size: 24px;
     font-variation-settings:
         'FILL' 1,
         'opsz' 24;

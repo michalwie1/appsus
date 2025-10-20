@@ -3,7 +3,7 @@ export function MailStatus({ onStatusChange }) {
     return (
         <section className="mail-status">
 
-            <div className = "status"
+            <div className = "status clicked"
                 onClick={(ev) => onStatusChange(ev, 'inbox')}>
              <span className= "material-symbols-outlined"
                     title= "Person-to-person conversations and messages that don't appear in other tabs."

@@ -3,12 +3,12 @@ import { mailService } from "../services/mail.service.js"
 const { useNavigate } = ReactRouterDOM
 
 export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
-    const { from, subject, sentAt, isRead, isStar, isCheck, isImportant } = mail
+    const { from, subject, sentAt } = mail
     const date = mailService.formatDate(sentAt)
-    const readState = isRead ? 'read' : 'unread'
-    const starState = isStar ? 'star' : 'unstar'
-    const checkState = isCheck ? 'check' : 'uncheck'
-    const importantState = isImportant ? 'important' : 'unimportant'
+    const readState = mail.isRead ? 'read' : 'unread'
+    const starState = mail.isStar ? 'star' : 'unstar'
+    const checkState = mail.isCheck ? 'check' : 'uncheck'
+    const importantState = mail.isImportant ? 'important' : 'unimportant'
     const navigate = useNavigate()
 
 
@@ -31,14 +31,14 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
                     className="material-symbols-outlined" 
                     title={mailService.capitalizeFirstLetter(checkState)}
                     onClick={(event) => onMailActionToggle(event,mail.id, 'isCheck')}
-                      >{isCheck ? 'check_box' : 'check_box_outline_blank'}
+                      >{mail.isCheck ? 'check_box' : 'check_box_outline_blank'}
                 </span>
 
                 
              <span 
                     className={`material-symbols-outlined ${starState}`} 
                     title={mailService.capitalizeFirstLetter(starState)}
-                    // style={{ color: isStar ? 'yellow' : 'gray' }}
+                    // style={{ color: mail.isStar ? 'yellow' : 'gray' }}
                     onClick={(event) => onMailActionToggle(event,mail.id, 'isStar')}
                       >star
                 </span>
@@ -55,26 +55,20 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
 
             <div className="date-actions-wrapper" onClick={ev => ev.stopPropagation()}>
                 <div className="date">{date}</div>
+
                 <div className="actions">
-              
                      <span 
                         className= "material-symbols-outlined"
                         title= "Delete"
                         onClick={() => onRemoveMail(mail.id)}
                         >delete
                     </span>
-                    
-                    {/* <img
-                        src={`../../../assets/img/${readState}.svg`}
-                        title={`Mark as ${readState}`}
-                        onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}/>
-                     */}
 
                       <span 
                         className="material-symbols-outlined" 
                         title={mailService.capitalizeFirstLetter(readState)}
                         onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}
-                        >{isRead ? 'drafts' : 'mark_email_unread'}
+                        >{mail.isRead ? 'drafts' : 'mark_email_unread'}
                     </span>
 
                 </div>
