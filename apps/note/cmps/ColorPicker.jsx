@@ -1,20 +1,10 @@
 const { useState, useRef, useEffect } = React;
 
+import { colors } from "../../../assets/config/colors.js";
+
 export function ColorPicker({ note, onChangeColor}) {
     const [isOpen, setIsOpen] = useState(false);
     const pickerRef = useRef(null);
-
-    const colors = [
-        '#f7f7f7',
-        '#ffadad',
-        '#ffd6a5',
-        '#fdffb6',
-        '#caffbf',
-        '#9bf6ff',
-        '#a0c4ff',
-        '#bdb2ff',
-        '#ffc6ff'
-    ];
 
     function handleSelect(color, ev) {
         ev.stopPropagation();
