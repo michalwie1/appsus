@@ -115,7 +115,7 @@ export function MailIndex() {
     const categoryMails = getMailsByFolder(status)
     
     function getMailsByFolder(statusName){
-        // if (!mails || !mails.length) return []
+        if (!mails || !mails.length) return []
         
         if (statusName === 'inbox') {
             return mails.filter(mail =>
