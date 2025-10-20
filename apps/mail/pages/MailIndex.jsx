@@ -1,18 +1,15 @@
+const { useState, useEffect } = React
+const { Link, useSearchParams } = ReactRouterDOM
 
-
-import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
+import { MailList } from "../cmps/MailList.jsx"
 // import { MailDetails } from "./MailDetails.jsx"
 import { MailHeader } from "../cmps/MailHeader.jsx"
-import { MailCompose } from "../cmps/MailNew.jsx"
+import { MailNew } from "../cmps/MailNew.jsx"
 import { Loader } from "../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { MailCategories } from "../cmps/MailCategories.jsx"
 import { MailStatus } from "../cmps/MailStatus.jsx"
-
-
-const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
 
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -26,7 +23,8 @@ export function MailIndex() {
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
-    }, [filterBy,unreadCounter])
+        console.log(status)
+    }, [filterBy,unreadCounter,status])
      
         
     function loadMails(){
@@ -69,7 +67,6 @@ export function MailIndex() {
 
     function onMailActionToggle(ev, mailId, action){
         ev.stopPropagation()
-        console.log(mailId)
         setMails(prevMails =>
             prevMails.map(mail =>
                 mail.id === mailId ? { ...mail, [action]: !mail[action] } : mail
@@ -112,9 +109,28 @@ export function MailIndex() {
         setStatus(statusName)
     }
 
-    const categoryMails = mails.filter(mail =>
-        mail.categories.map(category => category.toLowerCase()).includes(category))
+    // const categoryMails = mails.filter(mail =>
+    //     mail.categories.map(category => category.toLowerCase()).includes(category))
         
+    const categoryMails = getMailsByFolder(status)
+    
+    function getMailsByFolder(statusName){
+        if (!mails || !mails.length) return []
+        
+        if (statusName === 'inbox') {
+            return mails.filter(mail =>
+            mail.categories.map(category => category.toLowerCase()).includes(category))
+        }
+
+        else return mails
+    //    else return mails.filter(mail => {
+    //     if (statusName === 'star') return mail.isStar
+    //     if (statusName === 'important') return mail.isImportant
+    //     if (statusName === 'trash') return mail.removedAt
+    //     return mail.status?.toLowerCase() === statusName.toLowerCase()
+    // })
+    }
+
 
     return (
         <section className="mail-index">
@@ -141,7 +157,7 @@ export function MailIndex() {
            </div>
 
               {searchParams.get('compose') === 'new' && (
-                <MailCompose setSearchParams={setSearchParams} />
+                <MailNew setSearchParams={setSearchParams} />
             )} 
 
         <div className="mail-main">
