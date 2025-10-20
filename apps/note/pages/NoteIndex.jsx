@@ -41,7 +41,7 @@ export function NoteIndex() {
             NoteService.save(newNote)
             .then(loadNotes)
             .catch(err => console.log('Error saving note:', err));
-        }else if (noteData.imgUrl , "NoteImg"){
+        }else if (noteData.imgUrl){
             const newNote = NoteService.createNewImgNote(noteData.title, noteData.imgUrl);
             NoteService.save(newNote)
             .then(loadNotes)

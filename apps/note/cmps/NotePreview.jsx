@@ -20,12 +20,15 @@ export function NotePreview({ note, setNoteModal, onChangeColor, onRemoveNote, o
         setIsRemoved(true)
     }
 
-    return (
-        <article
-            onClick={() => setNoteModal(note)}
-            className="note-item"
-            style={{ backgroundColor: bgColor, display: isRemoved ? "none" : "" }}
-        >
+      const noteClass = (note.type !== 'NoteImg') ? "note-item" : "img-item"
+  
+      return (
+          <article
+              onClick={() => setNoteModal(note)}
+              className= {noteClass}
+              style={{ backgroundColor: bgColor, display: isRemoved ? "none" : "" }}
+          >
+  
 
             <span className="material-symbols-outlined pin" onClick={(ev) => onPinNote(ev, note)}>
                 keep

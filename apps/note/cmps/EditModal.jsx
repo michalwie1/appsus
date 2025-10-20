@@ -73,7 +73,7 @@ export function EditModal({
 
 
                  {note.type === 'NoteImg' &&(
-                    <img src={note.info.url} alt="" />
+                    <img src={note.info.url} alt=""/>
                 )}
                  {note.type === 'NoteTxt' &&(
                     <textarea

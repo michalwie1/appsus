@@ -3,7 +3,9 @@ export function NoteTodo({ note }) {
 
     return (
         <div>
-            <h5>{note.info.title}</h5>
+            <div className="preview-title">
+            {note.info.title && <h5>{note.info.title}</h5>}
+            </div>
             <br />
             {note.info.todos.map((todo, idx) => (
                 <div

@@ -20,6 +20,7 @@
 @import './apps/note/NoteAdd.css';
 @import './apps/note/NoteFilter.css';
 @import './apps/note/NoteTodo.css';
+@import './apps/note/NoteImg.css';
 
 @import './apps/mail/mail-index.css';
 @import './apps/mail/mail-list.css';

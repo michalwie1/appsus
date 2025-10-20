@@ -19,11 +19,13 @@ export function PinnedNotes({ note, setNoteModal, onChangeColor, onRemoveNote ,o
           onRemoveNote(ev, note)
           setIsRemoved(true)
       }
+
+      const noteClass = (note.type !== 'NoteImg') ? "note-item" : "img-item"
   
       return (
           <article
               onClick={() => setNoteModal(note)}
-              className="note-item"
+              className= {noteClass}
               style={{ backgroundColor: bgColor, display: isRemoved ? "none" : "" }}
           >
   

@@ -3,7 +3,9 @@ export function NoteTxt({ note }) {
 
     return (
         <div>
-            {note.info.title && <h5>{note.info.title}</h5>}
+            <div className="preview-title">
+            {note.info.title ?( <h5>{note.info.title}</h5> ):<h5 style={{ opacity: 0}}> null </h5> }
+            </div>
             {note.info.txt && <p>{note.info.txt}</p>}
         </div>
     );

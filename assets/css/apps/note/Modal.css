@@ -1,7 +1,6 @@
-
 .modal-backdrop {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(2px);
     inset: 0;
     height: 100vh;
@@ -41,9 +40,15 @@
     }
 }
 
+.modal-content>* {
+    width: 100%;
+    
+}
+
+
 .modal-content textarea {
-    width: 90%; 
     /* min-height: 1em; */
+    width: 100%;
     border: none;
     outline: none;
     resize: none;
@@ -54,13 +59,35 @@
     line-height: 1.4em;
     font-family: inherit;
     box-sizing: border-box;
-    padding: 10px;
-    border-radius: 5px;
+    /* padding: 10px; */
+    border-radius: 0;
     text-align: left;
     color: black;
 }
 
-.modal-content textarea:focus {
-     border: none;
+.modal-content .todo-container textarea {
+    /* min-height: 1em; */
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    background-color: transparent;
+    color: inherit;
+    font-size: 1.1em;
+    line-height: 1.4em;
+    font-family: inherit;
+    box-sizing: border-box;
+    height: 2em;
+    line-height: 24px;
+    padding: 5px;
+    border-radius: 0;
+    text-align: left;
+    color: black;
+}
+
+.modal-content .todo-container textarea:focus{
+    border-top: 2px solid rgba(78, 78, 78, 0.4);
+    border-bottom: 2px solid rgba(78, 78, 78, 0.4);
     outline: none;
 }
