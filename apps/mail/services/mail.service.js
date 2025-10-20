@@ -14,7 +14,7 @@ export const mailService = {
     get,
     remove,
     save,
-    // getEmptyMail,
+    getEmptySentMail,
     // getNextCarId,
     // getFilterBy,
     // setFilterBy,
@@ -150,6 +150,26 @@ function unreadMailCounter(){
 //     })
 //     return categoryMails
 // }
+
+function getEmptySentMail(to, subject, body){
+    return {
+        id: 'e101',
+        createdAt : Date.now(), 
+        subject: '',
+        body: '',
+        isRead: true,
+        sentAt : Date.now(),
+        removedAt : null,
+        from: loggedinUser.fullname,
+        fromEmail: loggedinUser.email,
+        to: to,
+        status: "inbox",
+        isStar: false,
+        isImportant: false,
+        isCheck: false,
+        "categories": []
+    }
+}
 
 function _createMails(){
     let mails = utilService.loadFromStorage(MAIL_KEY)
