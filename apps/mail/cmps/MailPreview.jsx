@@ -6,9 +6,9 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
     const { from, subject, sentAt } = mail
     const date = mailService.formatDate(sentAt)
     const readState = mail.isRead ? 'read' : 'unread'
-    const starState = mail.isStar ? 'star' : 'unstar'
-    const checkState = mail.isCheck ? 'check' : 'uncheck'
-    const importantState = mail.isImportant ? 'important' : 'unimportant'
+    const starState = mail.isStar ? 'unstar' : 'star'
+    const checkState = mail.isCheck ? 'uncheck' : 'check'
+    const importantState = mail.isImportant ? 'unimportant' : 'important'
     const navigate = useNavigate()
 
 
