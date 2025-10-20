@@ -77,18 +77,18 @@ function getDefaultFilter() {
 }
 
 function getFilterFromParams(searchParams) {
-    const status = searchParams.get('status') || 'inbox'
-    const txt = searchParams.get('txt') || ''
-    const isRead = searchParams.get('isRead') || false
-    const isStared = searchParams.get('isStared') || false
-    const categories = searchParams.get('categories') || []
+    const subject = searchParams.get('subject') || ''
+    // const status = searchParams.get('status') || 'inbox'
+    // const isRead = searchParams.get('isRead') || false
+    // const isStared = searchParams.get('isStared') || false
+    // const categories = searchParams.get('categories') || []
 
     return {
-        status,
-        txt,
-        isRead,
-        isStared,
-        categories
+        subject,
+        // status,
+        // isRead,
+        // isStared,
+        // categories
     }
 }
 
