@@ -1,12 +1,17 @@
 .mail-categories{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4,auto);
 
-    width: 80%;
+    /* width: 80%; */
     overflow-y: auto; 
     min-height: 0;  
     align-self: center;
 
+    /* overflow-y: auto;   */
+   box-sizing: border-box;
+    flex: 1;
+
+    
     
     .category{
         text-align: center;
@@ -30,6 +35,11 @@
             border-width: 80%;
             border-bottom: 3px solid #0b57d0;
             color: #0b57d0;
+
+            .material-symbols-outlined{
+                font-variation-settings: 'FILL' 1;
+
+            }
           
         }
         

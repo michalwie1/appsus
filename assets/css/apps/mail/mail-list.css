@@ -1,0 +1,14 @@
+.mail-list {
+  width: 80%;
+  flex: 1;         
+  overflow-y: auto; 
+  min-height: 0;  
+  /* align-self: center; */
+  border-radius: 20px;
+  align-content: top;
+  
+  flex: 1;
+
+  overflow-y: auto;  
+   box-sizing: border-box;
+}

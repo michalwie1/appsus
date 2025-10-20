@@ -1,4 +1,4 @@
-.mail-compose{
+.mail-new{
     position:absolute;
     bottom: 0;
     width: 30vw;
@@ -8,6 +8,8 @@
     padding: 0;
     border: 0;
     box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+
+    
     
     table{
         width: 100%;

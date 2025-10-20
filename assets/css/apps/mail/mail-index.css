@@ -1,0 +1,58 @@
+ 
+ .mail-index {
+  width: 100%;
+  height: 100vh;
+  display: flex;         
+  flex-direction: column; 
+  overflow: hidden;
+  justify-items: center;
+  place-self: center;
+  font-weight: 600;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+
+  .mail-main{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+    margin: 1em 1em 1em 0;
+  }
+  
+  .mail-top{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+    margin: 1em 1em 1em 0;
+    max-height: 4em;
+  }
+  
+
+  .mail-compose{
+    /* display: block; */
+    width: 15%;
+    overflow-y: auto; 
+    min-height: 0;  
+    align-self: left;
+    padding-right: 1em;
+    flex: 0 0 20%;
+    margin-left: 1em;
+    align-self: center;
+    
+    button{
+      min-width: 50%;
+      border-radius: 20px;
+      border: 0;
+      padding: 1em;
+
+      &:hover{
+       box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+      }
+    }
+
+  }
+
+}
