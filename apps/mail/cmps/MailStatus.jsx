@@ -13,7 +13,7 @@ export function MailStatus({ onStatusChange }) {
             </div>
 
             <div className= "status"
-                onClick={(ev) => onStatusChange(ev, 'starred')}>
+                onClick={(ev) => onStatusChange(ev, 'star')}>
                  <span className= "material-symbols-outlined"
                     title= "Marketing, interests, social and political causes, and other promotional emails will be shown here."
                         >star

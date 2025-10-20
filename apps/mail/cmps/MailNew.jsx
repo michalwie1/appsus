@@ -1,7 +1,7 @@
 const { useState, Fragment } = React
 
 
-export function MailCompose({ setSearchParams}) {
+export function MailNew({ setSearchParams}) {
     const [isMinimize,setIsMinimize] = useState(false)
     const [isFullScreen,setIsFullScreen] = useState(false)
 
@@ -19,12 +19,12 @@ export function MailCompose({ setSearchParams}) {
         })
     }
 
-
     function onMinimizeToggleModal(){
         setIsMinimize(!isMinimize)
     }
 
     function onFullScreenToggleModal(){
+        if (isMinimize) return
         setIsFullScreen(!isFullScreen)
     }
 
@@ -34,7 +34,7 @@ export function MailCompose({ setSearchParams}) {
     }
 
     return (
-        <dialog open className="mail-compose" style={dialogStyle}>
+        <dialog open className="mail-new" style={dialogStyle}>
             <form>
             <table>
                 <tbody>

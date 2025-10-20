@@ -8,8 +8,6 @@
     padding: 0;
     border: 0;
     box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-
-    
     
     table{
         width: 100%;
@@ -73,6 +71,7 @@
 
     .body{
         border-bottom: none;
+        /* line-height: 1000%; */
 
         textarea{
             width: 100%;
