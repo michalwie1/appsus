@@ -71,6 +71,7 @@
 
     .body{
         border-bottom: none;
+        /* line-height: 1000%; */
 
         textarea{
             width: 100%;
