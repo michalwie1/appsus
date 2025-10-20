@@ -7,7 +7,7 @@ import { mailsHC } from './mailData.js'
 const MAIL_KEY = 'mails'
 // const gCache = utilService.loadFromStorage(CACHE_STORAGE_KEY) || {}
 // const CACHE_STORAGE_KEY = 'googleMailsCache'
-_createMails()
+if (!utilService.loadFromStorage(MAIL_KEY)) _createMails()
 
 export const mailService = {
     query,
@@ -15,20 +15,10 @@ export const mailService = {
     remove,
     save,
     getEmptySentMail,
-    // getNextCarId,
-    // getFilterBy,
-    // setFilterBy,
-    // getDefaultFilter,
-    // addReview,
-    // removeReview,
-    // addGoogleMail,
-    // getGoogleMails,
     getFilterFromParams,
     formatDate,
     capitalizeFirstLetter,
     unreadMailCounter,
-    // getMailsCategoryCount,
-    // getCategory
 }
 
 function query(filterBy = {}) {
@@ -66,11 +56,11 @@ function getDefaultFilter() {
     // return { subject: '' }
 
     return {
-        status:'inbox',  //'inbox/sent/trash/draft/starred/important'
-        txt: 'puki', // no need to support complex text search
-        isRead: true, // (optional property, if missing: show all)
-        isStared: true, // (optional property, if missing: show all)
-        categories: ['Primary', 'Promotions', 'Social', 'Updates'] // has any of the labels
+        subject: 'puki', // no need to support complex text search
+        // status:'inbox',  //'inbox/sent/trash/draft/starred/important'
+        // isRead: true, // (optional property, if missing: show all)
+        // isStared: true, // (optional property, if missing: show all)
+        // categories: ['Primary', 'Promotions', 'Social', 'Updates'] // has any of the labels
     }
 
     // return { subject: '', isRead: '' }
@@ -153,17 +143,17 @@ function unreadMailCounter(){
 
 function getEmptySentMail(to, subject, body){
     return {
-        id: 'e101',
+        id: undefined,
         createdAt : Date.now(), 
-        subject: '',
-        body: '',
+        subject: subject,
+        body: body,
         isRead: true,
         sentAt : Date.now(),
         removedAt : null,
         from: loggedinUser.fullname,
         fromEmail: loggedinUser.email,
         to: to,
-        status: "inbox",
+        status: "sent",
         isStar: false,
         isImportant: false,
         isCheck: false,

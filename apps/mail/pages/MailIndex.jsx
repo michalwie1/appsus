@@ -14,7 +14,7 @@ import { MailStatus } from "../cmps/MailStatus.jsx"
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
-    const [unreadCounter, setUnreadCounter] = useState(mailService.unreadMailCounter())
+    // const [unreadCounter, setUnreadCounter] = useState(mailService.unreadMailCounter())
     const [category, setCategory] = useState('primary')
     const [status, setStatus] = useState('inbox')
     // const [openMailId, setOpenMailId] = useState(null)
@@ -23,8 +23,9 @@ export function MailIndex() {
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
-        console.log(status)
-    }, [filterBy,unreadCounter,status])
+        // console.log(status)
+    }, [filterBy])
+    // }, [filterBy,unreadCounter,status])
      
         
     function loadMails(){
@@ -117,9 +118,13 @@ export function MailIndex() {
     function getMailsByFolder(statusName){
         if (!mails || !mails.length) return []
         
+        // if (statusName === 'inbox') {
+        //     return mails.filter(mail =>
+        //     mail.categories.map(category => category.toLowerCase()).includes(category))
+        // }
         if (statusName === 'inbox') {
             return mails.filter(mail =>
-            mail.categories.map(category => category.toLowerCase()).includes(category))
+            mail.categories.map(cat => cat.toLowerCase()).includes(category.toLowerCase()))
         }
 
         else return mails
@@ -129,6 +134,20 @@ export function MailIndex() {
     //     if (statusName === 'trash') return mail.removedAt
     //     return mail.status?.toLowerCase() === statusName.toLowerCase()
     // })
+    }
+
+    function saveNewMail(to, subject, body){
+        const composedMail = mailService.getEmptySentMail(to, subject, body)
+        console.log(composedMail)
+        mailService.save(composedMail)
+            .then(() => {
+                        console.log(composedMail)
+                        // setMails(prevMails => prevMails.map(mail => mail.id === mailId ? updatedMail : mail))
+                        showSuccessMsg('Mail sent')
+                    })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg(`Cannot send mail`)})
     }
 
 
@@ -157,7 +176,9 @@ export function MailIndex() {
            </div>
 
               {searchParams.get('compose') === 'new' && (
-                <MailNew setSearchParams={setSearchParams} />
+                <MailNew 
+                setSearchParams={setSearchParams}
+                saveNewMail = {saveNewMail} />
             )} 
 
         <div className="mail-main">

@@ -1,8 +1,9 @@
+import { utilService } from "../../../services/util.service.js"
 const now = Date.now()
 
 export const mailsHC = [
   {
-    "id": "e101",
+    "id": utilService.makeId(),
     "createdAt": 1760621529082,
     "subject": "Invoice #22054 available",
     "body": "Your monthly invoice is ready for download.",
@@ -22,7 +23,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e102",
+    "id": utilService.makeId(),
     "createdAt": 1760603529082,
     "subject": "Team sync notes \u2013 VC Seminar",
     "body": "Here are the notes from our last session.",
@@ -41,7 +42,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e103",
+    "id": utilService.makeId(),
     "createdAt": 1760585529082,
     "subject": "Your Uber trip receipt",
     "body": "Thanks for riding with us. Your receipt is attached below.",
@@ -60,7 +61,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e104",
+    "id": utilService.makeId(),
     "createdAt": 1760567529082,
     "subject": "How was your stay? Leave a review",
     "body": "Share your experience with your host.",
@@ -79,7 +80,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e105",
+    "id": utilService.makeId(),
     "createdAt": 1760549529082,
     "subject": "New follower on Instagram \ud83d\udcab",
     "body": "You have a new follower. See who started following you.",
@@ -99,7 +100,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e106",
+    "id": utilService.makeId(),
     "createdAt": 1760531529082,
     "subject": "Your Spotify receipt",
     "body": "Thanks for being a Premium member. Here\u2019s your monthly receipt.",
@@ -118,7 +119,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e107",
+    "id": utilService.makeId(),
     "createdAt": 1760513529082,
     "subject": "Your surf wax order receipt \ud83e\uddf4",
     "body": "Thanks for your purchase. Order #18756 details inside.",
@@ -137,7 +138,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e108",
+    "id": utilService.makeId(),
     "createdAt": 1760495529082,
     "subject": "Your reservation is confirmed \ud83c\udfe0",
     "body": "Your stay is booked. Check-in details and house rules inside.",
@@ -156,7 +157,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e109",
+    "id": utilService.makeId(),
     "createdAt": 1760477529082,
     "subject": "Payout pending",
     "body": "Your payout will arrive in your bank account in 2 business days.",
@@ -176,7 +177,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e110",
+    "id": utilService.makeId(),
     "createdAt": 1760459529082,
     "subject": "Important: update your payment method",
     "body": "We couldn\u2019t process your last payment. Update your details.",
@@ -195,7 +196,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e111",
+    "id": utilService.makeId(),
     "createdAt": 1760441529082,
     "subject": "Flight change notice \u2708\ufe0f",
     "body": "Your departure time has been updated. Review your itinerary.",
@@ -214,7 +215,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e112",
+    "id": utilService.makeId(),
     "createdAt": 1760423529082,
     "subject": "Your files were shared with you",
     "body": "A folder has been shared with you. View it now.",
@@ -233,7 +234,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e113",
+    "id": utilService.makeId(),
     "createdAt": 1760405529082,
     "subject": "Your package is arriving today \ud83d\udce6",
     "body": "Out for delivery. Your shipment will arrive by 8 PM.",
@@ -253,7 +254,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e114",
+    "id": utilService.makeId(),
     "createdAt": 1760387529082,
     "subject": "Usage summary for this month",
     "body": "Here is your API usage summary for the current billing cycle.",
@@ -273,7 +274,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e115",
+    "id": utilService.makeId(),
     "createdAt": 1760369529082,
     "subject": "Security alert: New sign-in to your Google Account \ud83d\udd10",
     "body": "We detected a new sign-in to your account. If this was you, no action is needed.",
@@ -292,7 +293,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e116",
+    "id": utilService.makeId(),
     "createdAt": 1760351529082,
     "subject": "Upcoming flight confirmation \u2708\ufe0f",
     "body": "Here are your itinerary details for your upcoming trip.",
@@ -311,7 +312,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e117",
+    "id": utilService.makeId(),
     "createdAt": 1760333529082,
     "subject": "Weekly digest",
     "body": "Top stories and highlights from this week.",
@@ -331,7 +332,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e118",
+    "id": utilService.makeId(),
     "createdAt": 1760315529082,
     "subject": "Your photo memories are ready",
     "body": "Relive memories from summers past.",
@@ -351,7 +352,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e119",
+    "id": utilService.makeId(),
     "createdAt": 1760297529082,
     "subject": "Your surfboard repair is ready \ud83d\udee0\ufe0f",
     "body": "Pickup available tomorrow at 9 AM.",
@@ -371,7 +372,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e120",
+    "id": utilService.makeId(),
     "createdAt": 1760279529082,
     "subject": "Application received: Product Analyst",
     "body": "Thanks for applying. Our team will review your application.",
@@ -390,7 +391,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e121",
+    "id": utilService.makeId(),
     "createdAt": 1760261529082,
     "subject": "Your YouTube Premium renewal",
     "body": "Thanks for being a Premium member. Renewal successful.",
@@ -409,7 +410,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e122",
+    "id": utilService.makeId(),
     "createdAt": 1760243529082,
     "subject": "Your meeting starts in 10 minutes",
     "body": "Join your scheduled Zoom meeting.",
@@ -428,7 +429,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e123",
+    "id": utilService.makeId(),
     "createdAt": 1760225529082,
     "subject": "Reminder: payment due \ud83c\udf3f",
     "body": "Please confirm your billing info to avoid interruptions.",
@@ -447,7 +448,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e124",
+    "id": utilService.makeId(),
     "createdAt": 1760207529082,
     "subject": "Payment reminder: storage rental",
     "body": "Your monthly payment is due in 2 days.",
@@ -466,7 +467,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e125",
+    "id": utilService.makeId(),
     "createdAt": 1760189529082,
     "subject": "Meet your new teammate!",
     "body": "Please welcome Maya to the team. Let\u2019s schedule an intro.",
@@ -485,7 +486,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e126",
+    "id": utilService.makeId(),
     "createdAt": 1760171529082,
     "subject": "Payment received \u2014 thank you!",
     "body": "Your Notion subscription has been renewed. Receipt attached.",
@@ -505,7 +506,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e127",
+    "id": utilService.makeId(),
     "createdAt": 1760153529082,
     "subject": "Your free trial ends soon",
     "body": "Continue your mindfulness journey with Headspace Plus.",
@@ -525,7 +526,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e128",
+    "id": utilService.makeId(),
     "createdAt": 1760135529082,
     "subject": "Invitation to collaborate on \u201cSurf Camp Project\u201d",
     "body": "I added you as an editor. Let\u2019s finalize before Friday.",
@@ -544,7 +545,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e129",
+    "id": utilService.makeId(),
     "createdAt": 1760117529082,
     "subject": "Let\u2019s catch up this weekend!",
     "body": "I\u2019ll be around La Punta on Saturday \u2014 waves look perfect.",
@@ -563,7 +564,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e130",
+    "id": utilService.makeId(),
     "createdAt": 1760099529082,
     "subject": "People are looking at your profile",
     "body": "Your profile had 12 new views this week. See who viewed you.",
@@ -582,7 +583,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e131",
+    "id": utilService.makeId(),
     "createdAt": 1760081529082,
     "subject": "Daily surf forecast \u2013 Puerto Escondido \ud83c\udf0a",
     "body": "Head-high sets expected this weekend. Best window 6\u20139AM.",
@@ -601,7 +602,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e132",
+    "id": utilService.makeId(),
     "createdAt": 1760063529082,
     "subject": "Confirm your subscription \u270d\ufe0f",
     "body": "Click to confirm and start receiving weekly prompts.",
@@ -621,7 +622,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e133",
+    "id": utilService.makeId(),
     "createdAt": 1760045529082,
     "subject": "We noticed a new login to your account",
     "body": "New sign-in from Chrome in Mexico. Was this you?",
@@ -641,7 +642,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e134",
+    "id": utilService.makeId(),
     "createdAt": 1760027529082,
     "subject": "Event confirmed",
     "body": "Your 30-minute meeting is on the calendar.",
@@ -660,7 +661,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e135",
+    "id": utilService.makeId(),
     "createdAt": 1760009529082,
     "subject": "Today\u2019s top stories \u2615",
     "body": "Markets, tech, and business news \u2014 all in one quick email.",
@@ -679,7 +680,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e136",
+    "id": utilService.makeId(),
     "createdAt": 1759991529082,
     "subject": "Reminder: surfing meetup tomorrow \ud83c\udfc4\u200d\u2642\ufe0f",
     "body": "We\u2019re meeting at 7:30AM at La Punta. Don\u2019t be late!",
@@ -698,7 +699,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e137",
+    "id": utilService.makeId(),
     "createdAt": 1759973529082,
     "subject": "New comment on your post",
     "body": "Someone replied to your story. See the discussion.",
@@ -718,7 +719,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e138",
+    "id": utilService.makeId(),
     "createdAt": 1759955529082,
     "subject": "Your Apple ID was used to sign in",
     "body": "If this wasn\u2019t you, change your password immediately.",
@@ -737,7 +738,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e139",
+    "id": utilService.makeId(),
     "createdAt": 1759937529082,
     "subject": "You have new notifications",
     "body": "See what you missed on Facebook while you were away.",
@@ -757,7 +758,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e140",
+    "id": utilService.makeId(),
     "createdAt": 1759919529082,
     "subject": "We\u2019re hiring product designers!",
     "body": "Explore open roles and join our design team.",
@@ -776,7 +777,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e141",
+    "id": utilService.makeId(),
     "createdAt": 1759901529082,
     "subject": "Reminder: Assignment due tomorrow \ud83d\udcd8",
     "body": "Please submit your seminar paper before 23:59.",
@@ -795,7 +796,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e142",
+    "id": utilService.makeId(),
     "createdAt": 1759883529082,
     "subject": "We missed you! 20% off ends tonight",
     "body": "Use code WELCOME20 at checkout. Limited time offer.",
@@ -814,7 +815,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e143",
+    "id": utilService.makeId(),
     "createdAt": 1759865529082,
     "subject": "New comment on issue #427",
     "body": "There\u2019s new activity on an issue you\u2019re subscribed to.",
@@ -834,7 +835,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e144",
+    "id": utilService.makeId(),
     "createdAt": 1759847529082,
     "subject": "Your order has been shipped \ud83d\ude9a",
     "body": "Hi, your package is on the way. Track your shipment from Your Orders.",
@@ -853,7 +854,7 @@ export const mailsHC = [
     ]
   },
   {
-    "id": "e145",
+    "id": utilService.makeId(),
     "createdAt": 1759829529082,
     "subject": "Missed messages in #product",
     "body": "Catch up on conversations you missed in Slack.",
