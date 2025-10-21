@@ -3,10 +3,8 @@ const { Link, useSearchParams } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
-// import { MailDetails } from "./MailDetails.jsx"
 import { MailHeader } from "../cmps/MailHeader.jsx"
 import { MailNew } from "../cmps/MailNew.jsx"
-import { Loader } from "../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { MailCategories } from "../cmps/MailCategories.jsx"
 import { MailStatus } from "../cmps/MailStatus.jsx"
@@ -202,8 +200,6 @@ function onRemoveMail(mailId) {
                 <MailStatus
                 onStatusChange = {onStatusChange}
                 unreadMails = {unreadCounter} />
-           
-            {!mails.length && <Loader />}
 
               <MailList
                     mails = {categoryMails}

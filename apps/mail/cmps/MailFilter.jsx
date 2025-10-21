@@ -1,10 +1,14 @@
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
+
+import { debounce } from "../../../services/util.service.js"
 
 export function MailFilter({ defaultFilter, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter)
+    const onSetFilterByDebounce = useRef(debounce(onSetFilterBy, 500)).current
 
     useEffect(() => {
-        onSetFilterBy(filterByToEdit)
+        // onSetFilterBy(filterByToEdit)
+        onSetFilterByDebounce(filterByToEdit)
     }, [filterByToEdit])
 
 
