@@ -14,7 +14,7 @@ import { MailStatus } from "../cmps/MailStatus.jsx"
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
-    // const [unreadCounter, setUnreadCounter] = useState(mailService.unreadMailCounter())
+    const [unreadCounter, setUnreadCounter] = useState(mailService.unreadMailCounter())
     const [category, setCategory] = useState('primary')
     const [status, setStatus] = useState('inbox')
     // const [openMailId, setOpenMailId] = useState(null)
@@ -24,8 +24,8 @@ export function MailIndex() {
         setSearchParams(filterBy)
         loadMails()
         // console.log(status)
-    }, [filterBy])
-    // }, [filterBy,unreadCounter,status])
+    // }, [filterBy])
+    }, [filterBy,unreadCounter,status])
      
         
     function loadMails(){
@@ -34,37 +34,40 @@ export function MailIndex() {
             .catch(err => console.log('err:', err))
     }
 
-    function onRemoveMail(mailId) {
-        mailService.get(mailId)
-            .then((mail) => {
+function onRemoveMail(mailId) {
+    mailService.get(mailId)
+        .then(mail => {
             if (mail.status === 'trash') {
-
                 mailService.remove(mailId)
-                .then(() => {
-                    setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
-                    showSuccessMsg('Mail deleted permanently!')
-                })
-                .catch(err => {
-                    console.log('err:', err)
-                    showErrorMsg(`Cannot remove mail - ${mailId}`)
-                })
-            } else {
+                    .then(() => {
+                        setMails(prevMails => prevMails.filter(m => m.id !== mailId))
+                        showSuccessMsg('Mail deleted permanently!')
+                    })
+                    .catch(err => {
+                        console.log('err:', err)
+                        showErrorMsg(`Cannot remove mail - ${mailId}`)
+                    })
+            } 
+            else {
                 const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
+
                 mailService.save(updatedMail)
-                .then(() => {
-                    setMails(prevMails => prevMails.map(mail => mail.id === mailId ? updatedMail : mail))
-                    showSuccessMsg('Mail moved to trash!')
-                })
-                .catch(err => {
-                    console.log('err:', err)
-                    showErrorMsg(`Cannot move mail to trash - ${mailId}`)})
+                    .then(() => {
+                        setMails(prevMails => prevMails.filter(m => m.id !== mailId))
+                        showSuccessMsg('Mail moved to trash!')
+                    })
+                    .catch(err => {
+                        console.log('err:', err)
+                        showErrorMsg(`Cannot move mail to trash - ${mailId}`)
+                    })
             }
-            })
-            .catch(err => {
+        })
+        .catch(err => {
             console.error('err:', err)
             showErrorMsg(`Cannot remove mail - ${mailId}`)
-            })
-    }
+        })
+}
+
 
     function onMailActionToggle(ev, mailId, action){
         ev.stopPropagation()
@@ -118,22 +121,33 @@ export function MailIndex() {
     function getMailsByFolder(statusName){
         if (!mails || !mails.length) return []
         
-        // if (statusName === 'inbox') {
-        //     return mails.filter(mail =>
-        //     mail.categories.map(category => category.toLowerCase()).includes(category))
-        // }
         if (statusName === 'inbox') {
             return mails.filter(mail =>
             mail.categories.map(cat => cat.toLowerCase()).includes(category.toLowerCase()))
         }
 
-        else return mails
-    //    else return mails.filter(mail => {
-    //     if (statusName === 'star') return mail.isStar
-    //     if (statusName === 'important') return mail.isImportant
-    //     if (statusName === 'trash') return mail.removedAt
-    //     return mail.status?.toLowerCase() === statusName.toLowerCase()
-    // })
+        return mails.filter(mail => {
+            switch (statusName) {
+                case 'star':
+                    return mail.isStar
+                case 'important':
+                    return mail.isImportant
+                case 'trash':
+                    return !!mail.removedAt
+                case 'sent':
+                    return mail.status && mail.status.toLowerCase() === 'sent'
+                case 'drafts':
+                    return mail.status && mail.status.toLowerCase() === 'drafts'
+                default:
+                    return mail.status && mail.status.toLowerCase() === statusName.toLowerCase()
+            }
+        })
+
+        .sort((a, b) => {
+        if (statusName === 'trash') return b.removedAt - a.removedAt
+        if (statusName === 'sent') return b.sentAt - a.sentAt
+        if (statusName === 'drafts') return b.createdAt - a.createdAt
+        })
     }
 
     function saveNewMail(to, subject, body){
@@ -170,9 +184,9 @@ export function MailIndex() {
         </div>
 
             {/* <div>header-actions</div> */}
-            <MailCategories
+            {status === 'inbox' && < MailCategories
                 onCategoryChange = {onCategoryChange}
-            />
+            />}
            </div>
 
               {searchParams.get('compose') === 'new' && (
@@ -190,7 +204,7 @@ export function MailIndex() {
             {!mails.length && <Loader />}
 
               <MailList
-                    mails = {mails}
+                    mails = {categoryMails}
 
                    onRemoveMail = {onRemoveMail}
                    onMailActionToggle= {onMailActionToggle}

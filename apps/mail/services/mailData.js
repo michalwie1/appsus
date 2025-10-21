@@ -14,8 +14,8 @@ export const mailsHC = [
     "fromEmail": "billing@fiverr.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions",
@@ -34,8 +34,8 @@ export const mailsHC = [
     "fromEmail": "maya.bar@reichman.ac.il",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -53,8 +53,8 @@ export const mailsHC = [
     "fromEmail": "receipts@uber.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -72,8 +72,8 @@ export const mailsHC = [
     "fromEmail": "reviews@airbnb.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -91,8 +91,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@mail.instagram.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Updates",
@@ -111,8 +111,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@spotify.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -130,8 +130,8 @@ export const mailsHC = [
     "fromEmail": "orders@surfsupply.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -149,8 +149,8 @@ export const mailsHC = [
     "fromEmail": "reservations@airbnb.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -168,8 +168,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@stripe.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions",
@@ -188,8 +188,8 @@ export const mailsHC = [
     "fromEmail": "billing@netflix.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social"
@@ -207,8 +207,8 @@ export const mailsHC = [
     "fromEmail": "updates@aeromexico.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social"
@@ -226,8 +226,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@dropbox.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -245,8 +245,8 @@ export const mailsHC = [
     "fromEmail": "tracking@dhl.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary",
@@ -265,8 +265,8 @@ export const mailsHC = [
     "fromEmail": "noreply@openai.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions",
@@ -285,8 +285,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@google.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -304,8 +304,8 @@ export const mailsHC = [
     "fromEmail": "noreply@elal.co.il",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social"
@@ -323,8 +323,8 @@ export const mailsHC = [
     "fromEmail": "newsletter44@example.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social",
@@ -343,8 +343,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@google.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary",
@@ -363,8 +363,8 @@ export const mailsHC = [
     "fromEmail": "repairs@surf-fix.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary",
@@ -383,8 +383,8 @@ export const mailsHC = [
     "fromEmail": "careers@outbrain.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -402,8 +402,8 @@ export const mailsHC = [
     "fromEmail": "billing@youtube.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -421,8 +421,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@zoom.us",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -440,8 +440,8 @@ export const mailsHC = [
     "fromEmail": "billing@easyplant.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -459,8 +459,8 @@ export const mailsHC = [
     "fromEmail": "billing@wavelock.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -478,8 +478,8 @@ export const mailsHC = [
     "fromEmail": "hr@mixtiles.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -497,8 +497,8 @@ export const mailsHC = [
     "fromEmail": "billing@notion.so",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary",
@@ -517,8 +517,8 @@ export const mailsHC = [
     "fromEmail": "support@headspace.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Updates",
@@ -537,8 +537,8 @@ export const mailsHC = [
     "fromEmail": "roy.arbel@gmail.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social"
@@ -556,8 +556,8 @@ export const mailsHC = [
     "fromEmail": "eyal.shalem@gmail.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social"
@@ -575,8 +575,8 @@ export const mailsHC = [
     "fromEmail": "updates@linkedin.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -594,8 +594,8 @@ export const mailsHC = [
     "fromEmail": "forecast@surfline.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -613,8 +613,8 @@ export const mailsHC = [
     "fromEmail": "newsletter@substack.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Updates",
@@ -633,8 +633,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@google.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social",
@@ -653,8 +653,8 @@ export const mailsHC = [
     "fromEmail": "notifications@calendly.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -672,8 +672,8 @@ export const mailsHC = [
     "fromEmail": "news@morningbrew.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -691,8 +691,8 @@ export const mailsHC = [
     "fromEmail": "events@surfmail.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -710,8 +710,8 @@ export const mailsHC = [
     "fromEmail": "info@medium.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Updates",
@@ -730,8 +730,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@apple.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -749,8 +749,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@facebookmail.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social",
@@ -769,8 +769,8 @@ export const mailsHC = [
     "fromEmail": "jobs@canva.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -788,8 +788,8 @@ export const mailsHC = [
     "fromEmail": "moodle@idc.ac.il",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary"
@@ -807,8 +807,8 @@ export const mailsHC = [
     "fromEmail": "offers@patagonia.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Promotions"
@@ -826,8 +826,8 @@ export const mailsHC = [
     "fromEmail": "noreply@github.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Primary",
@@ -846,8 +846,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@amazon.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social"
@@ -865,8 +865,8 @@ export const mailsHC = [
     "fromEmail": "no-reply@slack.com",
     "to": "user@appsus.com",
     "status": "inbox",
-    "isStar": false,
-    "isImportant": false,
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
     "isCheck": false,
     "categories": [
       "Social",
