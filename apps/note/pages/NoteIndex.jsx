@@ -28,7 +28,6 @@ export function NoteIndex() {
     }, [filterBy])
 
     function loadNotes() {
-        console.log('1s')
         NoteService.query(filterBy)
             .then(setNotes)
             .catch(err => console.log('Error loading notes:', err))
@@ -56,9 +55,8 @@ export function NoteIndex() {
         }
     }
     function handleSaveNote(updatedNote) {
-        NoteService.save(updatedNote).then(() => {
-                loadNotes()
-            })
+        NoteService.save(updatedNote)
+        .then(loadNotes)
     }
 
     function onRemoveNote(ev, note) {
@@ -118,7 +116,6 @@ export function NoteIndex() {
     function onCloseModal() {
         setIsOpen(false)
         setNoteModal(false)
-        loadNotes()
     }
 
     function onChangetoCheckList(ev) {

@@ -59,7 +59,7 @@ export function EditModal({
                 {note.type === 'NoteTodos' && (
                     todos.map((todo, idx) => (
                         <div key={idx} className="todo-container">
-                            <i className="material-symbols-outlined"
+                            <i className="material-symbols-outlined note-checkbox"
                                 onClick={(ev) => handleTodoChange(ev, idx, "doneAt", !todo.doneAt)}
                             >
                                 {todo.doneAt ? "check_box" : "check_box_outline_blank"}
