@@ -123,6 +123,7 @@ function onRemoveMail(mailId) {
         if (!mails || !mails.length) return []
         
         if (statusName === 'inbox') {
+            console.log(mails)
             return mails.filter(mail =>
             mail.categories.map(cat => cat.toLowerCase()).includes(category.toLowerCase()))
         }
@@ -213,4 +214,5 @@ function onRemoveMail(mailId) {
 
         </section>
     )
+
 }
