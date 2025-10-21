@@ -40,7 +40,7 @@
     }
 }
 
-.modal-content>* {
+.modal-content>* :not(.modal-img) {
     width: 100%;
     
 }
@@ -67,7 +67,7 @@
 
 .modal-content .todo-container textarea {
     /* min-height: 1em; */
-    width: 100%;
+    width: 90%;
     border: none;
     outline: none;
     resize: none;

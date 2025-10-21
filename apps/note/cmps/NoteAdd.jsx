@@ -116,7 +116,7 @@ export function NoteAdd({
                                 close
                             </i>
                         )}
-                        <i className="material-symbols-outlined list-icon" onClick={onAddInput}>add</i>
+                        <i className="material-symbols-outlined list-icon" onClick={ev => onAddInput(ev)}>add</i>
                     </div>
                 ))}
                 <section className="input-types">

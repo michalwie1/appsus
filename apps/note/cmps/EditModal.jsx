@@ -13,18 +13,20 @@ export function EditModal({
 
     const [txt, setTxt] = useState(note.info.txt || '')
     const [todos, setTodos] = useState(note.info.todos ? note.info.todos.map(todo => ({ ...todo })) : [])
+    const [noteTitle,setNoteTitle] = useState(note.info.title || "")
 
     const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
 
 
-    function onCloseAndSave() {
-
+   function onCloseAndSave() {
         if (note.type === 'NoteTodos') {
-            onSave({ ...note, info: { ...note.info, todos } });
+            onSave({ ...note, info: { ...note.info, title: noteTitle, todos } });
+        } else if (note.type === 'NoteTxt') {
+            onSave({ ...note, info: { ...note.info, title: noteTitle, txt } });
         } else {
-            onSave({ ...note, info: { ...note.info, txt } });
+            onSave({ ...note, info: { ...note.info, title: noteTitle } });
         }
-        onClose()
+        onClose();
     }
     // function handleSave() {
     //     if (note.type === 'NoteTodos') {
@@ -34,6 +36,13 @@ export function EditModal({
     //     }
     //     onClose()
     // }
+
+   function handleTitle({ target }) {
+        target.style.height = 'auto';
+        target.style.height = target.scrollHeight + 'px';
+        setNoteTitle(target.value);
+    }
+
 
 
     function handleTodoChange({ target }, idx, field, value) {
@@ -56,6 +65,13 @@ export function EditModal({
             <section onClick={onCloseAndSave} className="modal-backdrop"></section>
             <section className="modal-content" onClick={ev => ev.stopPropagation()} style={{ backgroundColor: bgColor }}>
 
+                  <textarea
+                    type="text"
+                    value={noteTitle}
+                    placeholder="Title..."
+                    onChange={handleTitle}
+                    style = {{fontWeight: "600"}}
+                />
                 {note.type === 'NoteTodos' && (
                     todos.map((todo, idx) => (
                         <div key={idx} className="todo-container">
@@ -76,7 +92,7 @@ export function EditModal({
 
 
                 {note.type === 'NoteImg' && (
-                    <img src={note.info.url} alt="" />
+                    <img src={note.info.url} alt="" className="modal-img"/>
                 )}
                 {note.type === 'NoteTxt' && (
                     <textarea
