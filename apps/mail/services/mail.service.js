@@ -19,6 +19,8 @@ export const mailService = {
     formatDate,
     capitalizeFirstLetter,
     unreadMailCounter,
+    getNavData,
+    getMenuData
 }
 
 function query(filterBy = {}) {
@@ -202,3 +204,41 @@ const loggedinUser = {
  fullname: 'Mahatma Appsus'
 }
 
+function getNavData(onStatusChange){
+    return [
+        {   title: 'Inbox',
+            func: (ev) => onStatusChange(ev, 'inbox'),
+            iconName: 'image' //google icon name
+        },
+        {   title: 'Starred',
+            func: (ev) => onStatusChange(ev, 'star'),
+            iconName: 'star'
+        },
+        {   title: 'Important',
+            func: (ev) => onStatusChange(ev, 'important'),
+            iconName: 'label_important'
+        },
+        {   title: 'Sent',
+            func: (ev) => onStatusChange(ev, 'sent'),
+            iconName: 'send'
+        },
+        {   title: 'Drafts',
+            func: (ev) => onStatusChange(ev, 'drafts'),
+            iconName: 'draft'
+        },
+        {   title: 'Trash',
+            func: (ev) => onStatusChange(ev, 'trash'),
+            iconName: 'delete'
+        }
+    ]
+} 
+
+function getMenuData(unreadMails){
+    return { 
+            class: 'status',
+            unreadMails: unreadMails
+        }
+}
+
+
+    

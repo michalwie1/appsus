@@ -7,6 +7,7 @@ import { MailHeader } from "../cmps/MailHeader.jsx"
 import { MailNew } from "../cmps/MailNew.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { MailCategories } from "../cmps/MailCategories.jsx"
+import { SideNav } from "../../../cmps/SideNav.jsx"
 import { MailStatus } from "../cmps/MailStatus.jsx"
 
 export function MailIndex() {
@@ -166,6 +167,9 @@ function onRemoveMail(mailId) {
                 showErrorMsg(`Cannot send mail`)})
     }
 
+    const navData = mailService.getNavData(onStatusChange)
+    const menuData = mailService.getMenuData(unreadCounter)
+
 
     return (
         <section className="mail-index">
@@ -198,9 +202,12 @@ function onRemoveMail(mailId) {
             )} 
 
         <div className="mail-main">
-                <MailStatus
+                {/* <MailStatus
                 onStatusChange = {onStatusChange}
-                unreadMails = {unreadCounter} />
+                unreadMails = {unreadCounter} /> */}
+                <SideNav
+                navData = {navData}
+                menuData = {menuData} />
 
               <MailList
                     mails = {categoryMails}
