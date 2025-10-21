@@ -14,18 +14,21 @@ import { MailStatus } from "../cmps/MailStatus.jsx"
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [mails, setMails] = useState([])
-    const [unreadCounter, setUnreadCounter] = useState(mailService.unreadMailCounter())
+    const [unreadCounter, setUnreadCounter] = useState(0)
     const [category, setCategory] = useState('primary')
     const [status, setStatus] = useState('inbox')
     // const [openMailId, setOpenMailId] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
+    // const [readToggle, setReadToggle] = useState(false)
 
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
-        // console.log(status)
-    // }, [filterBy])
-    }, [filterBy,unreadCounter,status])
+    }, [filterBy])
+
+    useEffect(() => {
+        setUnreadCounter(mailService.unreadMailCounter(mails))
+    }, [mails])
      
         
     function loadMails(){
@@ -197,9 +200,8 @@ function onRemoveMail(mailId) {
 
         <div className="mail-main">
                 <MailStatus
-                onStatusChange = {onStatusChange} />
-                {/* <p>Inbox {mailService.unreadMailCounter()}</p> */}
-                {/* <MailCategories mails={mails}/> */}
+                onStatusChange = {onStatusChange}
+                unreadMails = {unreadCounter} />
            
             {!mails.length && <Loader />}
 
