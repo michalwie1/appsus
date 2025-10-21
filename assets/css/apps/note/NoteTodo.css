@@ -30,7 +30,7 @@
     color: black;
 }
 
-.note-todo-preview .todo-container textarea {
+.note-todo-preview .todo-container textarea{
     /* min-height: 1em; */
     width: 90%;
     border: none;

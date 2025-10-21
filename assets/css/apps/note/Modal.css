@@ -40,9 +40,12 @@
     }
 }
 
-.modal-content>* :not(.modal-img) {
+.modal-content>* :not(.modal-img, .note-checkbox) {
     width: 100%;
-    
+}
+
+.todo-container{
+    width: 100%;
 }
 
 
@@ -86,7 +89,7 @@
     color: black;
 }
 
-.modal-content .todo-container textarea:focus{
+.todo-container textarea:focus{
     border-top: 2px solid rgba(78, 78, 78, 0.4);
     border-bottom: 2px solid rgba(78, 78, 78, 0.4);
     outline: none;

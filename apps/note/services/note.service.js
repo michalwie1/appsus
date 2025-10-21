@@ -94,13 +94,13 @@ function createNewTodoNote(title = '', todos = []) {
     isPinned: false,
     style: { backgroundColor: '' },
     info: {
-      title: title,
-      todos: todos.map(txt => ({
-        txt,
-        doneAt: false, 
+      title,
+      todos: todos.map(todo => ({
+        txt: todo.txt || '',
+        doneAt: !!todo.doneAt, 
       })),
     },
-  };
+  }
 }
 function createNewImgNote(title = '', imgUrl) {
   return {

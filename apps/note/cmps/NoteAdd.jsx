@@ -1,5 +1,4 @@
-// import { ImgService } from "../services/img.service.js"
-const { useState, useEffect, useRef } = React;
+const { useState, useEffect, useRef } = React
 
 export function NoteAdd({
     onAddNote,
@@ -9,7 +8,12 @@ export function NoteAdd({
     isImg,
     onChangeToImg
 }) {
-    const [note, setNote] = useState({ title: '', txt: '', todos: [''], imgUrl: '' })
+    const [note, setNote] = useState({
+        title: '',
+        txt: '',
+        todos: [{ txt: '', doneAt: false }],
+        imgUrl: ''
+    })
     const formRef = useRef(null)
     const imgFileRef = useRef(null)
 
@@ -34,41 +38,74 @@ export function NoteAdd({
         reader.readAsDataURL(file)
     }
 
-    function handleChange({ target }, idx = null) {
+    function handleChange(ev, idx = null) {
+        ev.stopPropagation()
+        const target = ev.target
         const field = target.name
         const value = target.value
+
         target.style.height = 'auto'
         target.style.height = target.scrollHeight + 'px'
 
         if (idx === null) {
+            // regular text or title
             setNote(prev => ({ ...prev, [field]: value }))
         } else {
+            // update specific todo text
             const newTodos = [...note.todos]
-            newTodos[idx] = value
+            newTodos[idx] = { ...newTodos[idx], txt: value }
             setNote(prev => ({ ...prev, todos: newTodos }))
         }
     }
 
-    function onSubmit(ev) {
-        // ev.preventDefault()
-        if (!note.title.trim() && !note.txt.trim() && note.todos.every(todo => !todo.trim()) && !note.imgUrl) return
-        onAddNote(note)
-        setNote({ title: '', txt: '', todos: [''], imgUrl: '' })
+    function onToggleDone(idx) {
+        setNote(prev => {
+            const newTodos = prev.todos.map((todo, i) =>
+                i === idx ? { ...todo, doneAt: !todo.doneAt } : todo
+            )
+            return { ...prev, todos: newTodos }
+        })
+    }
+
+    function onAddInput(ev) {
+        ev.stopPropagation()
+        setNote(prev => ({
+            ...prev,
+            todos: [...prev.todos, { txt: '', doneAt: false }]
+        }))
     }
 
     function onRemoveInput(ev, idx) {
         ev.stopPropagation()
         setNote(prev => {
             const newTodos = prev.todos.filter((_, i) => i !== idx)
-            return { ...prev, todos: newTodos.length ? newTodos : [''] }
+            return {
+                ...prev,
+                todos: newTodos.length ? newTodos : [{ txt: '', doneAt: false }]
+            }
         })
     }
 
-    function onAddInput(ev) {
-        ev.stopPropagation()
-        setNote(prev => ({ ...prev, todos: [...prev.todos, ''] }))
+    function onSubmit(ev) {
+        if (
+            !note.title.trim() &&
+            !note.txt.trim() &&
+            note.todos.every(todo => !todo.txt.trim()) &&
+            !note.imgUrl
+        )
+            return
+
+        onAddNote(note)
+        // reset to default shape
+        setNote({
+            title: '',
+            txt: '',
+            todos: [{ txt: '', doneAt: false }],
+            imgUrl: ''
+        })
     }
 
+    // --- Image mode ---
     if (isImg) {
         return (
             <form ref={formRef} onSubmit={onSubmit} className="note-add">
@@ -79,18 +116,29 @@ export function NoteAdd({
                     value={note.title}
                     onChange={handleChange}
                 />
-                <input ref={imgFileRef} type="file" accept="image/*" onChange={onUploadImg} />
-                {note.imgUrl && <img src={note.imgUrl} alt="Uploaded" className="uploaded-img" />}
+                <input
+                    ref={imgFileRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={onUploadImg}
+                />
+                {note.imgUrl && (
+                    <img src={note.imgUrl} alt="Uploaded" className="uploaded-img" />
+                )}
 
                 <section className="input-types">
-                    <i className="material-symbols-outlined list-icon" onClick={onChangetoText}>text_ad</i>
-                    <i className="material-symbols-outlined list-icon" onClick={onChangetoCheckList}>select_check_box</i>
+                    <i className="material-symbols-outlined list-icon" onClick={onChangetoText}>
+                        text_ad
+                    </i>
+                    <i className="material-symbols-outlined list-icon" onClick={onChangetoCheckList}>
+                        select_check_box
+                    </i>
                 </section>
-                {/* <button>save</button> */}
             </form>
         )
     }
 
+    // --- Checklist mode ---
     if (isCheckList) {
         return (
             <form ref={formRef} onSubmit={onSubmit} className="note-add">
@@ -101,34 +149,54 @@ export function NoteAdd({
                     value={note.title}
                     onChange={handleChange}
                 />
+
                 {note.todos.map((todo, idx) => (
-                    <div key={idx} className="todo-line">
-                        <input type="checkbox" className="note-checkbox" />
-                        <input
+                    <div key={idx} className="todo-container">
+
+                        <i
+                            className="material-symbols-outlined note-checkbox"
+                            onClick={() => onToggleDone(idx)}
+                        >
+                            {todo.doneAt ? 'check_box' : 'check_box_outline_blank'}
+                        </i>
+                        <textarea
                             type="text"
                             placeholder="Checklist item..."
                             className="note-txt"
-                            value={todo}
-                            onChange={(ev) => handleChange(ev, idx)}
+                            value={todo.txt}
+                            onChange={ev => handleChange(ev, idx)}
                         />
+
                         {note.todos.length > 1 && (
-                            <i className="material-symbols-outlined list-icon" onClick={(ev) => onRemoveInput(ev, idx)}>
+                            <i
+                                className="material-symbols-outlined list-icon"
+                                onClick={ev => onRemoveInput(ev, idx)}
+                            >
                                 close
                             </i>
                         )}
-                        <i className="material-symbols-outlined list-icon" onClick={ev => onAddInput(ev)}>add</i>
+                        <i
+                            className="material-symbols-outlined list-icon"
+                            onClick={ev => onAddInput(ev)}
+                        >
+                            add
+                        </i>
                     </div>
                 ))}
+
                 <section className="input-types">
-                    <i className="material-symbols-outlined list-icon" onClick={onChangetoText}>text_ad</i>
-                    <i className="material-symbols-outlined list-icon" onClick={onChangeToImg}>image</i>
+                    <i className="material-symbols-outlined list-icon" onClick={onChangetoText}>
+                        text_ad
+                    </i>
+                    <i className="material-symbols-outlined list-icon" onClick={onChangeToImg}>
+                        image
+                    </i>
                 </section>
-                {/* <button>save</button> */}
             </form>
         )
     }
 
-    // Default (Text Note)
+    // --- Default (text) mode ---
     return (
         <form ref={formRef} onSubmit={onSubmit} className="note-add">
             <textarea
@@ -146,10 +214,19 @@ export function NoteAdd({
                 onChange={handleChange}
             />
             <section className="input-types">
-                <i className="material-symbols-outlined list-icon" onClick={onChangetoCheckList}>select_check_box</i>
-                <i className="material-symbols-outlined list-icon" onClick={onChangeToImg}>image</i>
+                <i
+                    className="material-symbols-outlined list-icon"
+                    onClick={onChangetoCheckList}
+                >
+                    select_check_box
+                </i>
+                <i
+                    className="material-symbols-outlined list-icon"
+                    onClick={onChangeToImg}
+                >
+                    image
+                </i>
             </section>
-            {/* <button>save</button> */}
         </form>
     )
 }

@@ -92,6 +92,7 @@
     cursor: pointer;
 } 
 
+
 .note-add:focus-within .input-types{
     display: none;
 }

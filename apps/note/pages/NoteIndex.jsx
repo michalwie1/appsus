@@ -47,7 +47,7 @@ export function NoteIndex() {
             .then(loadNotes)
             .catch(err => console.log('Error saving note:', err));
         }else{
-            console.log("noteData.title" + noteData.title)
+            console.log("noteData.title" + JSON.stringify(noteData))
              const newNote = NoteService.createNewTodoNote(noteData.title, noteData.todos);
             NoteService.save(newNote)
             .then(loadNotes)
