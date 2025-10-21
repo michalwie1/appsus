@@ -1,4 +1,4 @@
-export function MailStatus({ onStatusChange }) {
+export function MailStatus({ onStatusChange, unreadMails }) {
 
     return (
         <section className="mail-status">
@@ -9,7 +9,8 @@ export function MailStatus({ onStatusChange }) {
                     title= "Person-to-person conversations and messages that don't appear in other tabs."
                         >image
                     </span>
-            <p>Inbox</p>
+            {/* <p className="inbox">{`Inbox ${unreadMails}`}</p> */}
+            <p className="inbox">Inbox<span>{unreadMails}</span></p>
             </div>
 
             <div className= "status"

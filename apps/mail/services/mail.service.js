@@ -101,15 +101,22 @@ function capitalizeFirstLetter(txt){
    return utilService.getCapitalizeFirstLetter(txt)
 }
 
-function unreadMailCounter(){
-    let mails = utilService.loadFromStorage(MAIL_KEY)
-    let unreadCount = 0
+function unreadMailCounter(mails){
+    if (!mails || !mails.length) return 0
+    // const inboxMails = []
+    // let unreadCount = 0
 
-    mails.map((mail) => {
-        if (mail.isRead) unreadCount ++
-    })
+    // mails.forEach(mail => {
+    //     if (mail.status === 'inbox') inboxMails.push(mail)
+    // })
 
-    return unreadCount
+    // inboxMails.forEach((mail) => {
+    //     if (!mail.isRead) unreadCount ++
+    // })
+
+    return mails
+        .filter(mail => mail.status === 'inbox' && !mail.isRead)
+        .length
 }
 
 // function getMailsCategoryCount(){ 

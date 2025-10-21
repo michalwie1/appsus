@@ -84,3 +84,13 @@ function getCapitalizeFirstLetter(str){
     if (typeof str !== 'string' || str.length === 0) return str
     return  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
+
+export function debounce(func, delay) {
+    let timeoutId
+    return (...args) => {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            func(...args)
+        }, delay)
+    }
+}

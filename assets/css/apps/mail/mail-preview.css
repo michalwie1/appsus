@@ -86,11 +86,11 @@ font-weight: 250;
     font-variation-settings: 'wght' 300;
     font-variation-settings: 'opsz' 22;
 
-    &.unstar{
+    &.star{
         font-size: 26px;
     }
 
-    &.star {
+    &.unstar {
     font-size: 24px;
     font-variation-settings:
         'FILL' 1,
@@ -98,7 +98,7 @@ font-weight: 250;
     color: rgb(99, 150, 110); 
     }
     
-    &.important {
+    &.unimportant {
     font-variation-settings:
         'FILL' 1;
     color: rgb(230, 169, 16); 
