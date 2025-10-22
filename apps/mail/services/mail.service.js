@@ -19,6 +19,9 @@ export const mailService = {
     formatDate,
     capitalizeFirstLetter,
     unreadMailCounter,
+    getNavData,
+    getMenuData,
+    getBtnData
 }
 
 function query(filterBy = {}) {
@@ -148,7 +151,7 @@ function unreadMailCounter(mails){
 //     return categoryMails
 // }
 
-function getEmptySentMail(to, subject, body){
+function getEmptySentMail(to, subject, body,status){
     return {
         id: undefined,
         createdAt : Date.now(), 
@@ -160,7 +163,7 @@ function getEmptySentMail(to, subject, body){
         from: loggedinUser.fullname,
         fromEmail: loggedinUser.email,
         to: to,
-        status: "sent",
+        status: status,
         isStar: false,
         isImportant: false,
         isCheck: false,
@@ -202,3 +205,50 @@ const loggedinUser = {
  fullname: 'Mahatma Appsus'
 }
 
+function getNavData(onStatusChange){
+    return [
+        {   title: 'Inbox',
+            func: (ev) => onStatusChange(ev, 'inbox'),
+            iconName: 'image' //google icon name
+        },
+        {   title: 'Starred',
+            func: (ev) => onStatusChange(ev, 'star'),
+            iconName: 'star'
+        },
+        {   title: 'Important',
+            func: (ev) => onStatusChange(ev, 'important'),
+            iconName: 'label_important'
+        },
+        {   title: 'Sent',
+            func: (ev) => onStatusChange(ev, 'sent'),
+            iconName: 'send'
+        },
+        {   title: 'Drafts',
+            func: (ev) => onStatusChange(ev, 'drafts'),
+            iconName: 'draft'
+        },
+        {   title: 'Trash',
+            func: (ev) => onStatusChange(ev, 'trash'),
+            iconName: 'delete'
+        }
+    ]
+} 
+
+function getMenuData(unreadMails){
+    return { 
+            class: 'status',
+            unreadMails: unreadMails
+        }
+}
+
+function getBtnData(onComposeClick){
+    return {
+            label: 'Compose',
+            icon: 'edit',
+            func: onComposeClick,
+            className: 'compose-btn'
+        }
+}
+
+
+    
