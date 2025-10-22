@@ -1,5 +1,6 @@
 .mail-categories{
-    width: 80%;
+    width: 100%;
+    height: 5vh;
     display: grid;
     grid-template-columns: repeat(4, auto);
     gap: 1em;

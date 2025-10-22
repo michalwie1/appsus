@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
@@ -8,6 +8,7 @@ import { MailNew } from "../cmps/MailNew.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { MailCategories } from "../cmps/MailCategories.jsx"
 import { SideNav } from "../../../cmps/SideNav.jsx"
+import { MailDetails } from "../cmps/MailDetails.jsx"
 // import { MailStatus } from "../cmps/MailStatus.jsx"
 
 export function MailIndex() {
@@ -20,6 +21,8 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
     // const [readToggle, setReadToggle] = useState(false)
 
+    const { mailId } = useParams()
+
     useEffect(() => {
         setSearchParams(filterBy)
         loadMails()
@@ -27,6 +30,7 @@ export function MailIndex() {
 
     useEffect(() => {
         setUnreadCounter(mailService.unreadMailCounter(mails))
+        loadMails()
     }, [mails])
      
         
@@ -156,6 +160,7 @@ function onRemoveMail(mailId) {
         const composedMail = mailService.getEmptySentMail(to, subject, body,status)
         console.log(composedMail)
         const userMsg = status === 'sent' ? 'Mail sent' : 'Mail saved to drafts'
+        const userErrorMsg = status === 'sent' ? 'Cannot sent mail' : 'Cannot save to drafts'
         mailService.save(composedMail)
             .then(() => {
                         console.log(composedMail)
@@ -164,7 +169,7 @@ function onRemoveMail(mailId) {
                     })
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg(`Cannot send mail`)})
+                showErrorMsg(userErrorMsg)})
     }
 
     const navData = mailService.getNavData(onStatusChange)
@@ -178,22 +183,6 @@ function onRemoveMail(mailId) {
                 onSetFilterBy={onSetFilterBy} 
                 defaultFilter={filterBy}
             />
-
-    {/* <div className="mail-top"> */}
-
-        {/* <div className="mail-compose">
-             <button onClick={onComposeClick}>
-                    <span 
-                    className="material-symbols-outlined" 
-                      >edit
-                </span>
-                Compose
-            </button>
-        </div> */}
-
-            {/* <div>header-actions</div> */}
-           
-           {/* </div> */}
 
               {searchParams.get('compose') === 'new' && (
                 <MailNew 
@@ -211,9 +200,12 @@ function onRemoveMail(mailId) {
                 btnData = {btnData} />
 
         <div className="mail-content">
-                 {status === 'inbox' && < MailCategories
-                onCategoryChange = {onCategoryChange}
-            />}
+            <div className="mail-categories-container">
+                 {status === 'inbox' && !mailId &&
+                 < MailCategories
+                    onCategoryChange = {onCategoryChange}
+                />}
+            </div>
 
               <MailList
                     mails = {categoryMails}
@@ -221,8 +213,13 @@ function onRemoveMail(mailId) {
                    onRemoveMail = {onRemoveMail}
                    onMailActionToggle= {onMailActionToggle}
                    />
+
+                {mailId && <MailDetails mailId={mailId} />}
+
             </div>
         </div>
+
+
 
             {/* <div>bottom</div>  */}
 

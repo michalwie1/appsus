@@ -23,6 +23,11 @@
     padding: 1em 0;
   }
 
+  .mail-categories-container {
+  width: 80%;
+  height: 10vh;
+}
+
 }
 
 
