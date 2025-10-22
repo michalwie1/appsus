@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
@@ -8,6 +8,7 @@ import { MailNew } from "../cmps/MailNew.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { MailCategories } from "../cmps/MailCategories.jsx"
 import { SideNav } from "../../../cmps/SideNav.jsx"
+import { MailDetails } from "../cmps/MailDetails.jsx"
 // import { MailStatus } from "../cmps/MailStatus.jsx"
 
 export function MailIndex() {
@@ -19,6 +20,8 @@ export function MailIndex() {
     // const [openMailId, setOpenMailId] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
     // const [readToggle, setReadToggle] = useState(false)
+
+    const { mailId } = useParams()
 
     useEffect(() => {
         setSearchParams(filterBy)
@@ -181,22 +184,6 @@ function onRemoveMail(mailId) {
                 defaultFilter={filterBy}
             />
 
-    {/* <div className="mail-top"> */}
-
-        {/* <div className="mail-compose">
-             <button onClick={onComposeClick}>
-                    <span 
-                    className="material-symbols-outlined" 
-                      >edit
-                </span>
-                Compose
-            </button>
-        </div> */}
-
-            {/* <div>header-actions</div> */}
-           
-           {/* </div> */}
-
               {searchParams.get('compose') === 'new' && (
                 <MailNew 
                 setSearchParams={setSearchParams}
@@ -214,7 +201,7 @@ function onRemoveMail(mailId) {
 
         <div className="mail-content">
             <div className="mail-categories-container">
-                 {status === 'inbox' && 
+                 {status === 'inbox' && !mailId &&
                  < MailCategories
                     onCategoryChange = {onCategoryChange}
                 />}
@@ -226,8 +213,13 @@ function onRemoveMail(mailId) {
                    onRemoveMail = {onRemoveMail}
                    onMailActionToggle= {onMailActionToggle}
                    />
+
+                {mailId && <MailDetails mailId={mailId} />}
+
             </div>
         </div>
+
+
 
             {/* <div>bottom</div>  */}
 
