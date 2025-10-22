@@ -27,6 +27,7 @@ export function MailIndex() {
 
     useEffect(() => {
         setUnreadCounter(mailService.unreadMailCounter(mails))
+        loadMails()
     }, [mails])
      
         
@@ -156,6 +157,7 @@ function onRemoveMail(mailId) {
         const composedMail = mailService.getEmptySentMail(to, subject, body,status)
         console.log(composedMail)
         const userMsg = status === 'sent' ? 'Mail sent' : 'Mail saved to drafts'
+        const userErrorMsg = status === 'sent' ? 'Cannot sent mail' : 'Cannot save to drafts'
         mailService.save(composedMail)
             .then(() => {
                         console.log(composedMail)
@@ -164,7 +166,7 @@ function onRemoveMail(mailId) {
                     })
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg(`Cannot send mail`)})
+                showErrorMsg(userErrorMsg)})
     }
 
     const navData = mailService.getNavData(onStatusChange)
