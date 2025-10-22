@@ -65,7 +65,7 @@ export function NoteIndex() {
         NoteService.remove(note.id)
             .then(() => {
                 loadNotes()
-                showSuccessMsg('Note removed Succesfully','mail')
+                showSuccessMsg('Note removed Succesfully','note')
             })
             .catch(err => {console.log('Error saving note:', err)
                 showErrorMsg('Unable to remove note')
