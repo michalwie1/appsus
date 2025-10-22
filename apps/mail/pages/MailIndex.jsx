@@ -152,14 +152,15 @@ function onRemoveMail(mailId) {
         })
     }
 
-    function saveNewMail(to, subject, body){
-        const composedMail = mailService.getEmptySentMail(to, subject, body)
+    function saveNewMail(to, subject, body, status){
+        const composedMail = mailService.getEmptySentMail(to, subject, body,status)
         console.log(composedMail)
+        const userMsg = status === 'sent' ? 'Mail sent' : 'Mail saved to drafts'
         mailService.save(composedMail)
             .then(() => {
                         console.log(composedMail)
                         // setMails(prevMails => prevMails.map(mail => mail.id === mailId ? updatedMail : mail))
-                        showSuccessMsg('Mail sent')
+                        showSuccessMsg(userMsg)
                     })
             .catch(err => {
                 console.log('err:', err)

@@ -40,32 +40,46 @@ if (!mail) return <Loader />
         <section className="mail-details">
 
             <div className="actions">
-            <span className= "material-symbols-outlined"
-                    title= "Back to Inbox"
-                    onClick={onBack}
-                        >arrow_back
-            </span>
+                <span className= "material-symbols-outlined"
+                        title= "Back to Inbox"
+                        onClick={onBack}
+                            >arrow_back
+                </span>
 
-             <span className= "material-symbols-outlined"
-                    title= "Delete"
-                    // onClick={onRemoveMail}
-                        >delete
-            </span>
+                <span className= "material-symbols-outlined"
+                        title= "Delete"
+                        // onClick={onRemoveMail}
+                            >delete
+                </span>
 
-            <span 
-                className="material-symbols-outlined" 
-                // title={mailService.capitalizeFirstLetter(readState)}
-                // onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}
-                >{mail.isRead ? 'drafts' : 'mark_email_unread'}
-            </span>
+                <span 
+                    className="material-symbols-outlined" 
+                    // title={mailService.capitalizeFirstLetter(readState)}
+                    // onClick={(event) => onMailActionToggle(event,mail.id, 'isRead')}
+                    >{mail.isRead ? 'drafts' : 'mark_email_unread'}
+                </span>
 
             </div>
+
             <h2>{mail.subject}</h2>
-            <div>
+
+            <div className="data">
+                <p>img</p>
                 <p>{mail.from}</p>
                 <p>{mail.fromEmail}</p>
+                <p>to</p>
+                <p>{mail.sentAt}</p>
+                <span className= "material-symbols-outlined"
+                        title= {mail.isStar ? 'Unstar' : 'star'}
+                        // onClick={onRemoveMail}
+                            >star
+                </span>
+            </div>
+
+            <div className="mail-body">
                 <p>{mail.body}</p>
             </div>
+                
         </section>
     )
 

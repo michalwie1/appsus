@@ -151,7 +151,7 @@ function unreadMailCounter(mails){
 //     return categoryMails
 // }
 
-function getEmptySentMail(to, subject, body){
+function getEmptySentMail(to, subject, body,status){
     return {
         id: undefined,
         createdAt : Date.now(), 
@@ -163,7 +163,7 @@ function getEmptySentMail(to, subject, body){
         from: loggedinUser.fullname,
         fromEmail: loggedinUser.email,
         to: to,
-        status: "sent",
+        status: status,
         isStar: false,
         isImportant: false,
         isCheck: false,

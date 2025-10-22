@@ -56,9 +56,16 @@ export function MailNew({ setSearchParams, saveNewMail }) {
         ev.preventDefault()
         setSearchParams({})
 
-        if (action === 'close') return
-        const { to, subject, body } = newMail
-        saveNewMail(to, subject, body)
+        const status = action === 'save' ? 'sent' : 'drafts'
+        // if (action === 'close') {
+            const { to, subject, body } = newMail
+            saveNewMail(to, subject, body, status)
+
+        // }
+        // else {
+            // const { to, subject, body } = newMail
+            // saveNewMail(to, subject, body)
+        // }
     }
 
     const { to, subject } = newMail
