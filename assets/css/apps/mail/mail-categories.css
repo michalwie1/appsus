@@ -1,5 +1,11 @@
+.mail-categories-container {
+  width: 80%;
+  min-height: 10vh;
+}
+
 .mail-categories{
     width: 80%;
+    min-height: 10vh;
     display: grid;
     grid-template-columns: repeat(4, auto);
     gap: 1em;

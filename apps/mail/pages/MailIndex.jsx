@@ -213,9 +213,12 @@ function onRemoveMail(mailId) {
                 btnData = {btnData} />
 
         <div className="mail-content">
-                 {status === 'inbox' && < MailCategories
-                onCategoryChange = {onCategoryChange}
-            />}
+            <div className="mail-categories-container">
+                 {status === 'inbox' && 
+                 < MailCategories
+                    onCategoryChange = {onCategoryChange}
+                />}
+            </div>
 
               <MailList
                     mails = {categoryMails}
