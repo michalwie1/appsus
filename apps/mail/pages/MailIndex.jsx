@@ -8,7 +8,7 @@ import { MailNew } from "../cmps/MailNew.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { MailCategories } from "../cmps/MailCategories.jsx"
 import { SideNav } from "../../../cmps/SideNav.jsx"
-import { MailStatus } from "../cmps/MailStatus.jsx"
+// import { MailStatus } from "../cmps/MailStatus.jsx"
 
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -124,7 +124,6 @@ function onRemoveMail(mailId) {
         if (!mails || !mails.length) return []
         
         if (statusName === 'inbox') {
-            console.log(mails)
             return mails.filter(mail =>
             mail.categories.map(cat => cat.toLowerCase()).includes(category.toLowerCase()))
         }
@@ -169,7 +168,7 @@ function onRemoveMail(mailId) {
 
     const navData = mailService.getNavData(onStatusChange)
     const menuData = mailService.getMenuData(unreadCounter)
-
+    const btnData = mailService.getBtnData(onComposeClick)
 
     return (
         <section className="mail-index">
@@ -178,8 +177,10 @@ function onRemoveMail(mailId) {
                 onSetFilterBy={onSetFilterBy} 
                 defaultFilter={filterBy}
             />
-    <div className="mail-top">
-        <div className="mail-compose">
+
+    {/* <div className="mail-top"> */}
+
+        {/* <div className="mail-compose">
              <button onClick={onComposeClick}>
                     <span 
                     className="material-symbols-outlined" 
@@ -187,13 +188,11 @@ function onRemoveMail(mailId) {
                 </span>
                 Compose
             </button>
-        </div>
+        </div> */}
 
             {/* <div>header-actions</div> */}
-            {status === 'inbox' && < MailCategories
-                onCategoryChange = {onCategoryChange}
-            />}
-           </div>
+           
+           {/* </div> */}
 
               {searchParams.get('compose') === 'new' && (
                 <MailNew 
@@ -207,7 +206,13 @@ function onRemoveMail(mailId) {
                 unreadMails = {unreadCounter} /> */}
                 <SideNav
                 navData = {navData}
-                menuData = {menuData} />
+                menuData = {menuData}
+                btnData = {btnData} />
+
+        <div className="mail-content">
+                 {status === 'inbox' && < MailCategories
+                onCategoryChange = {onCategoryChange}
+            />}
 
               <MailList
                     mails = {categoryMails}
@@ -216,6 +221,7 @@ function onRemoveMail(mailId) {
                    onMailActionToggle= {onMailActionToggle}
                    />
             </div>
+        </div>
 
             {/* <div>bottom</div>  */}
 

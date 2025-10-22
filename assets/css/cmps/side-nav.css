@@ -1,11 +1,9 @@
 .side-nav{
-    display: block;
-    /* width: 15%; */
-    /* overflow-y: auto;  */
-    min-height: 0;  
-    align-self: left;
-    padding-right: 1em;
-    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em 0 0;
+    flex: 0 0 18%;  
+    font-size: .9em;
     
     .status{
         text-align: center;
@@ -41,7 +39,6 @@
 
         &.clicked{
             border-width: 80%;
-            /* border-bottom: 3px solid #0000000d; */
             background-color: #0000000d;
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
@@ -61,3 +58,30 @@
         
     }
 }
+
+
+.side-nav .compose-btn{
+    gap: 1em;
+    span{
+        padding-right: .5em;
+    }
+    button {
+      display: flex;
+      align-items: center;
+      background-color: #c2e7ff;
+      color: #001d35;
+      border: none;
+      border-radius: 20px;
+      padding: 1em 1.9em;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: .9em;
+      margin: 0 0 1.5em 1em;
+    
+      &:hover {
+      box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    }
+} 
+
+}
+

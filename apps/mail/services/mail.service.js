@@ -20,7 +20,8 @@ export const mailService = {
     capitalizeFirstLetter,
     unreadMailCounter,
     getNavData,
-    getMenuData
+    getMenuData,
+    getBtnData
 }
 
 function query(filterBy = {}) {
@@ -237,6 +238,15 @@ function getMenuData(unreadMails){
     return { 
             class: 'status',
             unreadMails: unreadMails
+        }
+}
+
+function getBtnData(onComposeClick){
+    return {
+            label: 'Compose',
+            icon: 'edit',
+            func: onComposeClick,
+            className: 'compose-btn'
         }
 }
 

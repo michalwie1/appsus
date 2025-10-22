@@ -1,4 +1,3 @@
- 
  .mail-index {
   width: 100%;
   height: 100vh;
@@ -11,57 +10,20 @@
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
 
-  .mail-main{
-    width: 90%;
+  .mail-main {
     display: flex;
-    flex-direction: row;
-    flex: 1;
-    overflow: hidden;
-    margin: 1em 1em 1em 0;
+    height: 100%;
+    width: 100%;
   }
-  
-  .mail-top{
-    width: 90%;
+
+  .mail-content {
     display: flex;
-    flex-direction: row;
-    flex: 1;
-    overflow: hidden;
-    margin: 1em 1em 1em 0;
-    max-height: 4em;
-  }
-  
-
-  .mail-compose{
-    /* display: block; */
-    /* width: 25%; */
-    overflow-y: auto; 
-    min-height: 0;  
-    align-self: left;
-    padding-right: 1em;
-    flex: 0 0 20%;
-    margin-left: 1em;
-    align-self: center;
-    
-    
-    
-    button{
-      width: max-content;
-      border-radius: 20px;
-      border: 0;
-      padding: 1em 2em;
-      display: flex;
-      gap: 1em;
-      cursor: pointer;
-      /* background-color: rgb(245, 236, 236); */
-      align-items: center;
-      font-size: .9em;
-      transition: box-shadow 0.2s ease, #fff 0.2s ease;
-
-      &:hover{
-       box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-      }
-    }
-
+    flex-direction: column;
+    flex: 1; 
+    padding: 1em 0;
   }
 
 }
+
+
+

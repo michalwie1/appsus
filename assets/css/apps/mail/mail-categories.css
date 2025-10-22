@@ -1,17 +1,12 @@
 .mail-categories{
+    width: 80%;
     display: grid;
-    grid-template-columns: repeat(4,auto);
-
-    /* width: 80%; */
-    overflow-y: auto; 
-    min-height: 0;  
-    align-self: center;
-
-    /* overflow-y: auto;   */
-   box-sizing: border-box;
-    flex: 1;
-
-    
+    grid-template-columns: repeat(4, auto);
+    gap: 1em;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 1em;
     
     .category{
         text-align: center;
@@ -29,7 +24,6 @@
         &:hover{
         background-color: #0000000d;
         cursor: pointer;
-        /* padding: 0 1em; */
         }
 
         &.clicked{
@@ -43,6 +37,6 @@
             }
           
         }
-        
+
     }
 }

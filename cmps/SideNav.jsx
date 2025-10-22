@@ -1,9 +1,21 @@
 
-export function SideNav({ navData, menuData }) {
+export function SideNav({ navData, menuData, btnData='' }) {
 let navClass = ''
 
     return (
         <section className="side-nav">
+
+        {btnData &&
+        <div className="compose-btn">
+             <button onClick={btnData.func}>
+                    <span 
+                    className="material-symbols-outlined" 
+                      >{btnData.icon}
+                </span>
+                {btnData.label}
+            </button>
+        </div>}
+
         {navData.map((nav, idx) => {{
                 navClass = idx === 0 ? menuData.class + ' clicked' : menuData.class}
               return  (
