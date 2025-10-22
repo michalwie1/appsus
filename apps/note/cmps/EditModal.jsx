@@ -104,7 +104,6 @@ export function EditModal({
                 )}
 
                 <div className='action-bar'>
-                    {/* <button onClick={handleSave}>Save</button> */}
                     <i
                         className="material-symbols-outlined"
                         onClick={(ev) => { onRemoveNote(ev, note); onClose(); }}

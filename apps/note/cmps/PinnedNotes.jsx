@@ -11,7 +11,7 @@ export function PinnedNotes({ note, setNoteModal, onChangeColor, onRemoveNote ,o
   
       if (!note) return null;
   
-      // Avoid optional chaining for older Babel
+
       const bgColor = (note.style && note.style.backgroundColor) ? note.style.backgroundColor : '#f7f7f7';
   
       function removeNote(ev, note) {

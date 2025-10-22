@@ -3,33 +3,32 @@ const { useState, useRef, useEffect } = React;
 import { colors } from "../../../assets/config/colors.js";
 
 export function ColorPicker({ note, onChangeColor}) {
-    const [isOpen, setIsOpen] = useState(false);
-    const pickerRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false)
+    const pickerRef = useRef(null)
 
     function handleSelect(color, ev) {
-        ev.stopPropagation();
+        ev.stopPropagation()
         onChangeColor(color,note)
-        setIsOpen(false);
+        setIsOpen(false)
     }
 
-    // Close picker if clicking outside
     useEffect(() => {
         function handleClickOutside(ev) {
             if (pickerRef.current && !pickerRef.current.contains(ev.target)) {
-                setIsOpen(false);
+                setIsOpen(false)
             }
         }
         document.addEventListener('click', handleClickOutside);
         return () => document.removeEventListener('click', handleClickOutside);
-    }, []);
+    }, [])
 
     return (
         <div className="color-picker-wrapper" ref={pickerRef}>
             <i
                 className="material-symbols-outlined"
                 onClick={(ev) => {
-                    ev.stopPropagation();
-                    setIsOpen((prev) => !prev);
+                    ev.stopPropagation()
+                    setIsOpen((prev) => !prev)
                 }}
             > palette</i>
 

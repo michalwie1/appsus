@@ -2,8 +2,20 @@
     position: fixed;
     bottom: -100px;
     right: .5em;
-    padding: .5em;
+    width: 452px;
+    padding: 20px;
     background-color: #111;
+
+    border-radius: 3px;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid rgb(197, 197, 197);
+    box-shadow: rgba(60, 64, 67, 0.3);
 }
 
 .user-msg.open {
@@ -11,15 +23,44 @@
     transition: bottom .5s;
 }
 
-.user-msg.success {
-    background-color: var(--color2);
+.user-msg.success.note {
+    color: white;
+    /* background-color: var(--color2); */
+    background-color: #323232;
 }
 
-.user-msg.error {
-    background-color: var(--color3);
+.user-msg.error.note {
+    color: white;
+    /* background-color: var(--color3); */
+    background-color: #323232;
 }
 
-.user-msg button{
-   float: right;
-   margin-inline-start: 4px;
+.user-msg.success.mail {
+    color: #202124;
+    /* background-color: var(--color2); */
+    background-color: white;
+}
+
+.user-msg.error.mail {
+    color: #202124;
+    /* background-color: var(--color3); */
+    background-color: white;
+}
+
+.user-msg button {
+    float: right;
+    margin-inline-start: 4px;
+
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    /* padding: 4px; */
+
+}
+.user-msg button.note {
+    color: #E0E0E0;
+}
+.user-msg button.mail {
+    color: #5F6368;
 }

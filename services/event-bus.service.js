@@ -21,8 +21,8 @@ export function showUserMsg(msg) {
     eventBusService.emit('show-user-msg', msg)
 }
 
-export function showSuccessMsg(txt) {
-    showUserMsg({ txt, type: 'success' })
+export function showSuccessMsg(txt,cmpClass) {
+    showUserMsg({ txt, type: 'success', cmpClass })
 }
 
 export function showErrorMsg(txt) {

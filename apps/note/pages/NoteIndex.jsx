@@ -4,6 +4,7 @@ import { NoteAdd } from "../cmps/NoteAdd.jsx"
 import { EditModal } from "../cmps/EditModal.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
 import { NoteLoader } from "../cmps/NoteLoader.jsx"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 
@@ -34,36 +35,41 @@ export function NoteIndex() {
     }
 
     function onAddNote(noteData) {
-// console.log("noteData" + JSON.stringify(noteData) )
+        // console.log("noteData" + JSON.stringify(noteData) )
 
-        if (noteData.txt){
+        if (noteData.txt) {
             const newNote = NoteService.createNewNote(noteData.title, noteData.txt);
             NoteService.save(newNote)
-            .then(loadNotes)
-            .catch(err => console.log('Error saving note:', err));
-        }else if (noteData.imgUrl){
+                .then(loadNotes)
+                .catch(err => console.log('Error saving note:', err));
+        } else if (noteData.imgUrl) {
             const newNote = NoteService.createNewImgNote(noteData.title, noteData.imgUrl);
             NoteService.save(newNote)
-            .then(loadNotes)
-            .catch(err => console.log('Error saving note:', err));
-        }else{
+                .then(loadNotes)
+                .catch(err => console.log('Error saving note:', err));
+        } else {
             console.log("noteData.title" + JSON.stringify(noteData))
-             const newNote = NoteService.createNewTodoNote(noteData.title, noteData.todos);
+            const newNote = NoteService.createNewTodoNote(noteData.title, noteData.todos);
             NoteService.save(newNote)
-            .then(loadNotes)
-            .catch(err => console.log('Error saving note:', err));
+                .then(loadNotes)
+                .catch(err => console.log('Error saving note:', err));
         }
     }
     function handleSaveNote(updatedNote) {
         NoteService.save(updatedNote)
-        .then(loadNotes)
+            .then(loadNotes)
     }
 
     function onRemoveNote(ev, note) {
         ev.stopPropagation()
         NoteService.remove(note.id)
-            .then(() => loadNotes())
-            .catch(err => console.log('Error saving note:', err))
+            .then(() => {
+                loadNotes()
+                showSuccessMsg('Note removed Succesfully','mail')
+            })
+            .catch(err => {console.log('Error saving note:', err)
+                showErrorMsg('Unable to remove note')
+            })
         // .finally(console.log(notes))
 
     }
@@ -133,7 +139,11 @@ export function NoteIndex() {
         setisImg(true)
     }
 
-    if (!notes) return <NoteLoader/>
+    function popMassage() {
+        showSuccessMsg('Mail moved to trash!')
+    }
+
+    if (!notes) return <NoteLoader />
 
     return (
         <section className="main-container">
@@ -144,11 +154,11 @@ export function NoteIndex() {
                 <NoteAdd
                     onAddNote={onAddNote}
                     onChangetoCheckList={onChangetoCheckList}
-                    onChangetoText = {onChangetoText}
-                    onChangeToImg = {onChangeToImg}
-                    isImg={isImg} 
-                    isCheckList={isCheckList} 
-                    />
+                    onChangetoText={onChangetoText}
+                    onChangeToImg={onChangeToImg}
+                    isImg={isImg}
+                    isCheckList={isCheckList}
+                />
                 <NoteList
                     notes={notes}
                     setNoteModal={setNoteModal}
@@ -156,7 +166,7 @@ export function NoteIndex() {
                     onRemoveNote={onRemoveNote}
                     onPinNote={onPinNote}
                     onDuplicateNote={onDuplicateNote}
-                     onSave={handleSaveNote}/>
+                    onSave={handleSaveNote} />
                 {/* <button onClick = {onToggleModal}>toggle modal</button> */}
                 {noteModal &&
                     <EditModal
