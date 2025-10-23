@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams, useParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams, useNavigate } = ReactRouterDOM
+
 
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
@@ -22,6 +23,7 @@ export function MailIndex() {
     // const [readToggle, setReadToggle] = useState(false)
 
     const { mailId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setSearchParams(filterBy)
@@ -30,7 +32,6 @@ export function MailIndex() {
 
     useEffect(() => {
         setUnreadCounter(mailService.unreadMailCounter(mails))
-        loadMails()
     }, [mails])
      
         
@@ -47,11 +48,11 @@ function onRemoveMail(mailId) {
                 mailService.remove(mailId)
                     .then(() => {
                         setMails(prevMails => prevMails.filter(m => m.id !== mailId))
-                        showSuccessMsg('Mail deleted permanently!')
+                        showSuccessMsg('Mail deleted permanently!', 'mail')
                     })
                     .catch(err => {
                         console.log('err:', err)
-                        showErrorMsg(`Cannot remove mail - ${mailId}`)
+                        showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
                     })
             } 
             else {
@@ -60,11 +61,12 @@ function onRemoveMail(mailId) {
                 mailService.save(updatedMail)
                     .then(() => {
                         setMails(prevMails => prevMails.filter(m => m.id !== mailId))
-                        showSuccessMsg('Mail moved to trash!')
+                        showSuccessMsg('Mail moved to trash!', 'mail')
+                        loadMails()
                     })
                     .catch(err => {
                         console.log('err:', err)
-                        showErrorMsg(`Cannot move mail to trash - ${mailId}`)
+                        showErrorMsg(`Cannot move mail to trash - ${mailId}`, 'mail')
                     })
             }
         })
@@ -88,6 +90,7 @@ function onRemoveMail(mailId) {
                 mail[action] = !mail[action]
                 return mailService.save(mail)
             })
+            .then(() => loadMails())
             .catch(err => console.log('err:', err))
 
         // if (action === 'isRead') setUnreadCounter(mailService.unreadMailCounter())
@@ -117,6 +120,7 @@ function onRemoveMail(mailId) {
         currentTarget.classList.toggle('clicked')
         
         setStatus(statusName)
+        navigate('/mail')
     }
 
     // const categoryMails = mails.filter(mail =>
@@ -165,7 +169,8 @@ function onRemoveMail(mailId) {
             .then(() => {
                         console.log(composedMail)
                         // setMails(prevMails => prevMails.map(mail => mail.id === mailId ? updatedMail : mail))
-                        showSuccessMsg(userMsg)
+                        showSuccessMsg(userMsg, 'mail')
+                        loadMails()
                     })
             .catch(err => {
                 console.log('err:', err)
@@ -214,7 +219,12 @@ function onRemoveMail(mailId) {
                    onMailActionToggle= {onMailActionToggle}
                    />
 
-                {mailId && <MailDetails mailId={mailId} />}
+                {mailId && 
+                <MailDetails 
+                    // mailId={mailId}
+                    onRemoveMail = {onRemoveMail}
+                    onMailActionToggle = {onMailActionToggle}
+                    />}
 
             </div>
         </div>

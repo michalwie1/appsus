@@ -3,6 +3,7 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 import { mailsHC } from './mailData.js'
+import { colors } from "../../../assets/config/colors.js"
 
 const MAIL_KEY = 'mails'
 // const gCache = utilService.loadFromStorage(CACHE_STORAGE_KEY) || {}
@@ -21,7 +22,8 @@ export const mailService = {
     unreadMailCounter,
     getNavData,
     getMenuData,
-    getBtnData
+    getBtnData,
+    getRandomGoogleColor
 }
 
 function query(filterBy = {}) {
@@ -200,7 +202,7 @@ function _createMails(){
 // }
 
 
-const loggedinUser = {
+export const loggedinUser = {
  email: 'user@appsus.com',
  fullname: 'Mahatma Appsus'
 }
@@ -248,6 +250,11 @@ function getBtnData(onComposeClick){
             func: onComposeClick,
             className: 'compose-btn'
         }
+}
+
+function getRandomGoogleColor(min = 0, max = 9){
+    const randNum = utilService.getRandomIntInclusive(min,max)
+    return colors[randNum]
 }
 
 

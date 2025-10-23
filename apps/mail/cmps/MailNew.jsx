@@ -1,7 +1,7 @@
 const { useState, useEffect, Fragment } = React
 
 import { mailService } from "../services/mail.service.js"
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+// import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export function MailNew({ setSearchParams, saveNewMail }) {
     const [isMinimize, setIsMinimize] = useState(false)

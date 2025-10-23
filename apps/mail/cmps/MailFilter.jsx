@@ -1,10 +1,12 @@
 const { useState, useEffect, useRef } = React
+const { useParams, useNavigate, Link } = ReactRouterDOM
 
 import { debounce } from "../../../services/util.service.js"
 
 export function MailFilter({ defaultFilter, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter)
     const onSetFilterByDebounce = useRef(debounce(onSetFilterBy, 500)).current
+    const navigate = useNavigate()
 
     useEffect(() => {
         // onSetFilterBy(filterByToEdit)
@@ -13,6 +15,7 @@ export function MailFilter({ defaultFilter, onSetFilterBy }) {
 
 
     function handleChange({ target }) {
+        navigate('/mail')
         const field = target.name
         let value = target.value
 
