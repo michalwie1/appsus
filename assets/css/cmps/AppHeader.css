@@ -14,3 +14,23 @@ nav a.active {
     font-weight: bold;
     text-decoration: overline;
 }
+
+.nav-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.app-nav {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: rgb(255, 255, 255);
+    padding: 8px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 120px;
+    z-index: 20;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
