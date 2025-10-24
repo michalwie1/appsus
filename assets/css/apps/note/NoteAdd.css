@@ -100,7 +100,13 @@
 .note-add .todo-container .note-checkbox{
     position: absolute;
     width: 1em;
-    top: 17%;
-    left: -1.5%;
+    /* top: 15%;
+    left: -1.5%; */
 
+}
+
+.todo-actions{
+     position: absolute;
+     margin-inline: 3px;
+     left: -2%;
 }
