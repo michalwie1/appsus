@@ -152,7 +152,6 @@ export function NoteAdd({
 
                 {note.todos.map((todo, idx) => (
                     <div key={idx} className="todo-container">
-
                         <i
                             className="material-symbols-outlined note-checkbox"
                             onClick={() => onToggleDone(idx)}
@@ -165,22 +164,25 @@ export function NoteAdd({
                             className="note-txt"
                             value={todo.txt}
                             onChange={ev => handleChange(ev, idx)}
-                        />
+                            />
+                            {note.todos.length > 1 && (
+                                <i
+                                    className="material-symbols-outlined list-icon"
+                                    onClick={ev => onRemoveInput(ev, idx)}
+                                    style ={{zIndex: "5"}}
+                                >
+                                    close
+                                </i>
+                            )}
+                        <div className="todo-actions">
 
-                        {note.todos.length > 1 && (
                             <i
                                 className="material-symbols-outlined list-icon"
-                                onClick={ev => onRemoveInput(ev, idx)}
+                                onClick={ev => onAddInput(ev)}
                             >
-                                close
+                                add
                             </i>
-                        )}
-                        <i
-                            className="material-symbols-outlined list-icon"
-                            onClick={ev => onAddInput(ev)}
-                        >
-                            add
-                        </i>
+                        </div>
                     </div>
                 ))}
 

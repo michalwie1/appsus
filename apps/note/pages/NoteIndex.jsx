@@ -1,10 +1,12 @@
 import { NoteService } from "../services/note.service.js"
+
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
 import { EditModal } from "../cmps/EditModal.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
 import { NoteLoader } from "../cmps/NoteLoader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+import { AppHeader } from "../../../cmps/AppHeader.jsx"
 
 const { useState, useEffect } = React
 
@@ -65,9 +67,10 @@ export function NoteIndex() {
         NoteService.remove(note.id)
             .then(() => {
                 loadNotes()
-                showSuccessMsg('Note removed Succesfully','note')
+                showSuccessMsg('Note removed Succesfully', 'note')
             })
-            .catch(err => {console.log('Error saving note:', err)
+            .catch(err => {
+                console.log('Error saving note:', err)
                 showErrorMsg('Unable to remove note')
             })
         // .finally(console.log(notes))
@@ -147,8 +150,9 @@ export function NoteIndex() {
 
     return (
         <section className="main-container">
-            <NoteFilter
-                defaultFilter={filterBy}
+            <AppHeader
+                cmpFilterName={'note'}
+                filterBy={filterBy}
                 onSetFilterBy={onSetFilterBy} />
             <section className="container">
                 <NoteAdd
