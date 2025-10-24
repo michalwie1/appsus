@@ -168,6 +168,7 @@ export function MailIndex() {
         if (statusName === 'trash') return b.removedAt - a.removedAt
         if (statusName === 'sent') return b.sentAt - a.sentAt
         if (statusName === 'drafts') return b.createdAt - a.createdAt
+        return b.createdAt - a.createdAt
         })
     }
 

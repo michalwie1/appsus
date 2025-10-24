@@ -5,7 +5,7 @@ import { mailService } from "../services/mail.service.js"
 
 
 export function MailPreview({ mail, onRemoveMail, onMailActionToggle, isMobile }) {
-    const { from, subject, body, sentAt } = mail
+    const { from, subject, body, sentAt, to } = mail
     const date = mailService.formatDate(sentAt)
     const readState = mail.isRead ? 'read' : 'unread'
     const starState = mail.isStar ? 'unstar' : 'star'
@@ -63,12 +63,17 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle, isMobile }
 
           {/* <div className="mail-info" */}
 
-            <p className="from" onClick={onMailClick}>
+            <p className={mail.status === 'drafts' ? "from drafts" : "from"} onClick={onMailClick}>
               {isMobile && <span 
                     className="material-symbols-outlined"
                       >keyboard_double_arrow_right
-                </span>}{from}
-            </p>
+                </span>}{mail.status === 'sent'
+                        ? to
+                        : mail.status === 'drafts'
+                        ? 'Drafts'
+                        : from}
+              </p>
+
             <p className="subject" onClick={onMailClick}>{subject}</p>
             {isMobile && <p className="body" onClick={onMailClick}>{body}</p>}
 
@@ -76,7 +81,7 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle, isMobile }
             <div className="date-actions-wrapper" onClick={ev => ev.stopPropagation()}>
                 <div className="date">{date}</div>
 
-                {!isMobile && <div className="actions">
+               {!isMobile && <div className="actions">
                      <span 
                         className= "material-symbols-outlined"
                         title= "Delete"

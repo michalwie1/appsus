@@ -872,5 +872,152 @@ export const mailsHC = [
       "Social",
       "Updates"
     ]
-  }
+  },
+  {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Project update – Q4 results summary",
+    "body": "Hi team, please find attached the quarterly results presentation. It includes revenue growth metrics, performance charts, and updated projections for next quarter. Let me know if you’d like to schedule a short sync to review the highlights.",
+    "isRead": true,
+    "sentAt": 1759829529082,
+    "removedAt": null,
+    "from": "Mahatma Appsus",
+    "fromEmail": "user@appsus.com",
+    "to": "finance@company.com",
+    "status": "sent",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+    ]
+  },
+  {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Follow-up on partnership proposal",
+    "body": "It was great speaking with you earlier this week. I’m attaching the proposal document we discussed, along with a brief summary of terms. Looking forward to your feedback and next steps.",
+    "isRead": true,
+    "sentAt": 1759829529082,
+    "removedAt": null,
+    "from": "Mahatma Appsus",
+    "fromEmail": "user@appsus.com",
+    "to": "daniel.mizrahi@partners.io",
+    "status": "sent",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+    ]
+  },
+    {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Team meeting rescheduled",
+    "body": "The meeting originally planned for Wednesday has been moved to Thursday at 10:00 AM. Please update your calendars accordingly and confirm availability. Agenda and Zoom link will follow.",
+    "isRead": true,
+    "sentAt": 1759829529082,
+    "removedAt": null,
+    "from": "Mahatma Appsus",
+    "fromEmail": "user@appsus.com",
+    "to": "marketing-team@brandco.com",
+    "status": "sent",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+    ]
+  },
+      {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Design review – landing page draft",
+    "body": "Attached is the first draft of the landing page for review. I’d appreciate any design or copy feedback before we move forward with development. Please add comments directly in Figma.",
+    "isRead": true,
+    "sentAt": 1759829529082,
+    "removedAt": null,
+    "from": "Mahatma Appsus",
+    "fromEmail": "user@appsus.com",
+    "to": "noa.levy@creativehub.com",
+    "status": "sent",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+    ]
+  },
+      {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Design review",
+    "body": "Attached is the first draft of the landing page for review. I’d appreciate any design or copy feedback before we move forward with development. Please add comments directly in Figma.",
+    "isRead": true,
+    "sentAt": 1759829529082,
+    "removedAt": null,
+    "from": "Mahatma Appsus",
+    "fromEmail": "user@appsus.com",
+    "to": "noa.levy@creativehub.com",
+    "status": "drafts",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+    ]
+  },
+      {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Follow-up",
+    "body": "I Would like to",
+    "isRead": true,
+    "sentAt": 1759829529082,
+    "removedAt": null,
+    "from": "Mahatma Appsus",
+    "fromEmail": "user@appsus.com",
+    "to": "marketing@ghouse.com",
+    "status": "drafts",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+    ]
+  },
+    {
+    "id": utilService.makeId(),
+    "createdAt": 1759847529082,
+    "subject": "Your order has been shipped \ud83d\ude9a",
+    "body": "Hi, your package is on the way. Track your shipment from Your Orders.",
+    "isRead": true,
+    "sentAt": 1759847529082,
+    "removedAt": 1759829529082,
+    "from": "Amazon",
+    "fromEmail": "no-reply@amazon.com",
+    "to": "user@appsus.com",
+    "status": "trash",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+      "Social"
+    ]
+  },
+  {
+    "id": utilService.makeId(),
+    "createdAt": 1759829529082,
+    "subject": "Missed messages in #product",
+    "body": "Catch up on conversations you missed in Slack.",
+    "isRead": false,
+    "sentAt": 1759829529082,
+    "removedAt": 1759829529082,
+    "from": "Slack",
+    "fromEmail": "no-reply@slack.com",
+    "to": "user@appsus.com",
+    "status": "trash",
+    "isStar": Math.random() > 0.7,
+    "isImportant": Math.random() > 0.7,
+    "isCheck": false,
+    "categories": [
+      "Social",
+      "Updates"
+    ]
+  },
 ]
