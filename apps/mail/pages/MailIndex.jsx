@@ -21,6 +21,8 @@ export function MailIndex() {
     // const [openMailId, setOpenMailId] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromParams(searchParams))
     // const [readToggle, setReadToggle] = useState(false)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 800)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
     const { mailId } = useParams()
     const navigate = useNavigate()
@@ -30,81 +32,58 @@ export function MailIndex() {
         loadMails()
     }, [filterBy])
 
-    useEffect(() => {
+     useEffect(() => {
         setUnreadCounter(mailService.unreadMailCounter(mails))
     }, [mails])
-     
-        
+
+    useEffect(() => {
+        handleResize()
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+    
+    function handleResize() {
+        const width = window.innerWidth
+        setScreenWidth(width)
+        setIsMobile(width <= 800)
+        //   console.log(width, width <= 800)
+    }
+
     function loadMails(){
         mailService.query(filterBy)
             .then(setMails)
             .catch(err => console.log('err:', err))
     }
 
-// function onRemoveMail(mailId) {
-//     mailService.get(mailId)
-//         .then(mail => {
-//             if (mail.status === 'trash') {
-//                 mailService.remove(mailId)
-//                     .then(() => {
-//                         setMails(prevMails => prevMails.filter(m => m.id !== mailId))
-//                         showSuccessMsg('Mail deleted permanently!', 'mail')
-//                         loadMails()
-//                     })
-//                     .catch(err => {
-//                         console.log('err:', err)
-//                         showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
-//                     })
-//             } 
-//             else {
-//                 const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
 
-//                 mailService.save(updatedMail)
-//                     .then(() => {
-//                         setMails(prevMails => prevMails.filter(m => m.id !== mailId))
-//                         showSuccessMsg('Mail moved to trash!', 'mail')
-//                         loadMails()
-//                     })
-//                     .catch(err => {
-//                         console.log('err:', err)
-//                         showErrorMsg(`Cannot move mail to trash - ${mailId}`, 'mail')
-//                     })
-//             }
-//         })
-//         .catch(err => {
-//             console.error('err:', err)
-//             showErrorMsg(`Cannot remove mail - ${mailId}`)
-//         })
-// }
+    function onRemoveMail(mailId) {
+    mailService.get(mailId)
+        .then(mail => {
+        if (mail.status === 'trash') {
+            return mailService.remove(mailId)
+            .then(() => {
+                showSuccessMsg('Mail deleted permanently!', 'mail')
+                loadMails()
+            })
+        } else {
+            const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
 
-
-function onRemoveMail(mailId) {
-  mailService.get(mailId)
-    .then(mail => {
-      if (mail.status === 'trash') {
-        return mailService.remove(mailId)
-          .then(() => {
-            showSuccessMsg('Mail deleted permanently!', 'mail')
-            loadMails()
-          })
-      } else {
-        const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
-
-        return mailService.save(updatedMail)
-          .then(() => {
-            showSuccessMsg('Mail moved to trash!', 'mail')
-            return new Promise(resolve => setTimeout(resolve, 150))
-          })
-          .then(() => loadMails())
-      }
-    })
-    .catch(err => {
-      console.error('err:', err)
-      showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
-    })
-}
-
-
+            return mailService.save(updatedMail)
+            .then(() => {
+                showSuccessMsg('Mail moved to trash!', 'mail')
+                return new Promise(resolve => setTimeout(resolve, 150))
+            })
+            .then(() => loadMails())
+        }
+        })
+        .catch(err => {
+        console.error('err:', err)
+        showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
+        })
+    }
 
     function onMailActionToggle(ev, mailId, action){
         ev.stopPropagation()
@@ -216,10 +195,21 @@ function onRemoveMail(mailId) {
     return (
         <section className="mail-index">
 
-            <MailHeader 
+           <MailHeader 
                 onSetFilterBy={onSetFilterBy} 
                 defaultFilter={filterBy}
             />
+
+            {isMobile &&
+        <div className="compose-btn">
+             <button onClick={onComposeClick}>
+                    <span 
+                    className="material-symbols-outlined" 
+                      >edit
+                </span>
+                Compose
+            </button>
+        </div>}
 
               {searchParams.get('compose') === 'new' && (
                 <MailNew 
@@ -228,28 +218,32 @@ function onRemoveMail(mailId) {
             )} 
 
         <div className="mail-main">
-                {/* <MailStatus
-                onStatusChange = {onStatusChange}
-                unreadMails = {unreadCounter} /> */}
-                <SideNav
+
+               {!isMobile &&  <SideNav
                 navData = {navData}
                 menuData = {menuData}
-                btnData = {btnData} />
+                btnData = {btnData} />}
 
         <div className="mail-content">
             <div className="mail-categories-container">
-                 {status === 'inbox' && !mailId &&
-                 < MailCategories
+                 {status === 'inbox' && !mailId && !isMobile &&
+                 <MailCategories
                     onCategoryChange = {onCategoryChange}
                 />}
             </div>
 
-              <MailList
+               {(!isMobile || !mailId) && <MailList
                     mails = {categoryMails}
-
                    onRemoveMail = {onRemoveMail}
                    onMailActionToggle= {onMailActionToggle}
-                   />
+                   isMobile = {isMobile}
+                   />}
+
+                {/* {isMobile && <MailList
+                    mails = {categoryMails}
+                   onRemoveMail = {onRemoveMail}
+                   onMailActionToggle= {onMailActionToggle}
+                   />} */}
 
                 {mailId && 
                 <MailDetails 
@@ -260,10 +254,6 @@ function onRemoveMail(mailId) {
 
             </div>
         </div>
-
-
-
-            {/* <div>bottom</div>  */}
 
         </section>
     )

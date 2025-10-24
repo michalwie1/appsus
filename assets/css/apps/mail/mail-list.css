@@ -4,3 +4,9 @@
   overflow-y: auto;
   margin-left: 1em;
 }
+
+ @media (max-width: 800px) {
+  .mail-list {
+    border-radius: 20px;
+  }
+ }
