@@ -3,7 +3,7 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 
 
 import { mailService } from "../services/mail.service.js"
-import { MailIndex } from "../pages/MailIndex.jsx"
+// import { MailIndex } from "../pages/MailIndex.jsx"
 import { Loader } from "../../../cmps/Loader.jsx"
 import { loggedinUser } from "../services/mail.service.js"
 

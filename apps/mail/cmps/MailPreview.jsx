@@ -21,10 +21,15 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
         .catch(err => console.log('err:', err))
   }
 
+//   function onMailClick(mailId) {
+//   navigate(`/mail/${mailId}`)
+// }
+
     return (
         <section
             className={`mail-preview ${readState}`}
-            onClick={onMailClick}>
+            // onClick={() => onMailClick()}
+            >
 
            
                 <span 
@@ -50,9 +55,11 @@ export function MailPreview({ mail, onRemoveMail, onMailActionToggle }) {
                       >label_important
             </span>
 
-            <p className="from">{from}</p>
-            <p className="subject">{subject}</p>
-
+          {/* <div className="mail-info" */}
+          
+            <p className="from" onClick={onMailClick}>{from}</p>
+            <p className="subject" onClick={onMailClick}>{subject}</p>
+          {/* </div> */}
             <div className="date-actions-wrapper" onClick={ev => ev.stopPropagation()}>
                 <div className="date">{date}</div>
 

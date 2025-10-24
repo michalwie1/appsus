@@ -41,44 +41,74 @@ export function MailIndex() {
             .catch(err => console.log('err:', err))
     }
 
-function onRemoveMail(mailId) {
-    mailService.get(mailId)
-        .then(mail => {
-            if (mail.status === 'trash') {
-                mailService.remove(mailId)
-                    .then(() => {
-                        setMails(prevMails => prevMails.filter(m => m.id !== mailId))
-                        showSuccessMsg('Mail deleted permanently!', 'mail')
-                    })
-                    .catch(err => {
-                        console.log('err:', err)
-                        showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
-                    })
-            } 
-            else {
-                const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
+// function onRemoveMail(mailId) {
+//     mailService.get(mailId)
+//         .then(mail => {
+//             if (mail.status === 'trash') {
+//                 mailService.remove(mailId)
+//                     .then(() => {
+//                         setMails(prevMails => prevMails.filter(m => m.id !== mailId))
+//                         showSuccessMsg('Mail deleted permanently!', 'mail')
+//                         loadMails()
+//                     })
+//                     .catch(err => {
+//                         console.log('err:', err)
+//                         showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
+//                     })
+//             } 
+//             else {
+//                 const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
 
-                mailService.save(updatedMail)
-                    .then(() => {
-                        setMails(prevMails => prevMails.filter(m => m.id !== mailId))
-                        showSuccessMsg('Mail moved to trash!', 'mail')
-                        loadMails()
-                    })
-                    .catch(err => {
-                        console.log('err:', err)
-                        showErrorMsg(`Cannot move mail to trash - ${mailId}`, 'mail')
-                    })
-            }
-        })
-        .catch(err => {
-            console.error('err:', err)
-            showErrorMsg(`Cannot remove mail - ${mailId}`)
-        })
+//                 mailService.save(updatedMail)
+//                     .then(() => {
+//                         setMails(prevMails => prevMails.filter(m => m.id !== mailId))
+//                         showSuccessMsg('Mail moved to trash!', 'mail')
+//                         loadMails()
+//                     })
+//                     .catch(err => {
+//                         console.log('err:', err)
+//                         showErrorMsg(`Cannot move mail to trash - ${mailId}`, 'mail')
+//                     })
+//             }
+//         })
+//         .catch(err => {
+//             console.error('err:', err)
+//             showErrorMsg(`Cannot remove mail - ${mailId}`)
+//         })
+// }
+
+
+function onRemoveMail(mailId) {
+  mailService.get(mailId)
+    .then(mail => {
+      if (mail.status === 'trash') {
+        return mailService.remove(mailId)
+          .then(() => {
+            showSuccessMsg('Mail deleted permanently!', 'mail')
+            loadMails()
+          })
+      } else {
+        const updatedMail = { ...mail, status: 'trash', removedAt: Date.now() }
+
+        return mailService.save(updatedMail)
+          .then(() => {
+            showSuccessMsg('Mail moved to trash!', 'mail')
+            return new Promise(resolve => setTimeout(resolve, 150))
+          })
+          .then(() => loadMails())
+      }
+    })
+    .catch(err => {
+      console.error('err:', err)
+      showErrorMsg(`Cannot remove mail - ${mailId}`, 'mail')
+    })
 }
+
 
 
     function onMailActionToggle(ev, mailId, action){
         ev.stopPropagation()
+      
         setMails(prevMails =>
             prevMails.map(mail =>
                 mail.id === mailId ? { ...mail, [action]: !mail[action] } : mail
@@ -90,8 +120,9 @@ function onRemoveMail(mailId) {
                 mail[action] = !mail[action]
                 return mailService.save(mail)
             })
-            .then(() => loadMails())
+            // .then(() => loadMails())
             .catch(err => console.log('err:', err))
+            // .finally(() => loadMails())
 
         // if (action === 'isRead') setUnreadCounter(mailService.unreadMailCounter())
     }
@@ -133,6 +164,7 @@ function onRemoveMail(mailId) {
         
         if (statusName === 'inbox') {
             return mails.filter(mail =>
+            mail.status === 'inbox' &&
             mail.categories.map(cat => cat.toLowerCase()).includes(category.toLowerCase()))
         }
 
