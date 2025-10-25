@@ -1,10 +1,17 @@
- /* home */
 
-.home {
-    background-color: var(--bg2);
+.home h1 {
+    text-align: center;
+    font-size: 5em;
+    margin: .5em 0;
 }
 
-.home .box-container {
+.home h3 {
+    text-align: center;
+    padding: .4em 0;
+    /* font-size: 5em; */
+}
+
+/* .home .box-container {
     padding: 1em 0;
 }
 
@@ -16,18 +23,18 @@
 .home .box2 {
     background-color: var(--color2);
     min-height: 10em;
-}
+} */
 
  @media (min-width: 750px) {
     .home .box-container {
         display: flex;
         flex-direction: row-reverse;
     }
-    .home .box1 {
+    /* .home .box1 {
         flex: 1
     }
     .home .box2 {
         width: 30vw;
-    }
+    } */
     
 }

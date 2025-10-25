@@ -9,6 +9,11 @@
     &.mail{
         outline: none;
     }
+
+    &.home{
+      place-content: center;
+      outline: none;
+    }
 }
 
 nav a {

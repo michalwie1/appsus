@@ -20,7 +20,7 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
     }, [])
 
     return (
-        <header className={`app-header ${cmpFilterName} ${isMenuOpen ? 'menu-open' : ''}`}>
+        <header className={`app-header ${cmpFilterName} ${isMenuOpen ? 'menu-open' : ''} ${!cmpFilterName ? 'home' : ''}`}>
             
                 {cmpFilterName === 'note' ? (
                     <div className = 'logo-container'>
