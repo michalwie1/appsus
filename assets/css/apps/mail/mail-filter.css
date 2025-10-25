@@ -61,6 +61,9 @@
  .mail-filter {
     width: 100%;
     background-color: white;
+    width: auto;
+    flex: 1;          
+    margin: 0 0.5em;
   }
 
   .mail-filter .search-bar {

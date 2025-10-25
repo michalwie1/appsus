@@ -132,7 +132,7 @@ nav a.active {
     padding: 8px;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    /* transition: background-color 0.2s ease; */
   }
 
   .app-menu .material-symbols-outlined:hover {
@@ -151,7 +151,8 @@ nav a.active {
     padding: 8px;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    
+    /* transition: background-color 0.2s ease; */
   }
 
   .nav-wrapper .material-symbols-outlined:hover {
