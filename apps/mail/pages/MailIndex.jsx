@@ -173,7 +173,7 @@ export function MailIndex() {
         })
     }
 
-    function saveNewMail(to, subject, body, status){
+    function onSaveNewMail(to, subject, body, status){
         const composedMail = mailService.getEmptySentMail(to, subject, body,status)
         console.log(composedMail)
         const userMsg = status === 'sent' ? 'Mail sent' : 'Mail saved to drafts'
@@ -232,10 +232,11 @@ export function MailIndex() {
               {searchParams.get('compose') === 'new' && (
                 <MailNew 
                 setSearchParams={setSearchParams}
-                saveNewMail = {saveNewMail} />
+                onSaveNewMail = {onSaveNewMail}
+                isMobile ={isMobile} />
             )} 
 
-        <div className={`mail-main ${isMenuOpen? 'menu-open' : ''}`}>
+        <div className="mail-main">
 
                <SideNav
                 navData = {navData}
@@ -243,7 +244,7 @@ export function MailIndex() {
                 btnData = {btnData}
                 isMenuOpen = {isMenuOpen} />
 
-        <div className="mail-content">
+        <div className={`mail-content ${isMenuOpen? 'menu-open' : ''}`}>
             <div className="mail-categories-container">
                  {status === 'inbox' && !mailId && !isMobile &&
                  <MailCategories

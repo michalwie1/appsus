@@ -3,7 +3,7 @@ const { useState, useEffect, Fragment } = React
 import { mailService } from "../services/mail.service.js"
 // import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
-export function MailNew({ setSearchParams, saveNewMail }) {
+export function MailNew({ setSearchParams, onSaveNewMail, isMobile }) {
     const [isMinimize, setIsMinimize] = useState(false)
     const [isFullScreen, setIsFullScreen] = useState(false)
     const [newMail, setNewMail] = useState({})
@@ -59,12 +59,13 @@ export function MailNew({ setSearchParams, saveNewMail }) {
         const status = action === 'save' ? 'sent' : 'drafts'
         // if (action === 'close') {
             const { to, subject, body } = newMail
-            saveNewMail(to, subject, body, status)
+            if (to || subject || body) 
+            onSaveNewMail(to, subject, body, status)
 
         // }
         // else {
             // const { to, subject, body } = newMail
-            // saveNewMail(to, subject, body)
+            // onSaveNewMail(to, subject, body)
         // }
     }
 
@@ -75,25 +76,48 @@ export function MailNew({ setSearchParams, saveNewMail }) {
         <dialog open className="mail-new" style={dialogStyle}>
             <form onSubmit={(ev) => onCloseModal(ev,'save')}>
                 <div className="header">
-                    <div className="title">New Message</div>
+                    {!isMobile && <div className="title">New Message</div>}
                     <div className="actions">
-                        <span
-                            className="material-symbols-outlined"
-                            title={minimizeTitle}
-                            onClick={onMinimizeToggleModal}
-                        >minimize</span>
+                        {
+                            !isMobile ? (
+                            <div className="desktop">
+                                <span
+                                    className="material-symbols-outlined"
+                                    title={minimizeTitle}
+                                    onClick={onMinimizeToggleModal}
+                                >minimize</span>
+        
+                                <span
+                                    className="material-symbols-outlined"
+                                    title={isFullScreen ? "Exit full screen" : "Full screen"}
+                                    onClick={onFullScreenToggleModal}
+                                >{fullScreen}</span>
+        
+                                <span
+                                    className="material-symbols-outlined"
+                                    title="Close"
+                                    onClick={(ev) => onCloseModal(ev,'close')}
+                                >close</span>
+                            </div>
+                            ) :
+                            <div className="mobile">
+                                 <span
+                                    className="material-symbols-outlined"
+                                    title="Close"
+                                    onClick={(ev) => onCloseModal(ev,'close')}
+                                >arrow_back
+                                </span>
 
-                        <span
-                            className="material-symbols-outlined"
-                            title={isFullScreen ? "Exit full screen" : "Full screen"}
-                            onClick={onFullScreenToggleModal}
-                        >{fullScreen}</span>
-
-                        <span
-                            className="material-symbols-outlined"
-                            title="Close"
-                            onClick={(ev) => onCloseModal(ev,'close')}
-                        >close</span>
+                                {/* <div className="send"> */}
+                                <button disabled={!isValid} type="submit" className="send">
+                                    <span
+                                        className="material-symbols-outlined"
+                                        onClick={onFullScreenToggleModal}
+                                    >send</span>
+                                </button>
+                                {/* </div> */}
+                            </div>
+                        }
                     </div>
                 </div>
 
@@ -121,9 +145,10 @@ export function MailNew({ setSearchParams, saveNewMail }) {
                             <textarea onChange={handleChange} name="body"></textarea>
                         </div>
 
-                        <div className="send">
+                       {!isMobile && 
+                       <div className="send">
                             <button disabled={!isValid} type="submit">Send</button>
-                        </div>
+                        </div>}
                     </Fragment>
                 )}
             </form>
