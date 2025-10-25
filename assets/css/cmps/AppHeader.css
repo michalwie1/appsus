@@ -32,7 +32,7 @@ nav a.active {
 
 .app-nav {
     position: absolute;
-    top: 30px;
+    top: 50px;
     right: 0;
     background: rgb(255, 255, 255);
     padding: 8px;
@@ -43,6 +43,7 @@ nav a.active {
     width: 150px;
     z-index: 20;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    justify-content: center;
 }
 
 .logo-container {

@@ -8,27 +8,27 @@ export function MailCategories({ onCategoryChange }) {
         <section className="mail-categories">
 
             <div className = "category clicked"
+                title= "Person-to-person conversations and messages that don't appear in other tabs."
                 onClick={(ev) => onCategoryChange(ev, 'primary')}>
              <span className= "material-symbols-outlined"
-                    title= "Person-to-person conversations and messages that don't appear in other tabs."
                         >image
                     </span>
             <p>Primary</p>
             </div>
 
             <div className= "category"
+                title= "Marketing, interests, social and political causes, and other promotional emails will be shown here."
                 onClick={(ev) => onCategoryChange(ev, 'promotions')}>
                  <span className= "material-symbols-outlined"
-                    title= "Marketing, interests, social and political causes, and other promotional emails will be shown here."
                         >sell
                     </span>
             <p>Promotions</p>
             </div>
 
             <div className="category"
+                title= "Messages from social networks, media-sharing sites, online dating services, and other social websites."
                 onClick={(ev) => onCategoryChange(ev, 'social')}>
                  <span className= "material-symbols-outlined"
-                    title= "Messages from social networks, media-sharing sites, online dating services, and other social websites."
                         >person
                     </span>
             <p>Social</p>
@@ -36,9 +36,9 @@ export function MailCategories({ onCategoryChange }) {
             </div>
 
             <div className="category"
+                title= "Personal, auto-generated updates including confirmations, receipts, bills, and statements."
                 onClick={(ev) => onCategoryChange(ev, 'updates')}>
                  <span className= "material-symbols-outlined"
-                    title= "Personal, auto-generated updates including confirmations, receipts, bills, and statements."
                         >info
                     </span>
             <p>Updates</p>
