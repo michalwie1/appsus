@@ -5,7 +5,7 @@ import { NoteFilter } from "../apps/note/cmps/NoteFilter.jsx"
 
 const { Link, NavLink } = ReactRouterDOM
 
-export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '', isMobile = '', onMenuClick = '' }) {
+export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '', isMobile = '', onMenuClick = '', isMenuOpen='' }) {
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef(null)
 
@@ -20,7 +20,7 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
     }, [])
 
     return (
-        <header className={`app-header ${cmpFilterName}`}>
+        <header className={`app-header ${cmpFilterName} ${isMenuOpen ? 'menu-open' : ''}`}>
             
                 {cmpFilterName === 'note' ? (
                     <div className = 'logo-container'>
@@ -42,9 +42,6 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
                     </span>
                 </div>
                 ) : ('')
-                    // (
-                    //     <h3>AppSuss</h3>
-                    // )
                 }
 
             {filterBy && onSetFilterBy && (
@@ -60,7 +57,7 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
                     />
                 ) : null
             )}
-            <div className="nav-wrapper" ref={navRef}>
+            {!isMenuOpen && <div className="nav-wrapper" ref={navRef}>
 
             <i
                 className="material-symbols-outlined"
@@ -77,7 +74,7 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
                     <NavLink to="/note"> <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Note logo" /></NavLink>
                 </nav>
             )}
-            </div>
+            </div>}
         </header>
     )
 }

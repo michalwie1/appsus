@@ -23,6 +23,7 @@ export function MailIndex() {
     // const [readToggle, setReadToggle] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const { mailId } = useParams()
     const navigate = useNavigate()
@@ -190,14 +191,12 @@ export function MailIndex() {
     }
 
     function onMenuClick(){
-        isMenuOpen = !isMenuOpen
-        console.log(isMenuOpen)
+        setIsMenuOpen(!isMenuOpen)
     }
 
     const navData = mailService.getNavData(onStatusChange)
     const menuData = mailService.getMenuData(unreadCounter)
     const btnData = mailService.getBtnData(onComposeClick)
-    let isMenuOpen = !isMobile
 
     return (
         <section className="mail-index">
@@ -206,7 +205,9 @@ export function MailIndex() {
                 filterBy={filterBy}
                 onSetFilterBy={onSetFilterBy}
                 isMobile={isMobile}
-                onMenuClick={onMenuClick} />
+                onMenuClick={onMenuClick}
+                isMenuOpen={isMenuOpen}
+                />
 
 
            {/* <MailHeader 
@@ -214,16 +215,19 @@ export function MailIndex() {
                 defaultFilter={filterBy}
             /> */}
 
-            {isMobile &&
-        <div className="compose-btn">
-             <button onClick={onComposeClick}>
-                    <span 
-                    className="material-symbols-outlined" 
-                      >edit
-                </span>
-                Compose
-            </button>
-        </div>}
+            {isMobile && !isMenuOpen ? (
+                 <div className="compose-btn">
+                    <button onClick={onComposeClick}>
+                            <span 
+                            className="material-symbols-outlined" 
+                            >edit
+                        </span>
+                        Compose
+                    </button>
+                </div>
+            ) :
+            ('')
+       }
 
               {searchParams.get('compose') === 'new' && (
                 <MailNew 
@@ -231,12 +235,13 @@ export function MailIndex() {
                 saveNewMail = {saveNewMail} />
             )} 
 
-        <div className="mail-main">
+        <div className={`mail-main ${isMenuOpen? 'menu-open' : ''}`}>
 
-               {isMenuOpen &&  <SideNav
+               <SideNav
                 navData = {navData}
                 menuData = {menuData}
-                btnData = {btnData} />}
+                btnData = {btnData}
+                isMenuOpen = {isMenuOpen} />
 
         <div className="mail-content">
             <div className="mail-categories-container">

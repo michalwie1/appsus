@@ -239,7 +239,7 @@ function getNavData(onStatusChange){
 function getMenuData(unreadMails){
     return { 
             class: 'status',
-            unreadMails: unreadMails
+            unreadMails: unreadMails,
         }
 }
 

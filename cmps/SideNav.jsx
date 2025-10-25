@@ -1,9 +1,12 @@
 
-export function SideNav({ navData, menuData, btnData='' }) {
+export function SideNav({ navData, menuData, btnData='', isMenuOpen='' }) {
 let navClass = ''
+const menuClass = isMenuOpen ? 'open' : ''
 
     return (
-        <section className="side-nav">
+        <section className={`side-nav ${menuClass}`}>
+        
+
 
         {btnData &&
         <div className="compose-btn">

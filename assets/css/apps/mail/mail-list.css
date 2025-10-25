@@ -7,6 +7,8 @@
 
  @media (max-width: 800px) {
   .mail-list {
+    width: 95%;
     border-radius: 20px;
+    align-self: center;
   }
  }
