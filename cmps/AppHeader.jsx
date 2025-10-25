@@ -5,8 +5,7 @@ import { NoteFilter } from "../apps/note/cmps/NoteFilter.jsx"
 
 const { Link, NavLink } = ReactRouterDOM
 
-export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '' }) {
-
+export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '', isMobile = '', onMenuClick = '' }) {
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef(null)
 
@@ -21,21 +20,32 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
     }, [])
 
     return (
-        <header className="app-header">
+        <header className={`app-header ${cmpFilterName}`}>
             
                 {cmpFilterName === 'note' ? (
                     <div className = 'logo-container'>
                         <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Note logo" />
                         <h3 className = 'note-logo-title'>Keep</h3>
                     </div>
-                ) : cmpFilterName === 'mail' ? (
-                    <div>
-                        <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_rtl_r5.png" alt="Gmail logo" />
-                        <h3>Gmail</h3>
+                ) : cmpFilterName === 'mail' && !isMobile ? (
+                    <div className="logo-container">
+                        <img className="mail" src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png" alt="Gmail logo" />
+                        {/* <img className="mail" src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png" alt="Gmail logo" /> */}
+                        {/* <h3 className='mail-logo-title'>Gmail</h3> */}
                     </div>
-                ) : (
-                    <h3>AppSuss</h3>
-                )}
+                ) : cmpFilterName === 'mail' && isMobile ? (
+                 <div className="app-menu">
+                    <span 
+                        className="material-symbols-outlined"
+                        onClick={() => onMenuClick()} 
+                        >menu
+                    </span>
+                </div>
+                ) : ('')
+                    // (
+                    //     <h3>AppSuss</h3>
+                    // )
+                }
 
             {filterBy && onSetFilterBy && (
                 cmpFilterName === 'note' ? (
@@ -61,9 +71,9 @@ export function AppHeader({ cmpFilterName = '', filterBy = '', onSetFilterBy = '
                 > apps</i>
             {isOpen && (
                 <nav className = "app-nav">
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/about">About</NavLink>
-                    <NavLink to="/mail">Mail</NavLink>
+                    {/* <NavLink to="/">Home</NavLink> */}
+                    {/* <NavLink to="/about">About</NavLink> */}
+                    <NavLink to="/mail"><img className="mail" src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png" alt="Gmail logo" /> </NavLink>
                     <NavLink to="/note"> <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Note logo" /></NavLink>
                 </nav>
             )}

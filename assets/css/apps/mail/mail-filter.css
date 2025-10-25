@@ -1,11 +1,92 @@
-.mail-filter{
-    justify-items: center;
+.mail-filter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #f6f8fc; */
+  padding: 0.5em 0;
+}
 
-    i{
-        padding: .7em;
-    }
-    input{
-        padding: .3em 10em;
-        border-radius: 10px;
-    }
+.mail-filter .search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 30em;          
+  height: 3em;
+  padding: 0 14px;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.1);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.mail-filter .search-bar:hover {
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15)
+}
+
+.mail-filter .search-bar:focus-within {
+  border-color: #c2e7ff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+
+.mail-filter .search-bar .material-symbols-outlined {
+  color: #5f6368;
+  font-size: 1.4rem;
+  margin-right: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mail-filter input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  color: #202124;
+}
+
+.mail-filter input::placeholder {
+  color: #5f6368;
+}
+
+.mail-filter input:focus::placeholder {
+  color: #9aa0a6;
+}
+
+
+@media (max-width: 800px) {
+ .mail-filter {
+    width: 100%;
+    background-color: white;
+  }
+
+  .mail-filter .search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+    border-radius: 20px;
+    box-shadow: none;
+  }
+
+  .mail-filter .search-bar .material-symbols-outlined {
+    font-size: 1.5em;
+  }
+
+  .mail-filter input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 0.9rem;
+    outline: none;
+  }
+
+  .mail-filter input::placeholder {
+    color: transparent;
+  }
 }

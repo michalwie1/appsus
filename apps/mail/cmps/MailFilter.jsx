@@ -43,16 +43,14 @@ export function MailFilter({ defaultFilter, onSetFilterBy }) {
     // const isValid = subject && isRead
 
     return (
-        <section className="mail-filter container main-layout">
-            <form onSubmit={onSubmitFilter}>
-                <i className="fa-solid fa-magnifying-glass"></i>
+        <section className="mail-filter">
+            <form onSubmit={onSubmitFilter} className="search-bar">
+                 <span 
+                    className="material-symbols-outlined" 
+                    >search
+                </span>
                 <label htmlFor="subject"></label>
                 <input onChange={handleChange} value={subject} placeholder="Search mail" name="subject" id="subject" type="text" />
-
-                {/* 
-                <label htmlFor="isRead">Price</label>
-                <input onChange={handleChange} value={isRead || ''} name="isRead" id="isRead" type="number" />
-                <button disabled={!isValid}>Submit</button> */}
 
             </form>
         </section>

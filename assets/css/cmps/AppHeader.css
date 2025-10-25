@@ -4,6 +4,10 @@
     padding: 1em;
     background: rgb(255, 255, 255);
     outline: 1px solid rgb(185, 185, 185);
+
+    &.mail{
+        outline: none;
+    }
 }
 
 nav a {
@@ -49,4 +53,107 @@ nav a.active {
 .logo-container .note-logo-title {
     font-size: 1.5em;
     color: #5f6368;
+}
+
+
+.app-nav .mail{
+    width: 48px;
+    height: auto;
+    justify-content: center;
+}
+
+.app-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0.3em;
+}
+
+.app-menu .material-symbols-outlined {
+  font-size: 28px;
+  color: #5f6368;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover{
+        border-radius: 50%;
+        background-color: #0000000d;
+        outline: .4em solid #0000000d;
+
+    }
+}
+
+/* .logo-container .mail{
+    width: 48px;
+    height: auto;
+    justify-content: center;
+}
+
+.mail-logo-title {
+    font-size: 1.5em;
+    color: #5f6368;
+    font-family: "Poppins", "Roboto", sans-serif;
+} */
+
+@media (max-width: 800px) {
+  .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4em 0.8em;
+    outline: none;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* keeps logo centered between menu & apps icons */
+  }
+
+  .logo-container img.mail {
+    width: 90px;
+    height: auto;
+  }
+
+  .app-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+  }
+
+  .app-menu .material-symbols-outlined {
+    font-size: 26px;
+    color: #5f6368;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .app-menu .material-symbols-outlined:hover {
+    background-color: rgba(60, 64, 67, 0.1);
+  }
+
+  .nav-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-wrapper .material-symbols-outlined {
+    font-size: 26px;
+    color: #5f6368;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-wrapper .material-symbols-outlined:hover {
+    background-color: rgba(60, 64, 67, 0.1);
+  }
 }

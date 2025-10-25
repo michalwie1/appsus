@@ -10,7 +10,7 @@ import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.servic
 import { MailCategories } from "../cmps/MailCategories.jsx"
 import { SideNav } from "../../../cmps/SideNav.jsx"
 import { MailDetails } from "../cmps/MailDetails.jsx"
-// import { MailStatus } from "../cmps/MailStatus.jsx"
+import { AppHeader } from "../../../cmps/AppHeader.jsx"
 
 export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -189,17 +189,30 @@ export function MailIndex() {
                 showErrorMsg(userErrorMsg)})
     }
 
+    function onMenuClick(){
+        isMenuOpen = !isMenuOpen
+        console.log(isMenuOpen)
+    }
+
     const navData = mailService.getNavData(onStatusChange)
     const menuData = mailService.getMenuData(unreadCounter)
     const btnData = mailService.getBtnData(onComposeClick)
+    let isMenuOpen = !isMobile
 
     return (
         <section className="mail-index">
+             <AppHeader
+                cmpFilterName={'mail'}
+                filterBy={filterBy}
+                onSetFilterBy={onSetFilterBy}
+                isMobile={isMobile}
+                onMenuClick={onMenuClick} />
 
-           <MailHeader 
+
+           {/* <MailHeader 
                 onSetFilterBy={onSetFilterBy} 
                 defaultFilter={filterBy}
-            />
+            /> */}
 
             {isMobile &&
         <div className="compose-btn">
@@ -220,7 +233,7 @@ export function MailIndex() {
 
         <div className="mail-main">
 
-               {!isMobile &&  <SideNav
+               {isMenuOpen &&  <SideNav
                 navData = {navData}
                 menuData = {menuData}
                 btnData = {btnData} />}
