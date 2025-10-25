@@ -1,3 +1,7 @@
+.note-filter-container{
+  display: grid;
+  place-items: center;
+}
 .note-filter{
     /* background-color: rgb(185, 185, 185); */
     height: 10vh;

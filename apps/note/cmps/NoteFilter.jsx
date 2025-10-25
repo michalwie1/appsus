@@ -33,7 +33,7 @@ export function NoteFilter({ defaultFilter, onSetFilterBy }) {
     const { txt, type } = filterByToEdit
 
     return (
-        <section >
+        <section className = "note-filter-container">
             <form onSubmit={onSubmitFilter}className="note-filter">
                 <input
                     onChange={handleChange}
