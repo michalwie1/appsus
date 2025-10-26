@@ -29,9 +29,14 @@ export const mailService = {
 function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            if (filterBy.subject) {
-                const regex = new RegExp(filterBy.subject, 'i')
-                mails = mails.filter(mail => regex.test(mail.subject))
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
+                mails = mails.filter(mail => 
+                    regex.test(mail.subject) ||
+                    regex.test(mail.body) ||
+                    regex.test(mail.from) ||
+                    regex.test(mail.fromEmail)
+                )
             }
             // if (filterBy.listPrice) {
             //     mails = mails.filter(mail => mail.listPrice >= filterBy.listPrice)
@@ -61,7 +66,7 @@ function getDefaultFilter() {
     // return { subject: '' }
 
     return {
-        subject: 'puki', // no need to support complex text search
+        txt: 'puki', // no need to support complex text search
         // status:'inbox',  //'inbox/sent/trash/draft/starred/important'
         // isRead: true, // (optional property, if missing: show all)
         // isStared: true, // (optional property, if missing: show all)
@@ -72,14 +77,14 @@ function getDefaultFilter() {
 }
 
 function getFilterFromParams(searchParams) {
-    const subject = searchParams.get('subject') || ''
+    const txt = searchParams.get('txt') || ''
     // const status = searchParams.get('status') || 'inbox'
     // const isRead = searchParams.get('isRead') || false
     // const isStared = searchParams.get('isStared') || false
     // const categories = searchParams.get('categories') || []
 
     return {
-        subject,
+        txt,
         // status,
         // isRead,
         // isStared,

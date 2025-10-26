@@ -38,7 +38,7 @@ export function MailFilter({ defaultFilter, onSetFilterBy }) {
         console.log(filterByToEdit)
         onSetFilterBy(filterByToEdit)
     }
-    const { subject, isRead } = filterByToEdit
+    const { txt, isRead } = filterByToEdit
 
     // const isValid = subject && isRead
 
@@ -49,8 +49,8 @@ export function MailFilter({ defaultFilter, onSetFilterBy }) {
                     className="material-symbols-outlined" 
                     >search
                 </span>
-                <label htmlFor="subject"></label>
-                <input onChange={handleChange} value={subject} placeholder="Search mail" name="subject" id="subject" type="text" />
+                <label htmlFor="txt"></label>
+                <input onChange={handleChange} value={txt} placeholder="Search mail" name="txt" id="txt" type="text" />
 
             </form>
         </section>
